@@ -1,0 +1,208 @@
+- Product.without_fallbacks do
+  = form_for [:admin, @product], html: { class: 'form-horizontal' } do |f|
+    = errors_for(@product)
+
+    = render 'locale_tabs'
+
+    - if context.user.admin?
+
+      = render 'admin/active_in_markets/form', f: f
+
+      .form-group
+        label.control-label.col-sm-3
+          | Salgspris
+          small[] (Ekskl. moms)
+        .col-sm-6
+          = f.text_field :price, class: 'form-control'
+
+      .form-group
+        label.control-label.col-sm-3
+          | Kostpris
+          small[] (Ekskl. moms)
+        .col-sm-6
+          = f.text_field :cost_price, class: 'form-control'
+
+      .form-group
+        label.control-label.col-sm-3
+          | Tilbudspris
+          small[] (Ekskl. moms)
+        .col-sm-6
+          = f.text_field :offer_price, class: 'form-control'
+
+      = f.fields_for :volume_prices do |ff|
+        .form-group
+          label.control-label.col-sm-3
+            | Mængdepris
+            small[] (Ekskl. moms)
+          .col-sm-1
+            = ff.text_field :quantity, class: 'form-control'
+          .col-sm-5
+            = ff.text_field :price, class: 'form-control'
+          - if ff.object.persisted?
+            .col-sm-1
+              .checkbox
+                label
+                  = ff.check_box :_destroy
+                  small Slet
+
+      .form-group
+        label.control-label.col-sm-3 Varenr.
+        .col-sm-6
+          = f.text_field :sku, class: 'form-control'
+        .help-block = "Ean nummer: #{@product.ean_number}" if @product.persisted?
+
+      .form-group
+        label.control-label.col-sm-3 Stregkode nr.
+        .col-sm-6
+          = f.text_field :barcode, class: 'form-control'
+
+      .form-group
+        label.control-label.col-sm-3 Leverandørens varenr.
+        .col-sm-6
+          = f.text_field :supplier_id, class: 'form-control'
+
+      .form-group
+        label.control-label.col-sm-3 Beholdning
+        .col-sm-6.help-block = @product.stock
+
+      .form-group
+        label.control-label.col-sm-3 Formodet beholdning
+        .col-sm-6.help-block = @product.presumable_stock
+
+      .form-group
+        label.control-label.col-sm-3 Genbestilling
+        .col-sm-6
+          = f.text_field :restocking_amount, class: 'form-control'
+
+      .form-group
+        label.control-label.col-sm-3 Genbestilling ved
+        .col-sm-6
+          = f.text_field :restocking_threshold, class: 'form-control'
+
+      .form-group
+        label.control-label.col-sm-3 Kategori
+        .col-sm-6
+          = f.select :category_id, @categories, {}, class: 'form-control'
+
+      - unless @product.has_variants?
+        .form-group
+          label.control-label.col-sm-3 Eller hovedprodukt (hvis variant)
+          .col-sm-6
+            = f.select :product_id, @products, {}, class: 'form-control', role: 'related'
+
+      .form-group
+        label.control-label.col-sm-3 Producent
+        .col-sm-6
+          = f.select :manufacturer_id, @manufacturers, {}, class: 'form-control'
+
+      .form-group
+        label.control-label.col-sm-3 PDF
+        .col-sm-6
+          = f.file_field :datasheet, class: 'form-control'
+      .help-block.col-sm-offset-3
+        - if @product.datasheet
+          div
+            = @product.datasheet.metadata['filename']
+            = link_to admin_product_destroy_datasheet_path(@product), class: 'btn btn-link btn-sm btn-danger', 'data-confirm' => "Slet #{@product.datasheet.metadata['filename']}?", 'data-method': 'post', 'data-remote': true, 'role' => 'delete-attachment' do
+              i.fa.fa-trash-o
+
+      .form-group
+        label.control-label.col-sm-3 Komplimentære produkter (vises når varen er lagt i kurv)
+        .col-sm-6
+          = f.text_field :complementary_ids, value: @product.complementary_ids.join(','), role: 'related', class: 'form-control'
+
+    .form-group
+      label.control-label.col-sm-3 Leveringstid
+      .col-sm-6
+        = f.select :shipping_time_id, @shipping_times, {}, class: 'form-control'
+
+    .form-group
+      label.control-label.col-sm-3 Video
+      .col-sm-6
+        = f.text_field :video, class: 'form-control'
+
+    .form-group
+      label.control-label.col-sm-3 Tilkøb
+      .col-sm-6
+        = f.text_field :addon_ids, value: @product.addon_ids.join(','), class: 'form-control', role: 'related'
+
+    .form-group
+      label.control-label.col-sm-3 Komponenter
+      .col-sm-6
+        = f.text_field :component_ids, value: @product.component_ids.join(','), class: 'form-control', role: 'related'
+
+    = render layout: 'locale_tab_content' do |locale|
+
+      hr
+
+      .form-group
+        label.control-label.col-sm-3
+         | Meta-title
+         span.label.label-info = locale
+        .col-sm-6
+          = f.text_field "meta_title_#{locale}", class: 'form-control'
+
+      .form-group
+        label.control-label.col-sm-3
+         | Meta-description
+         span.label.label-info = locale
+        .col-sm-6
+          = f.text_area "meta_description_#{locale}", class: 'form-control'
+
+      .form-group
+        label.control-label.col-sm-3
+         | keywords
+         span.label.label-info = locale
+        .col-sm-6
+          = f.text_field "keywords_#{locale}", class: 'form-control'
+
+      hr
+
+      .form-group
+        label.control-label.col-sm-3
+         | Navn
+         span.label.label-info = locale
+        .col-sm-6
+          = f.text_field "name_#{locale}", class: 'form-control'
+
+      .form-group
+        label.control-label.col-sm-3
+          | Label (vises ved billede)
+          span.label.label-info = locale
+        .col-sm-6
+          = f.text_field "label_#{locale}", class: 'form-control'
+
+      .form-group
+        label.control-label.col-sm-3
+          | Størrelse
+          span.label.label-info = locale
+        .col-sm-6
+          = f.text_field "size_#{locale}", class: 'form-control'
+
+      .form-group
+        label.control-label.col-sm-3
+         | Beskrivelse
+         span.label.label-info = locale
+        .col-sm-6
+          = f.text_area "description_#{locale}", role: 'redactor'
+
+    = f.fields_for :additional_descriptions do |ff|
+      .form-group
+        = render layout: 'locale_tab_content' do |locale|
+          label.control-label.col-sm-3
+            | Ekstra beskrivelse
+            span.label.label-info = locale
+          .col-sm-6
+            = ff.text_area "body_#{locale}", role: 'redactor'
+        - if ff.object.persisted?
+          .col-sm-1
+            .checkbox
+              label
+                = ff.check_box :_destroy
+                small Slet
+
+    .form-group
+      .col-sm-6.col-sm-offset-3
+        button.btn.btn-success type='submit'
+          = @product.new_record? ? 'Opret produkt' : 'Gem ændringer'
+        = link_to 'Annuller', (@product.new_record? ? '/' : @product), class: 'btn btn-link'

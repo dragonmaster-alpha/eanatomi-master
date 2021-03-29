@@ -1,0 +1,16 @@
+= form_for([:admin, @category, @mega_image], html: { class: 'form-horizontal' }) do |f|
+  .form-group
+    label.control-label.col-sm-3 Image
+    .col-sm-6
+      = f.file_field :imgix_photo, class: 'form-control', required: 'true'
+  .form-group
+    label.control-label.col-sm-3 Link
+    .col-sm-6
+      = f.text_field :url, class: 'form-control'
+  / .form-group
+  /   label.control-label.col-sm-3 Position
+  /   .col-sm-6
+  /     = f.select :mega_type, @types, {}, class: 'form-control'
+  .form-group
+    .col-sm-6.col-sm-offset-3
+      button.btn.btn-success type='submit' Save

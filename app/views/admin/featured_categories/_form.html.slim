@@ -1,0 +1,11 @@
+= form_for [:admin, @featured_category], html: { class: 'form-horizontal' } do |f|
+  = render 'admin/active_in_markets/form', f: f
+
+  .form-group
+    label.control-label.col-sm-3 Kategori
+    .col-sm-6
+      = f.select :category_id, @categories, {}, role: 'selectize'
+
+  .form-group.text-center
+    button.btn.btn-success type='submit' = @featured_category.new_record? ? 'Opret udvalgt kategori' : 'Gem ændringer'
+    = link_to 'Annuller', [:admin, :featured_categories], class: 'btn btn-link'

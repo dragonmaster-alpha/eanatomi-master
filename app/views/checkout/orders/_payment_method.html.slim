@@ -1,0 +1,10 @@
+label.block.mt-12 data-show="order[client_type]=#{payment_method.availability.join(',')}"
+  .checkout-form-group.flex.items-center
+    .checkout-label.m-0.p-0
+      = f.radio_button :payment_method, payment_method.id, class: 'hidden', role: "#{payment_method.id}-option order-payment-method"
+      span.shape.w-3.h-3.inline-block.mr-2.rounded-full.border.border-grey.flex-no-shrink
+    .checkout-input-container.font-alt.uppercase.font-bold.flex.items-center.m-0
+      = t(".#{payment_method.id}")
+      = image_2x_tag("payment_methods/#{payment_method.photo}", class: 'h-4 ml-4') if payment_method.photo?
+
+div.pl-4 data-show="order[payment_method]=#{payment_method.id}" = render "checkout/orders/payment_methods/#{payment_method.id}", f: f

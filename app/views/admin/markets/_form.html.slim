@@ -1,0 +1,145 @@
+= form_for [:admin, @market], html: { class: 'form-horizontal' } do |f|
+
+  .form-group
+      .col-sm-6.col-sm-offset-3
+        .checkbox
+          label
+            = f.check_box :active
+            | active
+  / .form-group
+  /   .col-sm-6.col-sm-offset-3
+  /     .checkbox
+  /       label
+  /         = f.check_box :free_shipping
+  /         | free_shipping
+  .form-group
+    .col-sm-6.col-sm-offset-3
+      .checkbox
+        label
+          = f.check_box :eu
+          | eu
+  .form-group
+    .col-sm-6.col-sm-offset-3
+      .checkbox
+        label
+          = f.check_box :choose_servicepoint
+          | choose_servicepoint
+  .form-group
+    .col-sm-6.col-sm-offset-3
+      .checkbox
+        label
+          = f.check_box :customs_invoice
+          | customs_invoice
+  .form-group
+    .col-sm-6.col-sm-offset-3
+      .checkbox
+        label
+          = f.check_box :require_vat_number
+          | require_vat_number
+
+  hr
+
+
+  .form-group
+    label.control-label.col-sm-3 rate
+    .col-sm-6 = f.text_field :rate, class: 'form-control'
+  .form-group
+    label.control-label.col-sm-3 vat
+    .col-sm-6 = f.text_field :vat, class: 'form-control'
+  .form-group
+    label.control-label.col-sm-3 clearance_fee
+    .col-sm-6 = f.text_field :clearance_fee, class: 'form-control'
+
+  hr
+
+  .form-group
+    label.control-label.col-sm-3
+      span.label.label-danger domain
+    .col-sm-6 = f.text_field :domain, class: 'form-control'
+  .form-group
+    label.control-label.col-sm-3
+      span.label.label-danger locale
+    .col-sm-6 = f.text_field :locale, class: 'form-control'
+  .form-group
+    label.control-label.col-sm-3
+      span.label.label-warning timezone
+    .col-sm-6 = f.text_field :timezone, class: 'form-control'
+  .form-group
+    label.control-label.col-sm-3
+      span.label.label-warning country
+    .col-sm-6 = f.text_field :country, class: 'form-control'
+  .form-group
+    label.control-label.col-sm-3
+      span.label.label-warning country_code
+    .col-sm-6 = f.text_field :country_code, class: 'form-control'
+  .form-group
+    label.control-label.col-sm-3 phone_prefix
+    .col-sm-6 = f.text_field :phone_prefix, class: 'form-control'
+
+  hr
+
+  .form-group
+    label.control-label.col-sm-3 blog_url
+    .col-sm-6 = f.text_field :blog_url, class: 'form-control'
+  .form-group
+    label.control-label.col-sm-3 development_url
+    .col-sm-6 = f.text_field :development_url, class: 'form-control'
+
+  .form-group
+    label.control-label.col-sm-3 notice
+    .col-sm-6 = f.text_area :notice, class: 'form-control'
+
+  hr
+
+  .form-group
+    label.control-label.col-sm-3 analytics_id
+    .col-sm-6 = f.text_field :analytics_id, class: 'form-control'
+  .form-group
+    label.control-label.col-sm-3 google_site_verification
+    .col-sm-6 = f.text_field :google_site_verification, class: 'form-control'
+  .form-group
+    label.control-label.col-sm-3 google_merchant_id
+    .col-sm-6 = f.text_field :google_merchant_id, class: 'form-control'
+  .form-group
+    label.control-label.col-sm-3 facebook_pixel_id
+    .col-sm-6 = f.text_field :facebook_pixel_id, class: 'form-control'
+
+  hr
+
+  .form-group
+    label.control-label.col-sm-3
+      span.label.label-danger delivery_sku
+    .col-sm-6 = f.text_field :delivery_sku, class: 'form-control'
+  .form-group
+    label.control-label.col-sm-3
+      span.label.label-danger gift_card_sku
+    .col-sm-6 = f.text_field :gift_card_sku, class: 'form-control'
+  .form-group
+    label.control-label.col-sm-3
+      span.label.label-danger delivery_id
+    .col-sm-6 = f.text_field :delivery_id, class: 'form-control'
+  .form-group
+    label.control-label.col-sm-3
+      span.label.label-danger gift_card_id
+    .col-sm-6 = f.text_field :gift_card_id, class: 'form-control'
+  .form-group
+    label.control-label.col-sm-3 shipping_provider
+    .col-sm-6 = f.select :shipping_provider, DeliveryMethod.available_couriers, {}, class: 'form-control'
+  .form-group
+    label.control-label.col-sm-3
+      span.label.label-danger accounting_class
+    .col-sm-6 = f.text_field :accounting_class, class: 'form-control'
+  .form-group
+    label.control-label.col-sm-3
+      span.label.label-danger epay_md5_key
+    .col-sm-6 = f.text_field :epay_md5_key, class: 'form-control'
+  .form-group
+    label.control-label.col-sm-3
+      span.label.label-danger epay_merchant_number
+    .col-sm-6 = f.text_field :epay_merchant_number, class: 'form-control'
+
+
+  .form-group
+    .col-sm-6.col-sm-offset-3
+      button.btn.btn-success type='submit' Gem ændringer
+      = link_to 'Annuller', [:admin, :markets], class: 'btn btn-link'

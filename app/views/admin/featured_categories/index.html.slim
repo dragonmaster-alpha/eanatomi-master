@@ -1,0 +1,8 @@
+.container
+  .text-center
+    h1 Udvalgte kategorier
+    p = link_to 'Ny udvalgt kategori', [:new, :admin, :featured_category], class: 'btn btn-primary'
+
+  table.table
+    tbody role='sortable' data-model='FeaturedCategory'
+      = render @featured_categories

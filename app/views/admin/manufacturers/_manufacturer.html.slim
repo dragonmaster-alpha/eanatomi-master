@@ -1,0 +1,6 @@
+tr
+  td = manufacturer
+  td
+    = link_to 'Rediger', [:edit, :admin, manufacturer], class: 'btn btn-default btn-xs'
+    = link_to 'Slet', [:admin, manufacturer], class: 'btn btn-link btn-xs', method: 'delete', 'data-confirm' => "Slet #{manufacturer}?"
+    = link_to "Se næste genbestilling (#{l(manufacturer.restocking_on)})", new_admin_purchase_order_path(manufacturer_id: manufacturer.id), class: 'btn btn-link btn-xs' if manufacturer.restocking_interval

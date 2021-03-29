@@ -1,0 +1,79 @@
+
+<script type="text/javascript">
+  // Google Analytics
+  <% order.order_items.each do |item| %>
+    ga('ec:addProduct', {
+      id: '<%= item.sku_code %>',
+      name: '<%= item.name %>',
+      category: '<%= item.category %>',
+      price: <%= item.gross_amount %>,
+      quantity: <%= item.quantity %>
+    });
+  <% end %>
+
+  ga('ec:setAction', 'purchase', {
+    id: '<%= order.order_number %>',
+    revenue: <%= order.gross_price %>,
+    shipping: <%= order.delivery_gross_amount %>,
+    tax: <%= order.vat_amount %>
+  });
+
+  ga('send', 'pageview');
+</script>
+
+
+
+<% if order.in_stock? && context.market.google_merchant_id.present? %>
+  <%
+    gcr_lang = {
+      dk: 'da',
+      se: 'sv',
+      no: 'no'
+    }.fetch(context.market.key, 'en_US')
+  %>
+
+  <!-- BEGIN GCR Opt-in Module Code -->
+  <script src="https://apis.google.com/js/platform.js?onload=renderOptIn"
+    async defer>
+  </script>
+
+  <script>
+    window.renderOptIn = function() {
+      window.gapi.load('surveyoptin', function() {
+        window.gapi.surveyoptin.render(
+          {
+            // REQUIRED
+            merchant_id:             '<%= context.market.google_merchant_id %>',
+            order_id:                '<%= order.order_number %>',
+            email:                   '<%= order.email %>',
+            delivery_country:        '<%= order.shipping_address.country_code %>',
+            estimated_delivery_date: '<%= 3.days.from_now.strftime('%Y-%m-%d') %>',
+            opt_in_style:            "CENTER_DIALOG",
+            products:                [
+              <% order.order_items.each do |order_item| %>
+                {
+                  gtin: '<%= order_item.sku_code %>'
+                },
+              <% end %>
+            ]
+          });
+       });
+    }
+  </script>
+  <!-- END GCR Opt-in Module Code -->
+
+  <!-- BEGIN GCR Language Code -->
+  <script>
+    window.___gcfg = {
+      lang: '<%= gcr_lang %>'
+    };
+  </script>
+  <!-- END GCR Language Code -->
+<% end %>
+
+<script>
+  fbq('track', 'Purchase', {
+    value: <%= order.gross_price %>,
+    currency: '<%= order.market.currency.upcase %>'
+  })
+</script>

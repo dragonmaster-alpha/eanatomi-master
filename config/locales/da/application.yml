@@ -1,0 +1,114 @@
+---
+da:
+  application:
+    additional_description:
+      read_more: Læs mere
+      read_less: Minimer
+    market_notice:
+      header: Velkommen til vores side dedikeret til vores Danske kunder.
+      close: Luk denne besked
+      bullets:
+      body:
+      contact: Kontakt os gerne hvis du har spørgsmål
+    social_links:
+      title: Kig med bag kulisserne
+      follow: FØLG OS
+    gift_card:
+      title: Gavekort
+    subscribe_box:
+      title: Tilmeld dig vores nyhedsbrev
+      name: Dit navn
+      email: Din email
+      button: Tilmeld nyhedsbrev
+    blog:
+      latest: Seneste bloginlæg
+      read_more: Læs mere
+    development:
+      title: Følg med i udviklingen
+      link: Gå til udviklingsafelingen
+    side_navigation:
+      gift_card: Gavekort
+    not_found:
+      not_found: Siden blev ikke fundet
+      home: Gå til forsiden
+    client_types:
+      private: Privat kunde
+      public: Offentlig kunde
+      business: Erhvervs / Offentlig kunde
+    header:
+      tagline: Leverandør til Private og det Offentlige
+      shipping_time: Dag til dag levering
+      phone_number: +45 2991 9911
+      email_address: info@eanatomi.dk
+      blog: Blog
+      development: Udviklingsafdelingen
+      search: Søg
+      search_placeholder: Søg efter varer og kategorier
+      cart_size:
+        zero: Ingen varer i kurven
+        one: '1 vare i kurven'
+        other: '%{count} varer i kurven'
+      proceed: Gå til kassen
+      account: Min konto
+      shipping_time: Dag til dag*
+      shipping_fee: Fragt fra %{amount}
+      returns: 14 dages returret
+      safety: Tryghed og sikkerhed
+    header_xs:
+      cart_size:
+        zero: Ingen varer
+        one: '1 vare'
+        other: '%{count} varer'
+      proceed: Til kassen
+      phone_number: +45 2991 9911
+      email_address: info@eanatomi.dk
+      account: Min konto
+      search: Søg
+      search_placeholder: Søg efter varer og kategorier
+      subdomain: Udviklingsafdelingen
+      product_category: Varesortiment
+      info: INFORMATION
+    usps:
+      shipping_time: Levering 1-3 dage
+      shipping_cost: Fragt fra kr. %{amount}
+      returns: 30 dages fortrydelsesret
+      security: Tryghed og sikkerhed
+      payment: Betal med kreditkort, EAN nummer, faktura*
+    footer:
+      columns:
+        information: INFORMATION
+        subdomain: Udviklingsafdelingen
+        follow: FØLG OS
+        lang: LANDEVALG
+      shipping:
+        title: Levering 1-3 dage
+        carrier: 'Vi sender med Postnord og har daglige afsendesle af alle ordrer, som er modtaget inden kl. 12 og hvor alle varer er på lager. Lager status er oplyst ved hvert produkt:'
+        in_stock: På lager
+        in_stock_description: Varen kan afsendes med det samme
+        out_of_stock: Varen er i restordre
+        out_of_stock_description: Varen skal bestilles hjem fra fabrikken før afsendelse er mulig. Leveringstiden er derfor længere
+      shipping_price:
+        title: Fragt fra kr. %{amount}
+        servicepoint: 'Vi har to fragtpriser ved levering i Danmark: Til nærmeste postbutik / afhentningssted %{amount} DKK inkl. moms.'
+        door: 'Levering til døren uanset privat eller erhverv: %{amount} inkl. moms. Fragtprisen er uanset ordremængde.'
+      returns:
+        title: 14 dages fortrydelsesret
+        policy: Du har altid 14 dages fuld returret, fra modtagelse af din bestilling.
+        contact: Kontakt os blot, eller læs mere om mulighederen for at %{contact_link}.
+        contact_link: returnerer din bestilling her
+      contact:
+        title: Kontakt
+        account: Forhandler-login
+        business: eAnatomi
+        form: Kontaktformular
+        address: 'Naverland 33-35'
+        city: 2600 Glostrup
+        country: Danmark
+        vat_number: 'CVR: DK 27486916'
+        phone: 't: +45 29919 991'
+        email: 'info@eanatomi.dk'
+        owner: 'Indehaver: Christian Birksø'
+    suggest_market:
+      see_website: Vil du se vores hjemmeside på dansk?
+      visit: Ja, gå til eanatomi.dk
+      stay: Nej, bliv på eanatomi.dk

@@ -1,0 +1,16 @@
+.uppercase.text-xs
+  .flex.items-center.my-6
+    = image_tag('icons/ft_truck.svg', class: 'mr-3 footer-icon-width')
+    div = t('.shipping_time')
+  .flex.items-center.my-6
+    = image_tag("icons/#{context.market.shipping_provider}.png", class: 'mr-3 footer-icon-width')
+    div = t('.shipping_cost', amount: short_number_to_currency(currency(DeliveryMethod.cheapest(context.market.key).cost).net_amount))
+  .flex.items-center.my-6
+    = image_tag('icons/ft_schedule.svg', class: 'mr-3 footer-icon-width')
+    div = t('.returns')
+  .flex.items-center.my-6
+    = image_tag('icons/creditcard.svg', class: 'mr-3 footer-icon-width')
+    div = t('.payment')
+  .flex.items-center.my-6
+    = image_tag('icons/security.svg', class: 'mr-3 footer-icon-width')
+    div = t('.security')

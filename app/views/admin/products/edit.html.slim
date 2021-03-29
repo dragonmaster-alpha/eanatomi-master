@@ -1,0 +1,12 @@
+.container
+  h1 = "Rediger #{@product}"
+  br
+  = render 'form'
+
+  - if @product.translation_changes.latest.any?
+    br
+    h2 Seneste sprog ændringer
+    table.table
+      = render @product.translation_changes.latest
+    br
+    br

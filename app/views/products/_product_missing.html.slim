@@ -1,0 +1,40 @@
+.product-grid-item.mb-6.text-center
+  a.hover--shadow-md.border.relative.block.text-black.grid-item.rounded-sm.h-full.flex.flex-col.no-underline href="javascript;" data-toggle='modal' data-target='@product-missing-modal'
+    .h-5
+    .flex.flex-col.flex-grow
+      .h-32.md--h-64.text-center.flex-none.flex.align-center.text-center.justify-center.mb-4
+        = image_tag('icons/search.svg', class: 'w-16')
+      .h-5
+      .flex.flex-col.flex-grow.justify-between.bg-grey-lightest.px-6
+        .text-sm.my-6.overflow-hidden.leading-normal.h-11
+          = t('.title')
+        div.flex-grow
+          span.uppercase.font-bold = t('.text')
+
+.modal.fade.hidden role='product-missing-modal'
+  .modal-dialog
+    .modal-content
+      .modal-body
+        button.close type='button' data-dismiss='modal'
+          span ×
+
+        h4.mb-8.uppercase.font-normal = t '.modal.title'
+
+        = form_for @enquiry do |f|
+          = f.hidden_field :url
+          .my-4
+            label.block.uppercase.text-xs = t('.modal.name')
+            = f.text_field :name, required: true, class: 'text-field w-64'
+          .my-4
+            label.block.uppercase.text-xs = t('.modal.email')
+            = f.text_field :email, required: true, class: 'text-field w-64'
+          .my-4
+            label.block.uppercase.text-xs.italic = t('.modal.phone')
+            = f.text_field :phone, class: 'text-field w-64'
+          .my-4
+            label.block.uppercase.text-xs = t('.modal.message')
+            = f.text_area :body, required: true, class: 'text-field w-64'
+          .my-4
+            = recaptcha_tags
+
+          button.uppercase.mt-8.hover--font-bold.underline type='submit' = t('.modal.submit')

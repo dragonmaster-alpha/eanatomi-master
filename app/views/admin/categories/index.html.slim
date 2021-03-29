@@ -1,0 +1,11 @@
+.container
+  .text-center
+    h1 Kategorier
+    p = link_to 'Ny kategori', [:new, :admin, :category], class: 'btn btn-primary'
+
+    p
+      = link_to 'Alle', '?categories=all', class: "btn btn-default #{'active' if ['all', nil].include?(params[:categories])}"
+      = link_to 'Inaktive', '?categories=inactive', class: "btn btn-default #{'active' if params[:categories] == 'inactive'}"
+
+  table.table
+    = render @categories if @categories

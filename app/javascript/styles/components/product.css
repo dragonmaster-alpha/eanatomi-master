@@ -1,0 +1,7 @@
+.product-photo-height {
+  height: 200px;
+
+  @media(--screen-md) {
+    height: auto;
+  }
+}

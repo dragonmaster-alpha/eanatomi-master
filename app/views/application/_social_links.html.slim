@@ -1,0 +1,15 @@
+.bg-white.py-4.mb-2
+  .mb-2.font-bold.uppercase = t('.follow')
+  ul.list-reset.text-white
+    li.text-sm
+      = link_to 'https://www.facebook.com/eAnatomi/', target: '_blank', class: 'block ml-4 no-underline text-black py-2 uppercase text-sm'
+        div Facebook
+    li.text-sm
+      = link_to 'https://www.instagram.com/eanatomi_dk/', target: '_blank', class: 'block ml-4 no-underline text-black py-2 uppercase text-sm'
+        div Instagram
+    li.text-sm
+      = link_to 'https://www.linkedin.com/company/eanatomi', target: '_blank', class: 'block ml-4 no-underline text-black py-2 uppercase text-sm'
+        div LinkedIn
+  / = link_to image_tag('icons/facebook.png', class: 'w-10'), 'https://www.facebook.com/eAnatomi/', target: '_blank'
+  / = link_to image_tag('icons/linkedin.png', class: 'w-10'), 'https://www.linkedin.com/company/eanatomi', target: '_blank'
+  / = link_to image_tag('icons/instagram.png', class: 'w-10'), 'https://www.instagram.com/eanatomi_dk/', target: '_blank'

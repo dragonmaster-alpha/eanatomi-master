@@ -1,0 +1,12 @@
+---
+da:
+  search_previews:
+    index:
+      vat_incl: Inkl. moms
+      vat_excl: Ekskl. moms
+      call_for_price: Kontakt os for pris
+      from: Fra
+      show_all: Vis alle søgeresultater
+      products: Produkter
+      no_products_found: Ingen produkter fundet
+

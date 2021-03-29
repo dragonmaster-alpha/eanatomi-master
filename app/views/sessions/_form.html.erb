@@ -1,0 +1,22 @@
+<%= form_for :session, url: session_path do |form| %>
+  <div class="my-4">
+    <%= form.label :email, class: 'uppercase text-sm block' %>
+    <%= form.text_field :email, type: 'email', class: 'text-field mt-2' %>
+  </div>
+
+  <div class="my-4">
+    <%= form.label :password, class: 'uppercase text-sm block' %>
+    <%= form.password_field :password, class: 'text-field mt-2' %>
+  </div>
+
+  <div class="my-4">
+    <%= form.submit class: 'bg-transparent p-0 uppercase underline' %>
+  </div>
+
+  <div class="mt-8">
+    <% if Clearance.configuration.allow_sign_up? %>
+      <%= link_to t(".sign_up"), sign_up_path %>
+    <% end %>
+    <%= link_to t(".forgot_password"), new_password_path %>
+  </div>
+<% end %>

@@ -1,0 +1,18 @@
+Dear <%= @purchase_order.manufacturer.attention %>
+
+Please send the following items to my warehouse:
+
+<% @purchase_order.items.each do |item| %>
+<%= item.quantity %> pcs. of <%= item.product.sku %> (<%= item.product.name %>)
+
+<% end %>
+
+Thank you in advance
+
+My best regards
+
+Christian Birksø
+eAnatomi
+T: +45 2991 9911
+E: info@eAnatomi.dk
+www.eAnatomi.dk

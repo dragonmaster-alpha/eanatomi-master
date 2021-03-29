@@ -1,0 +1,7 @@
+.container
+  .text-center
+    h1 Brugere
+    p = link_to 'Ny bruger', [:new, :admin, :user], class: 'btn btn-primary'
+  
+  table.table
+    = render @users

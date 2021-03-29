@@ -1,0 +1,106 @@
+<% meta title: @category.meta_title, description: @category.meta_description, robots: @category.active_in_market?(context.market.key) ? 'index' : 'noindex' %>
+<% meta og: { image: @category.imgix_photo_url } %>
+<section class="product_banner -mt-6 relative">
+  <div class="full_banner-slider" data-turbolinds="false">
+    <%= @banners.each do |banner| %>
+      <div class="slider-item">
+        <%= link_to image_tag(banner.imgix_photo.url(q: 90, w: 1920)), '#' %>
+      </div>
+    <%end %>
+  </div>
+  <div class="slick-custom-arrow flex justify-between absolute w-full pin items-center text-white px-6 text-5xl">
+    <div class="prev cursor-pointer">
+      <i class="fa fa-angle-left"></i>
+    </div>
+    <div class="next cursor-pointer">
+      <i class="fa fa-angle-right"></i>
+    </div>
+  </div>
+</section>
+<div class="mt-16">
+  <%= render 'breadcrumb' %>
+</div>
+<h1 class="mt-4 mb-6 text-center font-normal uppercase text-2xl"><%= @category %></h1>
+
+<%= cache_unless(context.signed_in?, @cache_key) do %>
+  <div class="container flex mb-10">
+    <!--hide sidebar -->
+      <!--    <div class="w-layout-side flex-no-shrink hidden md--block">-->
+            <%#= render 'sidebar' %>
+      <!--    </div>-->
+
+    <div class="flex-1 md--ml-6">
+
+      <div class="grid-items" role="<%= 'sortable' if can?(:update, Category) %>" data-model="Category">
+        <%= render @categories %>
+      </div>
+
+      <div class="grid-items" role="<%= 'sortable' if can?(:update, Product) %>" data-model="Product">
+        <%= render @products %>
+        <%= render 'products/product_missing' if @products.any? && @inline_categories.none? %>
+        <%= render 'gift_cards/gift_grid' if @products.any? && @inline_categories.none? %>
+      </div>
+
+      <div role="<%= 'sortable' if can?(:update, Category) %>" data-model="Category">
+        <% @inline_categories.each_with_index do |category, i| %>
+          <div class="sortable-item" data-id="<%= category.id %>">
+            <% if can?(:update, category.object) %>
+              <div class="sortable-handle"><i class="fa fa-arrows"></i></div>
+            <% end %>
+
+            <div class="mt-8 mb-6 flex items-center">
+              <div class="flex-grow border border-black"></div>
+              <h2 class="mx-4 font-bold text-2xl"><%= category %></h2>
+              <div class="flex-grow border border-black"></div>
+            </div>
+
+            <div class="grid-items" role="<%= 'sortable' if can?(:update, Product) %>" data-model="Product">
+              <%= render category.products.active_in(context.market.key).decorate(with: ProductGridDecorator, context: { market: context.market, sortable: can?(:update, Product), user: context.user }) %>
+              <%= render 'products/product_missing' if @inline_categories.size == i.next %>
+            </div>
+
+          </div>
+
+        <% end %>
+      </div>
+<!--      disable additional description-->
+      <% if @category.body.present? || @category.extended_body.present? %>
+        <div class="mt-16">
+          <div class="additional-description" data-controller="additional-description" data-target="additional-description.container">
+            <div class="leading-loose text-xs" data-target="additional-description.body">
+              <%= raw @category.body %>
+              <%= raw @category.extended_body %>
+            </div>
+            <div class="additional-description-overlay" data-target="additional-description.overlay">
+              <button class="underline text-sm" type="button" data-target="additional-description.expand" data-action="click->additional-description#expand">
+                <%= t '.read_more' %>
+                <%= image_tag('icons/tail-down.svg', class: 'ml-2 -mb-px') %>
+              </button>
+            </div>
+            <button class="underline text-sm" type="button" data-target="additional-description.minimize" data-action="click->additional-description#minimize">
+              <%= t '.read_less' %>
+              <%= image_tag('icons/tail-up.svg', class: 'ml-2 -mb-px') %>
+            </button>
+          </div>
+        </div>
+      <% end %>
+
+    </div>
+
+  </div>
+
+<% end %>
+
+<% if can?(:update, @category.object) %>
+  <div class="container mt-8" data-turbolinks="false">
+    <div class="my-2">
+      <%= link_to "Rediger #{@category}", [:edit, :admin, @category], class: 'admin-action' %>
+      <%= link_to "Rediger #{@category} slider", [:admin, @category, :category_banners], class: 'admin-action' if can?(:create, CategoryBanner) %>
+    </div>
+    <% @inline_categories.each do |category| %>
+    <div class="my-2">
+      <%= link_to "Rediger #{category}", [:edit, :admin, category], class: 'admin-action' %>
+    </div>
+    <% end %>
+  </div>
+<% end %>

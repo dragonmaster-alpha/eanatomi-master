@@ -1,0 +1,46 @@
+- content_for :title
+  = render 'breadcrumb'
+  = link_to @category, @category, class: 'block hover--font-bold no-underline mt-2 uppercase font-normal text-2xl'
+
+
+
+.container.mx-auto.py-16.md--flex
+  section.mb-16.pr-8 class="md--w-1/2"
+    .flex.items-center
+      .w-10.flex-none = image_tag('icons/basket.svg')
+      p.font-normal = t('.added_to_basket')
+    div
+
+      .flex.mt-8.items-center
+        .w-20.h-16.flex-none
+          = image_tag @order_item.product.photo.imgix_photo_url(w: 150, h: 150, q: 80), class: 'max-w-full max-h-full'
+        .ml-4.font-bold
+          = "#{@order_item.quantity}x #{@order_item.description}"
+
+      - @current_addons.each do |addon|
+        .flex.mt-12.items-center
+          .w-20.h-16.flex-none
+            = image_tag addon.product.photo.imgix_photo_url(w: 150, h: 150, q: 80), class: 'max-w-full max-h-full'
+          .ml-4
+            = "+ #{addon.quantity}x #{addon.description} "
+
+      .mt-10.flex.flex-wrap.items-center.-mx-4
+        .m-4
+          span.mr-2 = image_tag('icons/icon_back.svg')
+          = link_to t('.buy'), @category, class: 'no-underline'
+        = link_to t('.checkout'), new_checkout_order_path, class: 'm-4 btn btn-green rounded-full btn-sm px-8 py-2', 'data-turbolinks' => false
+  
+  section class="md--w-1/2"
+    - if @current_addons.empty? && @available_addons.any?
+      h2.text-xl.font-bold = t('.addons')
+      .flex.flex-wrap.mt-8
+        = render @available_addons
+    - elsif @complementary.any?
+      h2.text-xl.font-bold = t('.complementary')
+      .flex.flex-wrap.mt-8
+        = render @complementary
+
+
+
+javascript:
+  fbq('track', 'AddToCart')

@@ -1,0 +1,81 @@
+.checkout-input {
+  -webkit-appearance: none;
+  @apply border-px p-3 font-sans text-xs font-bold border-grey rounded-full py-4 pl-4 shadow-none;
+
+  &:hover {
+    @apply border-grey-dark;
+  }
+  &:focus {
+    outline: none
+  }
+}
+
+.checkout-form-header {
+  @apply mb-2 font-alt
+}
+
+.checkout-form-group {
+  @apply my-4 mb-6 items-center;
+  /*@media(--screen-md) {*/
+  /*  @apply flex;*/
+  /*}*/
+}
+
+.checkout-label {
+  @apply block uppercase text-xs pl-4 mb-2;
+}
+
+.checkout-form-group-required .checkout-label::after {
+  @apply ml-1;
+  content: '*'
+}
+
+.checkout-form-group-optional .checkout-label {
+  @apply italic;
+}
+
+.checkout-input-container {
+  @apply mt-1;
+}
+
+.checkout-form-group-required input:valid {
+  border-color: rgb(73, 136, 102);
+
+  &:focus {
+    /*outline: 3px solid rgba(73, 136, 102, 0.4);*/
+  }
+}
+
+input[type="radio"]:checked + span.shape{
+  @apply bg-green border-green;
+}
+input[type="checkbox"] + span.shape:before {
+  content: '';
+  -webkit-appearance: none;
+  background-color: transparent;
+  border: 2px solid;
+  @apply border-green;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05), inset 0px -15px 10px -12px rgba(0, 0, 0, 0.05);
+  padding: 7px;
+  display: inline-block;
+  position: relative;
+  vertical-align: middle;
+  cursor: pointer;
+  margin-right: 5px;
+}
+input[type="checkbox"]:checked + span.shape:before {
+  @apply bg-green
+}
+input[type="checkbox"]:checked + span.shape:after {
+  content: '';
+  display: block;
+  position: absolute;
+  top: 3px;
+  left: 6px;
+  width: 6px;
+  height: 10px;
+  border: solid #ffffff;
+  border-width: 0 2px 2px 0;
+  -webkit-transform: rotate(45deg);
+  transform: rotate(45deg);
+}

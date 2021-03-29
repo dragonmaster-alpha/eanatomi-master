@@ -1,0 +1,10 @@
+.additional-description data-controller="additional-description" data-target="additional-description.container"
+  div data-target="additional-description.body"
+    = yield
+  .additional-description-overlay data-target="additional-description.overlay"
+    button.underline.text-sm type="button" data-target="additional-description.expand" data-action="click->additional-description#expand"
+      = t '.read_more'
+      = image_tag('icons/tail-down.svg', class: 'ml-2 -mb-px')
+  button.underline.text-sm type="button" data-target="additional-description.minimize" data-action="click->additional-description#minimize"
+    = t '.read_less'
+    = image_tag('icons/tail-up.svg', class: 'ml-2 -mb-px')

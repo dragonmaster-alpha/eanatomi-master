@@ -1,0 +1,92 @@
+<table class="main" width="100%" cellpadding="0" cellspacing="0">
+  <tr>
+    <td class="content-wrap aligncenter">
+      <table width="100%" cellpadding="0" cellspacing="0">
+        <tr>
+          <td class="content-block">
+            <h1 class="aligncenter"><%= t('.payment') %></h1>
+          </td>
+        </tr>
+        <tr>
+          <td class="content-block aligncenter">
+            <table class="invoice">
+              <tr>
+                <td>
+                  <table width="100%" cellpadding="0" cellspacing="0">
+                    <tr>
+                      <td class="content-block">
+                        <strong><%= t('.invoice_address') %></strong>
+                        <%= render 'address', address: @order.invoice_address %>
+                      </td>
+                      <td class="content-block">
+                        <strong><%= t('.delivery_address') %></strong>
+                        <%= render 'address', address: @order.servicepoint_address || @order.shipping_address %>
+                      </td>
+                    </tr>
+                  </table>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <div><%= t('.phone') %>: <%= @order.phone %></div>
+                  <div><%= t('.email') %>: <%= @order.email %></div>
+                  <% if @order.reference_number.present? %>
+                    <div><%= t('.reference_number') %>: <%= @order.reference_number %></div>
+                  <% end %>
+                  <% if @order.vat_number.present? %>
+                    <div><%= t('.vat_number') %>: <%= @order.vat_number %></div>
+                  <% end %>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <table class="invoice-items" cellpadding="0" cellspacing="0">
+                    <% @order.order_items.each do |order_item| %>
+                      <tr>
+                        <td>
+                          <div><%= order_item.quantity %>x <%= order_item.description %></div>
+                          <div class="stock-info">
+                            <% if order_item.in_stock? %>
+                              <div class="in-stock"><%= t('.in_stock') %></div>
+                            <% else %>
+                              <div class="shipping-time"><%= order_item.shipping_time_description %></div>
+                            <% end %>
+                          </div>
+                        </td>
+                        <td class="alignright"><%= number_to_currency order_item.net_amount %></td>
+                      </tr>
+                    <% end %>
+                    <tr>
+                      <td><%= t('.delivery_fee') %></td>
+                      <td class="alignright"><%= number_to_currency @order.delivery_net_amount %></td>
+                    </tr>
+                    <% if @order.clearance_fee? %>
+                      <tr>
+                        <td><%= t('.clearance_fee') %></td>
+                        <td class="alignright"><%= number_to_currency @order.clearance_net_amount %></td>
+                      </tr>
+                    <% end %>
+                    <tr class="total">
+                      <td class="alignright" width="80%"><%= t('.net_total') %></td>
+                      <td class="alignright"><%= number_to_currency @order.net_amount %></td>
+                    </tr>
+                  </table>
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+        <tr>
+          <td class="content-block aligncenter">
+            <a href="<%= @payment_link %>" class="btn-primary"><%= t('.pay') %></a>
+          </td>
+        </tr>
+        <tr>
+          <td class="content-block aligncenter">
+            <small><%= @payment_link %></small>
+          </td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+</table>

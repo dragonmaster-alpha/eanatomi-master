@@ -1,0 +1,246 @@
+.bg-white.py-10.my-10
+  .container
+    / h1.uppercase.font-normal.text-center.text-xl.mb-10 = t '.your_order'
+    .text-right
+      button.btn.rounded-full.px-4.bg-grey-lighter.uppercase.no-underline.text-xs data-toggle='modal' data-target='@share-order-modal' = t('.share.button')
+
+    div role='order'
+      = render partial: 'order', locals: { order: @order }
+
+= form_for @order, url: (@order.persisted? ? [:checkout, @order, :acceptance] : nil), method: :post, authenticity_token: true, html: { role: 'order-form', 'data-remote' => true, 'novalidate' => true, 'data-persist' => 'garlic', 'data-update-path' => url_for([:checkout, @order]) } do |f|
+  .bg-white.py-10.my-10
+    .container
+      div role='checkout-address'
+        h2.uppercase.text-xl.my-4.checkout-form-header = t('.client_type')
+
+        .checkout-form-group
+          label.text-sm.block = t '.im_client_type'
+          .checkout-input-container.flex.flex-col.md--flex-row.pr-px = render partial: 'checkout/orders/client_type', collection: @client_types, locals: { f: f }
+
+      .mt-16 role='checkout-address'
+        h2.uppercase.text-xl.my-4.checkout-form-header = t '.your_address_details'
+
+        .checkout-form-group.checkout-form-group-required
+          label.checkout-label = t '.your_email'
+          .checkout-input-container = f.email_field :email, class: 'checkout-input w-full', required: true
+        .checkout-form-group.checkout-form-group-required
+          label.checkout-label = t '.your_phone'
+          .checkout-input-container
+            .relative
+              = f.text_field :phone, class: 'checkout-input pl-12 w-full', required: true
+              button.absolute.pin-t.pin-l.pin-b.px-2.bg-white.font-sans.font-bold.text-xs.m-px.w-12.text-center type='button' = @order.phone_prefix
+
+        h3.mt-8.uppercase.font-normal.text-base.checkout-form-header
+          span data-show="order[client_type]=private" = t('.invoice_address_private')
+          span data-show="order[client_type]=business" = t('.invoice_address_business')
+
+        .checkout-form-group.checkout-form-group-required
+          label.checkout-label data-show="order[client_type]=private" = t '.your_name'
+          label.checkout-label data-show="order[client_type]=business" = t '.company'
+          .checkout-input-container = f.text_field :name, class: 'checkout-input w-full', required: true
+        .checkout-form-group.checkout-form-group-required
+          label.checkout-label = t '.your_address'
+          .checkout-input-container = f.text_field :address, class: 'checkout-input w-full', required: true, role: 'order-address'
+        div data-controller='zipper' data-country-code=@order.country_code
+          .checkout-form-group.checkout-form-group-required
+            label.checkout-label = t '.zip_code'
+            .checkout-input-container = f.text_field :zip_code, 'data-action': 'keyup->zipper#update', 'data-target': 'zipper.zip', class: 'checkout-input w-full', required: true, role: 'order-zip-code'
+          .checkout-form-group.checkout-form-group-required
+            label.checkout-label = t '.city'
+            .checkout-input-container = f.text_field :city, 'data-target': 'zipper.city', class: 'checkout-input w-full', required: true
+        .checkout-form-group
+          label.checkout-label = t '.country'
+          .checkout-input-container.font-sans.font-bold.text-xs = @order.country
+        .checkout-form-group.checkout-form-group-required data-show="order[client_type]=business"
+          label.checkout-label = t '.att'
+          .checkout-input-container = f.text_field :att, class: 'checkout-input w-full', required: true
+        .checkout-form-group data-show="order[client_type]=business" class=(context.market.require_vat_number ? 'checkout-form-group-required' : 'checkout-form-group-optional')
+          label.checkout-label = context.market.require_vat_number ? t('.required_vat_number') : t('.vat_number')
+          .checkout-input-container = f.text_field :vat_number, class: 'checkout-input w-full', role: 'checkout-vat-number', required: context.market.require_vat_number
+        .checkout-form-group.checkout-form-group-optional data-show="order[client_type]=business"
+          label.checkout-label = t '.reference_number'
+          .checkout-input-container = f.text_field :reference_number, class: 'checkout-input w-full'
+
+  .bg-white.py-10.my-10
+    .container
+      div role='checkout-delivery-address'
+        .checkout-form-header
+          h2.uppercase.text-xl.my-4 = t '.shipping'
+          = f.hidden_field :courier
+
+          - if enabled?(:gls)
+            .checkout-input-container.ml-0.flex.flex-col.md--flex-row.pr-px = render partial: 'checkout/orders/courier', collection: DeliveryMethod.available_couriers, locals: { f: f }
+          - else
+            .flex.items-center.uppercase.text-sm
+              = image_tag("icons/#{context.market.shipping_provider}.png", class: 'w-6 mr-4')
+              = t(".shipping_provider.#{context.market.shipping_provider}")
+
+        = render partial: 'checkout/orders/delivery_method', collection: @delivery_methods, locals: { f: f }
+
+  .bg-white.py-10.my-10
+    .container
+      h2.uppercase.text-xl.my-4.checkout-form-header = t('.payment')
+
+      .checkout-form-header.mt-4
+        div role='to_pay'
+          = render partial: 'to_pay', locals: { order: @order }
+
+        - unless @order.gift_card?
+          button.mt-2.mr-4.underline.text-sm type='button' data-toggle='modal' data-target='@gift-card-modal' = t('.gift_card.button')
+        - if enabled?(:voucher) && !@order.voucher?
+          button.mt-2.mr-4.underline.text-sm type='button' data-toggle='modal' data-target='@voucher-modal' = t('.voucher.button')
+
+
+
+      - if @order.pay?
+        .form-horizontal
+
+          = render partial: 'checkout/orders/payment_method', collection: @payment_methods, locals: { f: f }
+
+      - else
+        = f.hidden_field :payment_method, value: 'gift_card'
+
+
+      .mt-8
+        label.checkout-form-group
+          .checkout-label = f.check_box :is_subscribing
+          .checkout-input-container.text-sm = t('.subscribe')
+
+      .mt-8
+        label.checkout-form-group
+          .checkout-label
+            input type='checkbox' role='accept-terms' data-message=t('.terms_message')
+          .checkout-input-container.text-sm = raw t('.accept_terms', terms: url_for(@terms_page))
+
+      .checkout-form-header.mt-8
+        button.bg-green.w-full.md--w-auto.text-white.font-bold.uppercase.p-4.hover--bg-green-dark data-disable-with=t('.loading') role="submit-button" type="submit" = t('.complete')
+
+
+
+
+.modal.fade.hidden role='terms-modal'
+  .modal-dialog
+    .modal-content
+      .modal-body
+        button.close type='button' data-dismiss='modal'
+          span ×
+
+        = raw @terms_page.body
+
+        .text-center
+          button.uppercase.mt-8.hover--font-bold.underline type='button' data-dismiss='modal' = t('.continue')
+
+.modal.fade.hidden role='share-order-modal'
+  .modal-dialog
+    .modal-content
+      .modal-body
+        - if @order.persisted?
+          = form_tag [:checkout, @order, :duplicates] do
+            button.close type='button' data-dismiss='modal'
+              span ×
+
+            h4.mb-8.uppercase.font-normal = t '.share.title'
+
+            .my-4
+              label.block.uppercase.text-xs = t('.share.recipient')
+              = email_field :share, :recipient, class: 'text-field w-64', required: true
+            .my-4
+              label.block.uppercase.text-xs.italic = t('.share.sender')
+              = email_field :share, :sender, class: 'text-field w-64'
+            .my-4
+              label.block.uppercase.text-xs.italic = t('.share.message')
+              = text_area :share, :message, class: 'text-field w-64'
+
+            button.uppercase.mt-8.hover--font-bold.underline type='submit' = t('.share.submit')
+
+.modal.fade.hidden role='gift-card-modal'
+  .modal-dialog.modal-sm
+    .modal-content
+      .modal-body
+        - if @order.persisted?
+          = form_for [:checkout, @order, GiftCard.new] do |f|
+            button.close type='button' data-dismiss='modal'
+              span ×
+
+            h4.mb-8.uppercase.font-normal = t('.gift_card.title')
+
+            .my-4
+              label.block.uppercase.text-xs = t('.gift_card.message')
+              = f.text_field :code, class: 'text-field w-64', placeholder: t('.gift_card.code_placeholder')
+
+            button.uppercase.mt-8.hover--font-bold.underline type='submit' = t('.gift_card.submit')
+
+.modal.fade.hidden role='voucher-modal'
+  .modal-dialog.modal-sm
+    .modal-content
+      .modal-body
+        - if @order.persisted?
+          = form_for [:checkout, @order, Voucher.new] do |f|
+            button.close type='button' data-dismiss='modal'
+              span ×
+
+            h4.mb-8.uppercase.font-normal = t('.voucher.title')
+
+            .my-4
+              label.block.uppercase.text-xs = t('.voucher.message')
+              = f.text_field :code, class: 'text-field w-64', placeholder: t('.voucher.code_placeholder')
+
+            button.uppercase.mt-8.hover--font-bold.underline type='submit' = t('.voucher.submit')
+
+.modal.fade.hidden role='servicepoints-modal'
+  .modal-dialog.modal-sm
+    .modal-content
+      .modal-body
+        button.close type='button' data-dismiss='modal'
+          span ×
+
+        h4.mb-8.uppercase.font-normal = t('.droppoints.find')
+
+        .my-4
+          label.block.uppercase.text-xs = t('.droppoints.near')
+          .relative.mt-1
+            input.text-field.w-full type='text' role='checkout-find-servicepoint' placeholder=t('.droppoints.zip_and_address')
+            button.absolute.pin-t.pin-r.pin-b.bg-white.m-px.px-2 type="button"
+              span role='checkout-find-servicepoint-search'
+                i.fa.fa-search
+              span.hidden role='checkout-find-servicepoint-spinner'
+                i.fa.fa-circle-o-notch.text-grey-dark.fa-spin
+
+          div role='order-servicepoints'
+
+.modal.fade.hidden role='delivery-address-modal'
+  .modal-dialog.modal-sm
+    .modal-content
+      .modal-body
+        button.close type='button' data-dismiss='modal'
+          span ×
+
+        h4.mb-8.uppercase.font-normal = t('.delivery_address.type')
+
+        .checkout-form-group
+          label.checkout-label = t '.delivery_address.name'
+          .checkout-input-container
+            input name="delivery_name" class='checkout-input w-full'
+        .checkout-form-group.checkout-form-group-optional
+          label.checkout-label = t '.delivery_address.att'
+          .checkout-input-container
+            input name="att" class='checkout-input w-full'
+        .checkout-form-group
+          label.checkout-label = t '.delivery_address.address'
+          .checkout-input-container
+            input name="delivery_address" class='checkout-input w-full'
+        div data-controller='zipper' data-country-code=@order.country_code
+          .checkout-form-group
+            label.checkout-label = t '.delivery_address.zip_code'
+            .checkout-input-container
+              input name="delivery_zip_code" data-action='keyup->zipper#update' data-target='zipper.zip' class='checkout-input w-full'
+          .checkout-form-group
+            label.checkout-label = t '.delivery_address.city'
+            .checkout-input-container
+              input name="delivery_city" data-target='zipper.city' class='checkout-input w-full'
+        .checkout-form-group
+          label.checkout-label = t '.delivery_address.country'
+          .checkout-input-container.font-sans.font-bold.text-xs = @order.delivery_country
+
+        .checkout-form-header
+          button.btn.btn-green type='button' role='checkout-choose-delivery-address' = t('.delivery_address.choose')

@@ -1,0 +1,46 @@
+// Place all the behaviors and hooks related to the matching controller here.
+// All this logic will automatically be available in application.js.
+
+
+app.admin = new function () {
+
+  this.clickLocaleTab = function (e) {
+    e.preventDefault()
+    $(this).tab('show')
+  }
+
+  this.initializeRedactor = function () {
+    $('@redactor').redactor({
+      plugins: ['alignment', 'uploadcare', 'source'],
+      imageResizable: true,
+      imagePosition: true,
+      uploadcare: {
+        buttonLabel: 'Image',
+        buttonIconEnabled: true,
+        publicKey: UPLOADCARE_PUBLIC_KEY,
+        crop: 'free',
+        tabs: 'all'
+      }
+    })
+    ArticleEditor('.article_editor_main', {
+      css: '/iframe/',
+      plugins: ['uploadcare', 'reorder', 'selector'],
+      uploadcare: {
+        buttonLabel: 'Image',
+        buttonIconEnabled: true,
+        publicKey: UPLOADCARE_PUBLIC_KEY,
+        crop: 'free',
+        tabs: 'all'
+      }
+    });
+  }
+
+  this.attachmentDeleted = function () {
+    this.parentElement.remove()
+  }
+
+}
+
+$(document).on('click', '@locale-tab', app.admin.clickLocaleTab)
+$(document).on('turbolinks:load', app.admin.initializeRedactor)
+$(document).on('ajax:success', '@delete-attachment', app.admin.attachmentDeleted)

@@ -1,0 +1,8 @@
+tr data-id=delivery_method.id
+  td
+    i.fa.fa-arrows
+  td = delivery_method.market
+  td = delivery_method
+  td = delivery_method.cost
+  td
+    = link_to 'Rediger', [:edit, :admin, delivery_method], class: 'btn btn-default btn-xs' if can?(:update, delivery_method)

@@ -1,0 +1,7 @@
+---
+da:
+  enquiries:
+    show:
+      thanks: Tak for din henvendelse %{name}
+      note: Vi vender straks tilbage med et svar
+      proceed: Gå videre

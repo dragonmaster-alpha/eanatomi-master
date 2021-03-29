@@ -1,0 +1,7 @@
+<div class="flex text-tiny flex-wrap justify-center tracking-wide">
+  <%#= link_to 'eAnatomi', '/', class: 'text-black no-underline' %>
+  <% context.path.each_with_index do |item, index| %>
+    <div class="mx-2 <%= 'hidden' if index == 0 %>"> / </div>
+    <%= link_to item.to_s.truncate(20), item, class: 'text-black no-underline uppercase' %>
+  <% end %>
+</div>

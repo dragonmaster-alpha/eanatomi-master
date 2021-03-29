@@ -1,0 +1,12 @@
+---
+da:
+  users:
+    show:
+      welcome: Hej %{name}
+      edit: Rediger oplysninger
+      sign_out: Log ud
+    edit:
+      details: Rediger oplysninger
+    form:
+      update: Gem oplysninger
+    update: Dine oplysninger blev gemt

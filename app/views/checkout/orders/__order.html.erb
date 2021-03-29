@@ -1,0 +1,29 @@
+<table class="table hidden-xs">
+  <thead>
+    <th></th>
+    <th><%= t '.sku' %></th>
+    <th><%= t '.description' %></th>
+    <th class="quantity"><%= t '.quantity' %></th>
+    <th class="price"><%= t '.price' %></th>
+    <th class="price"><%= t '.total' %></th>
+    <th></th>
+  </thead>
+  <tbody>
+    <%= render partial: 'checkout/order_items/order_item', collection: order.order_items %>
+    <tr class="amount">
+      <td colspan="5">
+        <div><%= t '.delivery_fee' %></div>
+        <div><%= t '.clearance_fee' if order.clearance_fee? %></div>
+        <div class"total"><%= t '.net_amount' %></div>
+        <div><small><%= t '.vat_amount', vat: (context.market.vat * 100).to_i %></small></div>
+      </td>
+      <td>
+        <div><%= number_to_currency currency(order.delivery_fee).net_amount %></div>
+        <div><%= number_to_currency currency(order.clearance_fee).net_amount if order.clearance_fee? %></div>
+        <div class="total"><%= number_to_currency order.net_amount %></div>
+        <div><small><%= number_to_currency order.vat_amount %></small></div>
+      </td>
+      <td></td>
+    </tr>
+  </tbody>
+</table>

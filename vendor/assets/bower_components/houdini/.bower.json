@@ -1,0 +1,20 @@
+{
+  "name": "houdini",
+  "version": "0.0.4",
+  "homepage": "https://github.com/askehansen/houdini.js",
+  "authors": [
+    "Aske Hansen <aske@deeco.dk>"
+  ],
+  "description": "jQuery plugin to show/hide elements according to the state of checkbox/radio/select inputs",
+  "main": "src/houdini.js",
+  "license": "MIT",
+  "_release": "0.0.4",
+  "_resolution": {
+    "type": "version",
+    "tag": "v0.0.4",
+    "commit": "d1e1e193a11dd8ff5ede7feab1e5b2120a9887e8"
+  },
+  "_source": "git://github.com/askehansen/houdini.js.git",
+  "_target": "*",
+  "_originalSource": "houdini"
+}

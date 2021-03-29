@@ -1,0 +1,23 @@
+= form_for [:admin, @manufacturer], html: { class: 'form-horizontal' } do |f|
+  .form-group
+    label.control-label.col-sm-3 Navn
+    .col-sm-6
+      = f.text_field :name, class: 'form-control'
+
+  .form-group
+    label.control-label.col-sm-3 Att.
+    .col-sm-6
+      = f.text_field :attention, class: 'form-control'
+
+  .form-group
+    label.control-label.col-sm-3 Dage mellem genbestilling
+    .col-sm-6
+      = f.text_field :restocking_interval, class: 'form-control'
+
+  - if @manufacturer.last_purchase_order_on
+    .form-group
+      .col-sm-6.col-sm-offset-3 = "Sidste genbestilling #{@manufacturer.last_purchase_order_on}"
+
+  .form-group.text-center
+    button.btn.btn-success type='submit' = @manufacturer.new_record? ? 'Opret producent' : 'Gem ændringer'
+    = link_to 'Annuller', [:admin, :manufacturers], class: 'btn btn-link'

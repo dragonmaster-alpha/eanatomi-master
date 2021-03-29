@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  photodata: 
+  category: one
+  position: 1
+  imgix_photo_data: 
+  mega_type: MyText
+  url: MyString
+
+two:
+  photodata: 
+  category: two
+  position: 1
+  imgix_photo_data: 
+  mega_type: MyText
+  url: MyString

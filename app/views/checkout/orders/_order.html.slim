@@ -1,0 +1,25 @@
+.mt-8
+  = render order.order_items
+
+.flex.text-sm.my-2.justify-end.uppercase
+  .w-64 = t '.delivery_fee'
+  .text-right.w-32.md--mr-10 = number_to_currency order.delivery_net_amount
+
+- if order.clearance_fee?
+  .flex.text-sm.my-2.justify-end.uppercase
+    .w-64 = t '.clearance_fee'
+    .text-right.w-32.md--mr-10 = number_to_currency order.clearance_net_amount
+
+- if order.gift_card?
+  .flex.text-sm.my-2.justify-end.uppercase
+    .w-64 = t '.gift_card'
+    .text-right.w-32.md--mr-10 = number_to_currency(- order.gift_card_net_amount)
+
+
+.flex.my-3.justify-end.uppercase.font-bold
+  .w-64.font-alt = t(order.vat? ? '.net_amount' : '.gross_amount')
+  .text-right.w-32.md--mr-10 = number_to_currency order.net_amount
+
+.flex.my-2.justify-end.uppercase.text-xs
+  .w-64 = t '.vat_amount', vat: (context.market.vat * 100).to_i
+  .text-right.w-32.md--mr-10 = number_to_currency order.vat_amount

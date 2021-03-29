@@ -1,0 +1,80 @@
+---
+da:
+  activerecord:
+    attributes:
+      page:
+        templates:
+          standard: Standard
+          terms: Betingelser
+          contact: Kontakt
+          timeline: Historie
+          information: Information
+          returns: Returnering
+          home: Forside
+          services: KundesService
+          content: Content
+          about: OM(About)
+      user:
+        name: Navn
+        client_type: Kundetype
+        email: Email
+        phone: Telefon nr.
+        att: Evt. att
+        vat_number: Evt. CVR nr.
+        address: Adresse
+        zip_code: Post nr.
+        city: By
+      product:
+        statuses:
+          active: Aktiv
+          inactive: Inaktiv
+      category:
+        status:
+          active: Aktiv
+          inactive: Inaktiv
+      invoice:
+        statuses:
+          draft: Kladde
+          booked: Bogført
+      order:
+        delivery_fee: Fragt
+        clearance_fee: Fortoldning
+        gift_card: Gavekort
+        payment_methods:
+          credit_card: Betalingskort
+          mobilepay: MobilePay
+          ean_invoice: EAN faktura
+          vat_invoice: Faktura
+          invoice: Faktura
+        statuses:
+          placed: Godkendt
+          open: Åben
+          placed: Godkendt
+          received: Modtaget
+          ready_to_pick: Klar til at pakke
+          picking_started: Igang med at pakke
+          shipped_complete: Afsendt
+          shipped_incomplete: Ikke afsendt
+          abandoned: Forladt
+          cancelled: Annulleret
+          pending_payment: Afventer betaling
+          template: Skabelon
+        markets:
+          dk: Danmark
+          no: Norge
+          se: Sverige
+        client_types:
+          private: Privat
+          public: Offentlig
+          business: Erhverv / Offentlig
+        delivery_methods:
+          droppoint: Nærmeste afhentningssted
+          door: Leveres til døren
+          business: Leveres til virksomhed
+          delivery_address: Leveres til døren
+      delivery_methods:
+        droppoint: Nærmeste afhentningssted
+        door: Leveres til døren
+        business: Leveres til virksomhed
+        delivery_address: Leveres til døren
+        pickup: Afhentning

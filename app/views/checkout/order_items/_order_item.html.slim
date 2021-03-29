@@ -1,0 +1,18 @@
+.md--flex.my-8.justify-between.items-center.border-grey.border-b-px.md--pb-4.border-dotted
+  .hidden.md--block.w-24.h-16.flex-none.text-center
+    = link_to image_tag(order_item.product.photo.imgix_photo_url(w: 150, h: 150, q: 80), class: 'max-h-full'), order_item.product
+  .flex-1.mx-4
+    = link_to order_item.description, order_item.product, class: 'text-sm no-underline font-bold'
+    .text-xs.mt-1.uppercase = t('.sku', sku: order_item.sku_code)
+    .text-xs.mt-1.uppercase
+      .i.fa.fa-circle.mr-2 class=(order_item.in_stock? ? 'text-green' : 'text-yellow')
+      = order_item.in_stock? ? t('.in_stock') : order_item.shipping_time_description
+  .flex-none.whitespace-no-wrap.text-right
+    = form_for [:checkout, order_item], remote: true, html: { role: 'quantity-form stepper' } do |f|
+      button.cursor-pointer type='button' role='stepper-down' -
+      = f.text_field :quantity, class: 'text-center w-8', role: 'stepper-input quantity-input'
+      button.cursor-pointer type='button' role='stepper-up' +
+  .flex-none.md--w-32.text-right = number_to_currency order_item.net_price
+  .flex-none.md--w-32.font-bold.text-right = number_to_currency order_item.net_amount
+  .hidden.md--block.w-10.text-right
+    = link_to fa('trash-o'), [:checkout, order_item], remote: true, method: :delete, class: 'text-base', role: 'remove-order-item', 'data-confirm' => "Fjern #{order_item} fra din bestilling?"

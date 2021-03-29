@@ -1,0 +1,52 @@
+.container
+  .text-center
+    h1 = "##{@order}"
+    p.lead
+      span.label.label-warning = 'Kræver bekræftelse' if @order.needs_review?
+    p
+      = link_to 'Tilbage', [:admin, :orders], class: 'btn btn-link'
+
+    - if @order.needs_review?
+      p
+        = link_to 'Bekræft', [:admin, @order, :review], class: 'btn btn-success', method: 'post'
+    p
+      = link_to 'Send til lager', [:admin, @order, :shipments], class: 'btn btn-primary', method: 'post'
+      = link_to 'Send bekræftelse', [:admin, @order, :confirmations], class: 'btn btn-primary', method: 'post'
+      = link_to 'Kopier', [:admin, @order, :duplicates], class: 'btn btn-primary', method: 'post'
+      = link_to 'Send betalingslink', [:admin, @order, :payments], class: 'btn btn-primary', method: 'post'
+      = link_to 'Opret fakturakladde', [:admin, @order, :invoices], class: 'btn btn-primary', method: 'post' if @order.invoice.new_record?
+      = link_to 'Annuller', [:admin, @order, :cancellations], class: 'btn btn-primary', method: 'post', 'data-confirm' => 'Annuller ordren?'
+    - if @order.can_edit?
+      p
+        = link_to 'Ret oplysninger', [:edit, :admin, @order], class: 'btn btn-default'
+        = link_to 'Ret linjer', [:admin, @order, :order_items], class: 'btn btn-default'
+
+  br
+
+  = render partial: 'orders/summary', locals: { order: @order }
+
+  .row
+    .col-sm-4
+      h4 Ordre events
+      table.table
+        - @order_events.each do |event|
+          tr
+            td = l event.created_at
+            td = event.name
+    .col-sm-4
+      h4 Forsendelses events
+      table.table
+        - @shipping_events.each do |event|
+          tr
+            td = l event.occurred_at
+            td = event.status
+    .col-sm-4
+      h4 Fejl
+      table.table
+        - @failures.each do |failure|
+          tr
+            td = l failure.created_at
+            td
+              strong = failure.exception
+              br
+              = failure.message

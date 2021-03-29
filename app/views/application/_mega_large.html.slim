@@ -1,0 +1,7 @@
+.menu_img.flex.pt-2
+  div(class="w-full px-2")
+    .megamenu-content.megamenu-content--large.max-h-mega.overflow-hidden
+      - if images[0]
+        =link_to images[0].url
+          aside(class= "background-image background-image--loaded background-image--no-fallback pt-full "
+            style= "background-image: url(#{images[0].imgix_photo.url});")

@@ -1,0 +1,36 @@
+- show_back ||= false
+
+.navbar.navbar-default.navbar-static-top data-turbolinks="false"
+  .container-fluid
+    ul class="nav navbar-nav my-0"
+      - if show_back
+        li = link_to '/' do
+          i.fa.fa-chevron-left
+      - if can? :update, Order
+        li = link_to [:admin, :orders] do
+          | Ordre
+          - if Order.unseen_failures.any?
+            span.ml-2.label.label-danger = Order.unseen_failures.count
+          - if Order.needs_review.any?
+            span.ml-2.label.label-warning = Order.needs_review.count
+      li = link_to 'Kategorier', [:admin, :categories] if can? :update, Category
+      li = link_to 'Produkter', [:admin, :products] if can? :update, Product
+      li = link_to 'Udvalg', [:admin, :featured_categories] if can? :update, FeaturedCategory
+      li = link_to 'Udvalg produkter', [:admin, :featured_products] if can? :update, FeaturedProduct
+      li = link_to 'Producenter', [:admin, :manufacturers] if can? :update, Manufacturer
+      li = link_to 'Genbestillinger', [:admin, :purchase_orders] if can? :update, PurchaseOrder
+      li = link_to 'Leveringstider', [:admin, :shipping_times] if can? :update, ShippingTime
+      li = link_to 'Sider', [:admin, :pages] if can? :update, Page
+      li = link_to 'Historie', [:admin, :timeline_events] if can? :update, TimelineEvent
+      li = link_to 'Brugere', [:admin, :users] if can? :update, User
+      li = link_to 'Kampagner', [:admin, :campaigns] if can? :update, Campaign
+      li = link_to 'Rabatkoder', [:admin, :vouchers] if can? :update, Voucher
+      li = link_to 'Gavekort', [:admin, :gift_cards] if can? :update, GiftCard
+      li = link_to 'Import/Eksport', [:admin, :bulk] if can? :update, Import
+      li = link_to 'Oversættelser', [:admin, :translations] if can? :update, Translation
+      li = link_to 'Ændringer', [:admin, :translation_changes] if can? :update, TranslationChange
+      li = link_to 'Top-besked', [:admin, :notices] if can? :update, Notice
+      li = link_to 'Salgshistorik', [:admin, :product_sales] if can? :update, ProductSale
+      li = link_to 'Markeder', [:admin, :markets] if can? :update, Market
+      li = link_to 'Leveringsmetoder', [:admin, :delivery_methods] if can? :update, DeliveryMethod
+      li = link_to 'Stats', '/blazer', target: '_blank' if can? :read, :admin

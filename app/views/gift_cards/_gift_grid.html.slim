@@ -1,0 +1,12 @@
+.product-grid-item.mb-6.text-center
+  = link_to new_gift_card_path, class: 'border hover--shadow-md relative block text-black no-underline grid-item rounded-sm h-full flex flex-col'
+    .flex.text-xs.mx-2.h-5.uppercase.items-center
+    .flex.flex-col.flex-grow
+      .h-32.md--h-64.flex.align-center.justify-center.mb-4.px-6
+        = image_tag('icons/gift_icon.svg')
+      .h-5
+      .flex.flex-col.flex-grow.justify-between.bg-grey-lightest.px-6
+        .text-sm.my-6.overflow-hidden.leading-normal.h-11.text-ellipsis
+          = t 'gift_cards.new.text'
+        div.flex-grow.uppercase.font-bold
+          span = t 'gift_cards.new.title'

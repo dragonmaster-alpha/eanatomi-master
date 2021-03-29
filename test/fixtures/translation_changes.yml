@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  object_id: 1
+  object_type: MyText
+  user: one
+  field: MyString
+  changed_from: MyText
+  changed_to: MyText
+  locale: MyString
+
+two:
+  object_id: 1
+  object_type: MyText
+  user: two
+  field: MyString
+  changed_from: MyText
+  changed_to: MyText
+  locale: MyString

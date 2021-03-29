@@ -1,0 +1,5 @@
+.container.text-center
+  i.fa.fa-check-circle.fa-state-success.fa-4x
+  h1 = t('.thanks', name: @gift_card.name)
+  br
+  p = link_to t('.download'), @gift_card.file.url(download: true), target: '_blank', class: 'btn btn-success btn-lg'

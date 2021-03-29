@@ -1,0 +1,18 @@
+.container
+  .text-center
+    h1 Genbestillinger
+    br
+
+  h2 Kommende
+  table.table
+    - @manufacturers.each do |manufacturer|
+      tr
+        td = manufacturer.name
+        td = l manufacturer.restocking_on
+        td = link_to 'Vis', new_admin_purchase_order_path(manufacturer_id: manufacturer.id), class: 'btn btn-link'
+
+  br
+
+  h2 Afsendt
+  table.table
+    = render @purchase_orders

@@ -1,0 +1,22 @@
+= form_for [:admin, @campaign], html: { class: 'form-horizontal' } do |f|
+  = render 'admin/active_in_markets/form', f: f
+
+  .form-group
+    label.control-label.col-sm-3 Placering
+    .col-sm-6 = f.select :placement, @placements, {}, class: 'form-control'
+  .form-group
+    label.control-label.col-sm-3 Navn
+    .col-sm-6
+      = f.text_field :name, class: 'form-control'
+  .form-group
+    label.control-label.col-sm-3 Url
+    .col-sm-6
+      = f.text_field :url, class: 'form-control'
+  .form-group
+    label.control-label.col-sm-3 Billede
+    .col-sm-6
+      = f.file_field :imgix_photo, class: 'form-control'
+
+  .form-group.text-center
+    button.btn.btn-success type='submit' = @campaign.new_record? ? 'Opret kampagne' : 'Gem ændringer'
+    = link_to 'Annuller', [:admin, :campaigns], class: 'btn btn-link'

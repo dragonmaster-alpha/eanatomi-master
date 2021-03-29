@@ -1,0 +1,76 @@
+= form_for [:admin, @user], html: { class: 'form-horizontal' } do |f|
+  = errors_for(@user)
+  
+  .form-group
+    label.control-label.col-sm-3 Marked
+    .col-sm-6
+      = f.select :market_id, @markets, {}, class: 'form-control'
+      
+  .form-group
+    label.control-label.col-sm-3 Kundetype
+    .col-sm-6
+      = f.select :client_type, @client_types, {}, class: 'form-control'
+  .form-group
+    label.control-label.col-sm-3 Rolle
+    .col-sm-6
+      = f.select :role, @roles, {}, class: 'form-control'
+  .form-group
+    label.control-label.col-sm-3 Email
+    .col-sm-6
+      = f.text_field :email, class: 'form-control'
+  - if @user.new_record?
+    .form-group
+      label.control-label.col-sm-3 Password
+      .col-sm-6
+        = f.password_field :password, class: 'form-control'
+  .form-group
+    label.control-label.col-sm-3 Navn
+    .col-sm-6
+      = f.text_field :name, class: 'form-control'
+  .form-group
+    label.control-label.col-sm-3 Telefon nr.
+    .col-sm-6
+      = f.text_field :phone, class: 'form-control'
+  .form-group
+    label.control-label.col-sm-3 Attention
+    .col-sm-6
+      = f.text_field :att, class: 'form-control'
+  .form-group
+    label.control-label.col-sm-3 CVR nr.
+    .col-sm-6
+      = f.text_field :vat_number, class: 'form-control'
+  .form-group
+    label.control-label.col-sm-3 Adresse
+    .col-sm-6
+      = f.text_field :address, class: 'form-control'
+  .form-group
+    label.control-label.col-sm-3 Post nr.
+    .col-sm-6
+      = f.text_field :zip_code, class: 'form-control'
+  .form-group
+    label.control-label.col-sm-3 By
+    .col-sm-6
+      = f.text_field :city, class: 'form-control'
+      
+  = f.fields_for :vendor_prices do |vendor_price_form|
+    hr
+    .form-group
+      label.control-label.col-sm-3 Produkt
+      .col-sm-6
+        = vendor_price_form.select :product_id, @products, {}, role: 'selectize'
+    .form-group
+      label.control-label.col-sm-3 Rabat %
+      .col-sm-3
+        = vendor_price_form.text_field :discount, class: 'form-control'
+      .col-sm-3
+        = number_to_currency(Currency.new(vendor_price_form.object.sales_price, @user.market.rate, @user.market.vat).net_amount, locale: @user.market.locale) if vendor_price_form.object.persisted? 
+    - if vendor_price_form.object.persisted?
+      .form-group
+        .col-sm-6.col-sm-offset-3.checkbox
+          label
+            = vendor_price_form.check_box :_destroy
+            | Fjern
+    
+  .form-group.text-center
+    button.btn.btn-success type='submit' = @user.new_record? ? 'Opret bruger' : 'Gem ændringer'
+    = link_to 'Annuller', [:admin, :users], class: 'btn btn-link'

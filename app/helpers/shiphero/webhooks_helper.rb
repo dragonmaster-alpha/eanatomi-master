@@ -1,0 +1,2 @@
+module Shiphero::WebhooksHelper
+end

@@ -1,0 +1,70 @@
+.bg-white.py-px
+  .flex.items-center.justify-between.m-3
+    button role='header-show-navigation'
+      span.fa-stack
+        i.fa.fa-bars.fa-stack-1x
+    = link_to image_tag('logo.svg', alt: 'eAnatomi', class: 'header-logo-width'), '/'
+    = link_to new_checkout_order_path, class: 'relative text-black', 'data-turbolinks' => false do
+      button
+        span.fa-stack
+          = image_tag('icons/basket.svg', class: 'w-5')
+      - unless context.cart.empty?
+        .absolute.w-6.h-6.bg-green.pin-t.pin-r.rounded-full.-mt-2.-mr-2
+          .text-center.text-white.leading-loose.text-xs = context.cart.size
+
+  - if show_search?
+    div data-controller="search" data-action="click@window->search#hide"
+      = form_tag '/search', method: 'get', class: 'mb-10 mx-6 flex border-b-px border-grey px-4 py-3' do
+        input.text-xs.flex-grow.mr-2.uppercase name='query' type='text' data-action="input->search#showResults" data-target="search.source" placeholder=t('.search_placeholder') value=@query autocomplete='off'
+        button
+          = image_tag('icons/search.svg', class: 'w-5')
+      .hidden.relative.-mt-8 data-target="search.results"
+
+  .header-navigation.bg-light__black role='header-navigation'
+    .absolute.pin.overflow-y-scroll.scrolling-touch
+      .fixed.bg-transparent.w-screen.h-screen role='header-hide-navigation'
+      .pl-6.w-layout-side.bg-white.pt-6.pb-64.header-navigation__content.relative
+        .py-3
+          button role='header-hide-navigation'
+            span.fa-stack
+              i.fa.fa-square.fa-stack-2x
+              i.fa.fa-bars.fa-inverse.fa-stack-1x
+        .my-4
+          .uppercase.mb-2.font-bold =t('.product_category')
+          - top_categories.each do |category|
+            = link_to category, category, class: 'block ml-4 no-underline text-black py-2 uppercase text-sm'
+
+
+        / - top_pages.each do |page|
+        /   = link_to page, info_page, class: 'block no-underline text-black uppercase my-8'
+
+        / = link_to 'Gavekort', '#', class: 'block no-underline text-black uppercase my-8'
+
+        = render 'social_links'
+        div class="my-4"
+          .uppercase.mb-2.font-bold =t('.info')
+          ul.list-reset
+            - footer_pages.each do |page|
+              li.text-sm
+                = link_to page, page, class: 'block ml-4 no-underline text-black py-2 uppercase text-sm'
+            li.text-sm
+              = link_to 'https://udvikling.eanatomi.dk/', target: '_blank', class: 'block ml-4 no-underline text-black py-2 uppercase text-sm'
+                div = t('.subdomain')
+        / = render 'subscribe_box'
+        .my-4.mt-8
+          i.fa.fa-phone.ml-4.mr-3
+          = t '.phone_number'
+
+        .my-4
+          i.fa.fa-envelope.ml-4.mr-3
+          = mail_to t('.email_address'), t('.email_address'), class: 'text-black'
+
+        .my-4.ml-4
+          .flex.items-center.z-30.relative.cursor-pointer.group
+            div class="block py-2 uppercase text-sm mr-2" = context.market.country
+            i.fa.fa-caret-down
+            .absolute.z-10.bg-white.pin-t.top-10.mt-4.-ml-6.shadow-lg.py-2.hidden.group-hover--block
+              - Destination.active.each do |destination|
+                = link_to destination.url, class: 'flex text-black items-center no-underline px-6 py-1 hover--font-bold' do
+                  .uppercase.text-xs.mx-2 = destination.country
+

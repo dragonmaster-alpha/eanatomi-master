@@ -1,0 +1,18 @@
+.container
+  h1 = "Billeder for #{@product}" 
+  br
+  = form_for([:admin, @product, @photo], html: { class: 'form-inline' }) do |f|
+    .form-group
+      = f.file_field :imgix_photo, class: 'form-control'
+    button.btn.btn-success type='submit' Upload
+
+
+  br
+  
+  .row role='sortable' data-model='ProductPhoto'
+    = render @photos
+
+
+  br
+  .text-center
+    = link_to 'Vis produkt', @product, class: 'btn btn-default'

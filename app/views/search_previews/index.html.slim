@@ -1,0 +1,41 @@
+.flex.flex-col.bg-white.p-5.absolute.pin-t.pin-l.z-50.shadow-lg.w-full
+  .md--hidden.absolute.pin-t.pin-r.p-2.cursor-pointer data-action="click->search#reset"
+    i.fa.fa-close.text-grey-darker
+  - @categories.each do |category|
+    = link_to category.name, category, class: "p-2 no-underline bg-white hover--bg-grey-lighter"
+  .mt-4.pl-2.text-sm.font-bold = t(".products")
+  - @products.each do |product|
+    = link_to product, class: "p-2 no-underline bg-white hover--bg-grey-lighter" do
+      .flex
+        .w-16.flex-none
+          = image_tag(product.imgix_photo_url(w: 300, h: 200, q: 80), class: 'max-h-full')
+
+        .flex.flex-col.pl-4.text-sm
+          div = product
+          - if product.purchasable?
+            .mt-4
+              - if product.has_variants?
+                = t(".from")
+              span
+                - if show_vat?
+                  = number_to_currency(currency(product.sales_price).net_amount)
+                - else
+                  = number_to_currency(currency(product.sales_price).gross_amount)
+              span.ml-1.text-tiny
+                - if show_vat?
+                  = t(".vat_incl")
+                - else
+                  = t(".vat_excl")
+              - if product.savings?
+                .text-red.mt-1.line-through
+                  - if show_vat?
+                    = number_to_currency(currency(product.price).net_amount)
+                  - else
+                    = number_to_currency(currency(product.price).gross_amount)
+          - else
+            = t(".call_for_price")
+  - if @products.blank?
+    .p-2 = t(".no_products_found")
+  = link_to t(".show_all"), search_path(query: @query), class: "p-2 no-underline bg-white bg-grey-lightest hover--bg-grey-lighter text-right"
+
+

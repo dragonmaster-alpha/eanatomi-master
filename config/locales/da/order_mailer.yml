@@ -1,0 +1,124 @@
+---
+da:
+  order_mailer:
+    confirmation:
+      vat_number: CVR. nummer
+      ean_number: EAN. nummer
+      subject: 'Tak for din bestilling #%{order_number}'
+      thanks: Tak for din bestilling hos eAnatomi
+      questions: |
+        Har du spørgsmål til bestillingen?
+        Skriv til <a href="mailto:info@eanatomi.dk">info@eanatomi.dk</a> eller ring +45 2991 9911
+      delivery_fee: Fragt
+      clearance_fee: Fortoldning
+      net_total: Total inkl. moms
+      gross_total: Total ekskl. moms
+      vat_amount: Heraf %{vat}% moms
+      confirmation: Ordrebekræftelse
+      order_number: Ordrenr.
+      placed_at: Bestilt den
+      invoice_address: Fakturaadresse
+      delivery_address: Leveringsadresse
+      phone: Tlf.
+      email: Email
+      reference_number: ref.
+      payment_method: Betalingsmetode
+      delivery_method: Fragtmetode
+      delivery_time: Leveringstid
+      delivery_time_info: 1-2 hverdage*
+      delivery_time_notice: |
+        *Kun når alle bestilte varer er på lager.
+        Leveringstiden er længere, hvis én eller flere varer ikke er på lager.
+      in_stock: På lager
+    payment:
+      subject: Bestilling på eanatomi.dk
+      payment: Bestilling på eanatomi.dk
+      thanks: Tak for din bestilling hos eAnatomi
+      delivery_fee: Fragt
+      clearance_fee: Fortoldning
+      net_total: Total inkl. moms
+      invoice_address: Fakturaadresse
+      delivery_address: Leveringsadresse
+      phone: Tlf.
+      email: Email
+      reference_number: ref.
+      in_stock: På lager
+      pay: Godkend og betal
+    invoice:
+      subject: Faktura fra eanatomi
+      title: Kære %{name}.
+      invoice_info: |
+        Vedhæftet finder du din faktura.
+        Betalingsfrist og information er beskrevet nederst på fakturaen.
+      payment_info: Har du betalt online ved bestilling, er fakturaen betalt og beløbet hævet på din konto.
+      questions: Hvis du har spørgsmål, er du altid velkommen til at kontakte os.
+      thanks: Med venlig hilsen og på gensyn
+    shipped:
+      subject: Vi har sendt din pakke
+      title: Vi har sendt din pakke
+      tracking: Dit tracking nummer er %{number}
+      order_number: 'Ordrenr.: %{number}'
+      invoice: Se faktura
+      shipment_info: |
+        Din bestilling er sendt med Post Danmark og du kan <a href="%{link}" target="_blank">følge den her</a>.
+        Så snart din bestilling er klar til levering eller afhentning, vil Post Danmark kontakte dig per email / sms.
+      shipment_questions: Ved spørgsmål til leveringen kan Post Danmark <a href="http://www.postnord.dk/da/privat/kundeservice/Sider/kundeservice.aspx" target="_blank">kontaktes her</a>
+      invoice_info: Nedenfor finder du din faktura. Har du betalt online, hæves beløbet fra din konto indenfor få dage.
+      thanks: Tak fordi du handlede hos eAnatomi og ser frem til byde dig velkommen snart igen.
+    share:
+      subject: Bestilling på eanatomi.dk
+      title: En bestilling på eanatomi.dk er blevet delt med dig
+      continue: Fortsæt denne bestilling
+    share_confirmation:
+      confirmation: Denne besked er sendt til %{recipient}
+      subject: Bestilling på eanatomi.dk
+      title: En bestilling på eanatomi.dk er blevet delt med dig
+      continue: Fortsæt denne bestilling
+    pickup:
+      subject: Din pakke venter på dig
+      title: Din pakke venter på dig
+      tracking: Dit tracking nummer er %{number}
+      order_number: 'Ordrenr.: %{number}'
+      shipment_info: |
+        Din bestilling er sendt med Post Danmark og du kan <a href="%{link}" target="_blank">følge den her</a>.
+    first_waiting_notice:
+      subject: Vedr din bestilling hos eAnatomi
+      greetings: Kære %{name}
+      notice: 'Din bestilling indeholder varer, som vi først skal have på lager, før din bestilling kan sendes. Det drejer sig om:'
+      thanks: |
+        Ovenstående bestilles hos fabrikken og leveres så snart fabrikken tillader det. Når din bestilling er komplet afsendes den omgående.
+
+        Hvis du har spørgsmål til dette er du velkommen til at kontakte os. Tak for din forståelse.
+
+        Med venlig hilsen
+
+        eAnatomi
+        www.eanatomi.dk - tlf.: +45 2991 9911 - info@eanatomi.dk
+    second_waiting_notice:
+      subject: Vedr din bestilling hos eAnatomi
+      greetings: Kære %{name}
+      notice: 'Som vi tidligere har oplyst, indeholder din bestilling varer, som vi først skal have på lager, før din bestilling kan sendes. Det drejer sig om:'
+      thanks: |
+        Vi vil blot informere om at ovenstående er bestilt og at vi nu afventer levering fra fabrikken.
+
+        Hvis du har spørgsmål til dette er du velkommen til at kontakte os. Tak for din tålmodighed.
+
+        Med venlig hilsen
+
+        eAnatomi
+        www.eanatomi.dk - tlf.: +45 2991 9911 - info@eanatomi.dk
+    third_waiting_notice:
+      subject: Vedr din bestilling hos eAnatomi
+      greetings: Kære %{name}
+      notice: 'Som vi tidligere har oplyst, indeholder din bestilling varer, som vi først skal have på lager, før din bestilling kan sendes. Det drejer sig om:'
+      thanks: |
+        Vi vil blot informere om at vi fortsat venter på levering fra fabrikken og så snart  det sker, sender vi din bestilling.
+
+        Den forventede leveringstid står oplyst med orange farve ovenfor.
+
+        Hvis vi mod forventning oplever længere leveringstid grundet fejl eller manglende fabrikskapacitet, vil vi informere dig så hurtigt som muligt.  Hvis du har spørgsmål til dette er du velkommen til at kontakte os. Tak for din tålmodighed.
+
+        Med venlig hilsen
+
+        eAnatomi
+        www.eanatomi.dk - tlf.: +45 2991 9911 - info@eanatomi.dk

@@ -1,0 +1,884 @@
+/* CUSTOM article content css. Need for showing properly article editor content*/
+
+.arx-custom h1 + *, .arx-custom h2 + *, .arx-custom h3 + *, .arx-custom h4 + *, .arx-custom h5 + *, .arx-custom h6 + * {
+    margin-top: 0.75rem;
+}
+.arx-custom address + h2, .arx-custom blockquote + h2, .arx-custom dl + h2, .arx-custom figure + h2, .arx-custom ol + h2, .arx-custom p + h2, .arx-custom pre + h2, .arx-custom table + h2, .arx-custom ul + h2 {
+    margin-top: 2rem;
+}
+.arx-custom address + h3, .arx-custom blockquote + h3, .arx-custom dl + h3, .arx-custom figure + h3, .arx-custom ol + h3, .arx-custom p + h3, .arx-custom pre + h3, .arx-custom table + h3, .arx-custom ul + h3 {
+    margin-top: 1rem;
+}
+.arx-custom address + h4, .arx-custom blockquote + h4, .arx-custom dl + h4, .arx-custom figure + h4, .arx-custom ol + h4, .arx-custom p + h4, .arx-custom pre + h4, .arx-custom table + h4, .arx-custom ul + h4 {
+    margin-top: 1rem;
+}
+.arx-custom address + h5, .arx-custom blockquote + h5, .arx-custom dl + h5, .arx-custom figure + h5, .arx-custom ol + h5, .arx-custom p + h5, .arx-custom pre + h5, .arx-custom table + h5, .arx-custom ul + h5 {
+    margin-top: 1rem;
+}
+.arx-custom address + h6, .arx-custom blockquote + h6, .arx-custom dl + h6, .arx-custom figure + h6, .arx-custom ol + h6, .arx-custom p + h6, .arx-custom pre + h6, .arx-custom table + h6, .arx-custom ul + h6 {
+    margin-top: 1rem;
+}
+.arx-custom address + *, .arx-custom blockquote + *, .arx-custom dl + *, .arx-custom figure + *, .arx-custom ol + *, .arx-custom p + *, .arx-custom pre + *, .arx-custom table + *, .arx-custom ul + * {
+    margin-top: 1rem;
+}
+.arx-custom h1 + h2 {
+    margin-top: 2rem;
+}
+.arx-custom h2 + h3 {
+    margin-top: 1rem;
+}
+.arx-custom h3 + h4 {
+    margin-top: 1rem;
+}
+.arx-custom h4 + h5 {
+    margin-top: 1rem;
+}
+.arx-custom h5 + h6 {
+    margin-top: 1rem;
+}
+.arx-custom a {
+    color: #1740b4;
+}
+.arx-custom h1, .arx-custom h2, .arx-custom h3, .arx-custom h4, .arx-custom h5, .arx-custom h6 {
+    font-family: inherit;
+    font-weight: 700;
+    font-style: normal;
+    font-size: 16px;
+    line-height: 1.5;
+    color: #0d1317;
+    text-rendering: optimizeLegibility;
+    letter-spacing: -0.01em;
+}
+.arx-custom h1 a, .arx-custom h2 a, .arx-custom h3 a, .arx-custom h4 a, .arx-custom h5 a, .arx-custom h6 a {
+    color: inherit;
+    text-decoration: none;
+}
+.arx-custom h1 a:hover, .arx-custom h2 a:hover, .arx-custom h3 a:hover, .arx-custom h4 a:hover, .arx-custom h5 a:hover, .arx-custom h6 a:hover {
+    transition: all 0.2s linear;
+    color: inherit;
+    opacity: 0.8;
+    text-decoration: underline;
+}
+.arx-custom h1 {
+    font-size: 39px;
+    line-height: 1.2;
+}
+.arx-custom h2 {
+    font-size: 25px;
+    line-height: 1.3;
+}
+.arx-custom h3 {
+    font-size: 18px;
+    line-height: 1.5;
+}
+.arx-custom ol, .arx-custom ul {
+    margin-left: 20px;
+}
+.arx-custom li li {
+    font-size: 1em;
+}
+.arx-custom nav ol, .arx-custom nav ul {
+    margin-left: 0;
+    list-style: none;
+}
+.arx-custom dt {
+    font-weight: 700;
+}
+.arx-custom dd + dt {
+    margin-top: 0.25em;
+}
+.arx-custom pre {
+    overflow: auto;
+    white-space: pre;
+    font-family: monospace;
+    font-size: 90%;
+    line-height: 1.5;
+    color: #31363a;
+    background-color: #f6f6f6;
+    padding: 0.75rem;
+    border: 1px solid rgba(207, 208, 209, .85);
+}
+.arx-custom pre code {
+    padding: 0;
+    border: 0;
+    background: 0 0;
+    font-size: 100%;
+    display: block;
+    line-height: inherit;
+}
+.arx-custom blockquote {
+    color: #31363a;
+    font-style: italic;
+    font-weight: 400;
+    padding: 0;
+    background: 0 0;
+}
+.arx-custom blockquote p {
+    color: #31363a;
+    font-size: 100%;
+    line-height: 1.5;
+}
+.arx-custom blockquote p + p {
+    margin-top: 0.25rem;
+}
+.arx-custom blockquote cite, .arx-custom figcaption cite {
+    font-style: inherit;
+    font-size: 14px;
+    line-height: 1.5;
+    color: rgba(49, 54, 58, .7);
+}
+.arx-custom caption {
+    text-align: left;
+    font-style: normal;
+}
+.arx-custom table {
+    border-collapse: collapse;
+    border-spacing: 0;
+    width: 100%;
+    empty-cells: show;
+}
+.arx-custom td, .arx-custom th {
+    text-align: left;
+    vertical-align: top;
+    font-size: 95%;
+    line-height: 1.5;
+    padding: 0.75em 0;
+    border-bottom: 1px solid rgba(207, 208, 209, .4);
+}
+.arx-custom th {
+    font-weight: 400;
+}
+.arx-custom thead th {
+    font-weight: 700;
+}
+.arx-custom address {
+    font-style: normal;
+}
+.arx-custom abbr, .arx-custom dfn {
+    font-size: 95%;
+}
+.arx-custom cite, .arx-custom code, .arx-custom kbd, .arx-custom samp, .arx-custom small, .arx-custom time, .arx-custom var {
+    font-size: 85%;
+}
+.arx-custom sub, .arx-custom sup {
+    font-size: 65%;
+}
+.arx-custom code, .arx-custom kbd, .arx-custom samp, .arx-custom var {
+    display: inline-block;
+    font-family: monospace;
+    font-style: normal;
+    line-height: 1;
+    color: rgba(13, 19, 23, .85);
+    vertical-align: baseline;
+}
+.arx-custom code, .arx-custom kbd, .arx-custom samp {
+    border-radius: 2px;
+}
+.arx-custom kbd {
+    border: 1px solid rgba(13, 19, 23, .15);
+    padding: 0.2em 0.4em;
+}
+.arx-custom code {
+    border: 1px solid transparent;
+    background-color: #f6f6f6;
+    padding: 0.2em 0.4em;
+}
+.arx-custom mark {
+    background-color: #ff0;
+    color: #000;
+}
+.arx-custom b, .arx-custom strong {
+    font-weight: 600;
+}
+.arx-custom abbr[title], .arx-custom dfn[title] {
+    letter-spacing: 0.01em;
+    text-transform: uppercase;
+    text-decoration: none;
+    border-bottom: 1px dotted rgba(0, 0, 0, .4);
+    cursor: help;
+}
+.arx-custom cite {
+    font-style: italic;
+}
+.arx-custom sub, .arx-custom sup {
+    line-height: 1;
+    margin-left: 2px;
+}
+.arx-custom sub {
+    vertical-align: sub;
+}
+.arx-custom sup {
+    vertical-align: super;
+}
+.arx-custom label {
+    display: block;
+    font-size: 16px;
+    margin-bottom: 0.125rem;
+}
+.arx-custom label .error, .arx-custom label .hint, .arx-custom label .success, .arx-custom label.checkbox {
+    text-transform: none;
+    font-weight: 400;
+}
+.arx-custom label.checkbox {
+    cursor: pointer;
+    color: inherit;
+    font-size: 100%;
+}
+.arx-custom figure > div, .arx-custom figure > iframe, .arx-custom figure > img, .arx-custom figure > pre {
+    vertical-align: middle;
+}
+.arx-custom figure figcaption {
+    display: block;
+    font-style: normal;
+    margin-top: 0.125rem;
+    font-size: 12px;
+    line-height: 1.5;
+}
+.arx-custom hr {
+    position: relative;
+    line-height: 1;
+    background: 0 0;
+    border: none;
+    text-align: left;
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+    height: 10px;
+}
+.arx-custom hr:before {
+    content: '';
+    position: absolute;
+    top: 50%;
+}
+.arx-custom hr:before {
+    width: 100%;
+    max-width: 100%;
+    margin-top: -0.5px;
+    border-top-width: 1px;
+    border-top-style: solid;
+    border-top-color: rgba(207, 208, 209, .6);
+}
+.arx-custom .button, .arx-custom a.button, .arx-custom button {
+    -webkit-appearance: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    vertical-align: middle;
+    text-align: center;
+    font-family: inherit;
+    white-space: nowrap;
+    cursor: pointer;
+    border: none;
+    background: 0 0;
+    box-shadow: none;
+    text-decoration: none;
+    line-height: 1.25;
+    font-size: 16px;
+    font-weight: 400;
+    color: #31363a;
+    padding: 0.4em 24px;
+    height: 42px;
+    border: 1px solid rgba(0, 0, 0, .15);
+    background-color: #fff;
+}
+.arx-custom .button [class*=' fa-'] + span, .arx-custom .button [class*=' icon-'] + span, .arx-custom .button [class^=fa-] + span, .arx-custom .button [class^=icon-] + span {
+    margin-left: 4px;
+}
+.arx-custom .button span + [class*=' fa-'], .arx-custom .button span + [class*=' icon-'], .arx-custom .button span + [class^=fa-], .arx-custom .button span + [class^=icon-] {
+    margin-left: 4px;
+    margin-right: -2px;
+}
+.arx-custom .button:focus, .arx-custom .button:hover {
+    outline: 0;
+    text-decoration: none;
+}
+.arx-custom .button:disabled {
+    cursor: default;
+    opacity: 0.5;
+}
+.arx-custom .button {
+    font-weight: 400;
+    text-transform: none;
+    color: #31363a;
+    border: 1px solid #cfd0d1;
+    background-color: #fff;
+    background-image: none;
+}
+.arx-custom .button:hover {
+    color: #31363a;
+    border: 1px solid #cfd0d1;
+    background-color: #f6f6f6;
+    background-image: none;
+}
+.arx-custom .button:disabled {
+    color: #31363a;
+    border: 1px solid #cfd0d1;
+    background-color: #fff;
+    background-image: none;
+}
+.arx-custom .button.button-primary {
+    font-weight: 400;
+    text-transform: none;
+    color: #f1f9f5;
+    border: 1px solid transparent;
+    background-color: #1a4cdc;
+    background-image: none;
+}
+.arx-custom .button.button-primary:hover {
+    color: #f1f9f5;
+    border: 1px solid transparent;
+    background-color: #1740b4;
+    background-image: none;
+}
+.arx-custom .button.button-primary:disabled {
+    color: rgba(241, 249, 245, .75);
+    border: 1px solid transparent;
+    background-color: #112452;
+    background-image: none;
+    opacity: 0.4;
+}
+.arx-custom .button {
+    font-size: 16px;
+    border-radius: 4px;
+    padding: 0.4em 24px;
+    height: 42px;
+}
+.arx-custom .button.button-large {
+    font-size: 16px;
+    border-radius: 4px;
+    padding: 0.4em 30px;
+    height: 48px;
+}
+.arx-custom ::placeholder {
+    color: rgba(13, 19, 23, .4);
+    opacity: 1;
+}
+.arx-custom :-ms-input-placeholder {
+    color: rgba(13, 19, 23, .4);
+}
+.arx-custom ::-ms-input-placeholder {
+    color: rgba(13, 19, 23, .4);
+}
+.arx-custom input, .arx-custom select, .arx-custom textarea {
+    display: block;
+    width: 100%;
+    font-family: inherit;
+    vertical-align: middle;
+    font-weight: 400;
+}
+.arx-custom input:disabled, .arx-custom select:disabled, .arx-custom textarea:disabled {
+    resize: none;
+    opacity: 0.6;
+    cursor: default;
+}
+.arx-custom input, .arx-custom select, .arx-custom textarea {
+    color: #31363a;
+    border: 1px solid #cfd0d1;
+    background-color: #fff;
+    box-shadow: none;
+}
+.arx-custom input:focus, .arx-custom select:focus, .arx-custom textarea:focus {
+    border-color: rgba(26, 76, 220, .5);
+    box-shadow: 0 0 2px rgba(26, 76, 220, .3);
+}
+.arx-custom .input-error {
+    color: #e84855;
+    border-color: rgba(232, 72, 85, .5);
+    box-shadow: 0 0 2px rgba(232, 72, 85, .3);
+}
+.arx-custom .input-error:focus {
+    border-color: #e84855;
+}
+.arx-custom input, .arx-custom select, .arx-custom textarea {
+    font-size: 16px;
+    line-height: 1.5;
+    border-radius: 2px;
+    padding: 0.3em 0.5em;
+    height: 42px;
+}
+.arx-custom .input-large {
+    font-size: 18px;
+    line-height: 1.5;
+    border-radius: 2px;
+    padding: 0.3em 0.65em;
+    height: 48px;
+}
+.arx-custom textarea {
+    resize: vertical;
+    height: auto;
+    vertical-align: top;
+}
+
+.arx-custom .text-nowrap, .arx-custom .text-nowrap td, .arx-custom .text-nowrap th {
+    white-space: nowrap;
+}
+.arx-custom .text-icon {
+    display: inline-block;
+    width: auto;
+    height: 1em;
+    vertical-align: middle;
+    margin-top: -0.2em;
+}
+.arx-custom .text-large + * {
+    margin-top: 0.75rem;
+}
+.arx-custom .text-success {
+    color: #2c8d65;
+}
+.arx-custom .text-error {
+    color: #bc3d48;
+}
+.arx-custom .text-small {
+    font-size: 12px;
+    line-height: 1.5;
+}
+.arx-custom .text-medium {
+    font-size: 14px;
+    line-height: 1.5;
+}
+.arx-custom .text-regular {
+    font-size: 16px;
+    line-height: 1.5;
+}
+.arx-custom .text-large {
+    font-size: 20px;
+    line-height: 1.5;
+}
+.arx-custom .form-checkboxes label.checkbox {
+    display: inline-block;
+    margin-bottom: 0;
+}
+.arx-custom .form-checkboxes label.checkbox + label.checkbox {
+    margin-left: 0.5rem;
+}
+.arx-custom .list-inline {
+    list-style: none;
+    margin-left: 0;
+}
+.arx-custom .list-inline li {
+    display: inline;
+    white-space: nowrap;
+    margin-right: 0.25em;
+}
+.arx-custom .list-unstyled {
+    margin-left: 0;
+    list-style: none;
+}
+.arx-custom .table-scrollable {
+    display: block;
+    overflow-x: auto;
+    white-space: nowrap;
+}
+.arx-custom .hint {
+    font-style: normal;
+    font-size: 12px;
+    line-height: 1.5;
+    color: rgba(49, 54, 58, .55);
+}
+.arx-custom .hint-success {
+    color: #2c8d65;
+}
+.arx-custom .hint-error {
+    color: #bc3d48;
+}
+.arx-custom .embed-responsive {
+    position: relative;
+    padding: 0;
+    margin: 0;
+    padding-bottom: 56.25%;
+    padding-top: 25px;
+    height: 0;
+}
+.arx-custom .embed-responsive iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+.arx-custom .grid {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    grid-column-gap: 1.25rem;
+    grid-row-gap: 1rem;
+}
+.arx-custom .grid + .grid {
+    margin-top: 1rem;
+}
+.arx-custom .grid-gutterless {
+    grid-column-gap: 0;
+}
+.arx-custom .grid-gapless {
+    grid-row-gap: 0;
+}
+.arx-custom .grid-gapless + .grid {
+    margin-top: 0;
+}
+.arx-custom .grid-auto {
+    grid-template-columns: repeat(auto-fit, minmax(0, 1fr));
+}
+.arx-custom .column-1 {
+    grid-column: span 1;
+}
+.arx-custom .column-2 {
+    grid-column: span 2;
+}
+.arx-custom .column-3 {
+    grid-column: span 3;
+}
+.arx-custom .column-4 {
+    grid-column: span 4;
+}
+.arx-custom .column-5 {
+    grid-column: span 5;
+}
+.arx-custom .column-6 {
+    grid-column: span 6;
+}
+.arx-custom .column-7 {
+    grid-column: span 7;
+}
+.arx-custom .column-8 {
+    grid-column: span 8;
+}
+.arx-custom .column-9 {
+    grid-column: span 9;
+}
+.arx-custom .column-10 {
+    grid-column: span 10;
+}
+.arx-custom .column-11 {
+    grid-column: span 11;
+}
+.arx-custom .column-12 {
+    grid-column: span 12;
+}
+@media only screen and (max-width: 1023px) {
+    .arx-custom .grid-1-md {
+        grid-template-columns: repeat(1, 1fr);
+    }
+    .arx-custom .grid-2-md {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .arx-custom .grid-3-md {
+        grid-template-columns: repeat(3, 1fr);
+    }
+    .arx-custom .grid-4-md {
+        grid-template-columns: repeat(4, 1fr);
+    }
+    .arx-custom .grid-5-md {
+        grid-template-columns: repeat(5, 1fr);
+    }
+    .arx-custom .grid-6-md {
+        grid-template-columns: repeat(6, 1fr);
+    }
+    .arx-custom .grid-7-md {
+        grid-template-columns: repeat(7, 1fr);
+    }
+    .arx-custom .grid-8-md {
+        grid-template-columns: repeat(8, 1fr);
+    }
+    .arx-custom .grid-9-md {
+        grid-template-columns: repeat(9, 1fr);
+    }
+    .arx-custom .grid-10-md {
+        grid-template-columns: repeat(10, 1fr);
+    }
+    .arx-custom .grid-11-md {
+        grid-template-columns: repeat(11, 1fr);
+    }
+    .arx-custom .grid-12-md {
+        grid-template-columns: repeat(12, 1fr);
+    }
+    .arx-custom .column-1-md {
+        grid-column: span 1;
+    }
+    .arx-custom .column-2-md {
+        grid-column: span 2;
+    }
+    .arx-custom .column-3-md {
+        grid-column: span 3;
+    }
+    .arx-custom .column-4-md {
+        grid-column: span 4;
+    }
+    .arx-custom .column-5-md {
+        grid-column: span 5;
+    }
+    .arx-custom .column-6-md {
+        grid-column: span 6;
+    }
+    .arx-custom .column-7-md {
+        grid-column: span 7;
+    }
+    .arx-custom .column-8-md {
+        grid-column: span 8;
+    }
+    .arx-custom .column-9-md {
+        grid-column: span 9;
+    }
+    .arx-custom .column-10-md {
+        grid-column: span 10;
+    }
+    .arx-custom .column-11-md {
+        grid-column: span 11;
+    }
+    .arx-custom .column-12-md {
+        grid-column: span 12;
+    }
+}
+@media only screen and (max-width: 767px) {
+    .arx-custom .grid, .arx-custom .grid-auto {
+        grid-template-columns: repeat(1, 1fr);
+    }
+    .arx-custom .column {
+        grid-column: span 1;
+    }
+    .arx-custom .column:empty {
+        display: none;
+    }
+    .arx-custom .grid-1-sm {
+        grid-template-columns: repeat(1, 1fr);
+    }
+    .arx-custom .grid-2-sm {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .arx-custom .grid-3-sm {
+        grid-template-columns: repeat(3, 1fr);
+    }
+    .arx-custom .grid-4-sm {
+        grid-template-columns: repeat(4, 1fr);
+    }
+    .arx-custom .grid-5-sm {
+        grid-template-columns: repeat(5, 1fr);
+    }
+    .arx-custom .grid-6-sm {
+        grid-template-columns: repeat(6, 1fr);
+    }
+    .arx-custom .grid-7-sm {
+        grid-template-columns: repeat(7, 1fr);
+    }
+    .arx-custom .grid-8-sm {
+        grid-template-columns: repeat(8, 1fr);
+    }
+    .arx-custom .grid-9-sm {
+        grid-template-columns: repeat(9, 1fr);
+    }
+    .arx-custom .grid-10-sm {
+        grid-template-columns: repeat(10, 1fr);
+    }
+    .arx-custom .grid-11-sm {
+        grid-template-columns: repeat(11, 1fr);
+    }
+    .arx-custom .grid-12-sm {
+        grid-template-columns: repeat(12, 1fr);
+    }
+    .arx-custom .column-1-sm {
+        grid-column: span 1;
+    }
+    .arx-custom .column-2-sm {
+        grid-column: span 2;
+    }
+    .arx-custom .column-3-sm {
+        grid-column: span 3;
+    }
+    .arx-custom .column-4-sm {
+        grid-column: span 4;
+    }
+    .arx-custom .column-5-sm {
+        grid-column: span 5;
+    }
+    .arx-custom .column-6-sm {
+        grid-column: span 6;
+    }
+    .arx-custom .column-7-sm {
+        grid-column: span 7;
+    }
+    .arx-custom .column-8-sm {
+        grid-column: span 8;
+    }
+    .arx-custom .column-9-sm {
+        grid-column: span 9;
+    }
+    .arx-custom .column-10-sm {
+        grid-column: span 10;
+    }
+    .arx-custom .column-11-sm {
+        grid-column: span 11;
+    }
+    .arx-custom .column-12-sm {
+        grid-column: span 12;
+    }
+}
+.arx-custom .entry {
+    margin: 0;
+    padding: 26px;
+    background-color: #fff;
+}
+.arx-custom div + blockquote, .arx-custom div + dl, .arx-custom div + figure, .arx-custom div + h1, .arx-custom div + h2, .arx-custom div + h3, .arx-custom div + h4, .arx-custom div + h5, .arx-custom div + h6, .arx-custom div + ol, .arx-custom div + p, .arx-custom div + pre, .arx-custom div + table, .arx-custom div + ul {
+    margin-top: 1rem;
+}
+.arx-custom .card {
+    background-color: #f6f6f6;
+    padding: 1rem;
+    border-radius: 2px;
+}
+.arx-custom .align-left {
+    text-align: left;
+}
+.arx-custom .align-center {
+    text-align: center;
+}
+.arx-custom .align-center img {
+    margin-left: auto;
+    margin-right: auto;
+}
+.arx-custom .align-center figcaption {
+    text-align: center;
+}
+.arx-custom .align-right {
+    text-align: right;
+}
+.arx-custom .align-right img {
+    margin-left: auto;
+}
+.arx-custom .align-right figcaption {
+    text-align: right;
+}
+.arx-custom .align-justify {
+    text-align: justify;
+}
+.arx-custom .valign-top {
+    align-items: start;
+}
+.arx-custom .valign-middle {
+    align-items: center;
+}
+.arx-custom .valign-bottom {
+    align-items: end;
+}
+.arx-custom .outset-right {
+    position: relative;
+    width: calc(100% + 26px);
+    max-width: calc(100% + 26px);
+    transform: translateX(26px) translate3d(0, 0, 0);
+    left: calc(26px * -1);
+}
+.arx-custom .outset-left {
+    width: calc(100% + 26px);
+    max-width: calc(100% + 26px);
+    transform: translateX(calc(26px * -1)) translate3d(0, 0, 0);
+}
+.arx-custom .outset-both {
+    position: relative;
+    width: calc(100% + 26px + 26px);
+    max-width: calc(100% + 26px + 26px);
+    transform: translateX(-50%) translate3d(0, 0, 0);
+    left: 50%;
+}
+.arx-custom html.noscroll, .arx-custom html.noscroll body {
+    overflow: hidden !important;
+    height: 100% !important;
+}
+.arx-custom .noscroll-x {
+    overflow-x: hidden;
+}
+.arx-custom .hidden {
+    display: none;
+}
+.arx-custom .visible {
+    display: block !important;
+}
+.arx-custom .visible-lg, .arx-custom .visible-md, .arx-custom .visible-sm {
+    display: none;
+}
+@media only screen and (min-width: 1442px) {
+    .arx-custom .visible-lg {
+        display: block;
+    }
+    .arx-custom .hidden-lg {
+        display: none;
+    }
+}
+@media only screen and (max-width: 1023px) {
+    .arx-custom .visible-md {
+        display: block;
+    }
+    .arx-custom .hidden-md {
+        display: none;
+    }
+}
+@media only screen and (max-width: 767px) {
+    .arx-custom .visible-sm {
+        display: block;
+    }
+    .arx-custom .hidden-sm {
+        display: none;
+    }
+}
+.arx-custom .width-20 {
+    width: 20%;
+    min-width: 20%;
+    max-width: 20%;
+}
+.arx-custom .width-25 {
+    width: 25%;
+    min-width: 25%;
+    max-width: 25%;
+}
+.arx-custom .width-33 {
+    width: 33%;
+    min-width: 33%;
+    max-width: 33%;
+}
+.arx-custom .width-40 {
+    width: 40%;
+    min-width: 40%;
+    max-width: 40%;
+}
+.arx-custom .width-50 {
+    width: 50%;
+    min-width: 50%;
+    max-width: 50%;
+}
+.arx-custom .width-60 {
+    width: 60%;
+    min-width: 60%;
+    max-width: 60%;
+}
+.arx-custom .width-67 {
+    width: 67%;
+    min-width: 67%;
+    max-width: 67%;
+}
+.arx-custom .width-75 {
+    width: 75%;
+    min-width: 75%;
+    max-width: 75%;
+}
+.arx-custom .width-80 {
+    width: 80%;
+    min-width: 80%;
+    max-width: 80%;
+}
+.arx-custom .width-100 {
+    width: 100%;
+    min-width: 100%;
+    max-width: 100%;
+}
+@media only screen and (max-width: 1023px) {
+    .arx-custom .width-100-md {
+        width: 100%;
+        min-width: 100%;
+        max-width: 100%;
+    }
+}
+@media only screen and (max-width: 767px) {
+    .arx-custom .width-100-sm {
+        width: 100%;
+        min-width: 100%;
+        max-width: 100%;
+    }
+}
+.arx-custom .column.column-6 img{
+    max-height: 768px;
+}

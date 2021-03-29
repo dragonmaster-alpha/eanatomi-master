@@ -1,0 +1,66 @@
+<div class="container">
+  <%= render 'breadcrumb' %>
+
+  <h1 class="title break"><%= @product %></h1>
+
+
+  <div class="info">
+    <div class="description">
+      <%= raw @product.description %>
+
+
+      <div class="price-and-stock-info">
+
+        <div>
+          <div class="price"><%= number_to_currency currency(@product.price).net_amount %></div>
+          <small><%= t '.vat_included' %></small>
+        </div>
+
+        <div class="stock-info">
+          <i class="fa fa-check fa-lg fa-state-success"></i>
+          <%= t '.in_stock' %>
+        </div>
+      </div>
+
+      <%= form_for [@product, @order_item], html: { class: 'form-inline', 'data-remote' => true } do |f| %>
+        <span role="stepper">
+          <button type="button" class="btn btn-default btn-lg" role="stepper-down">-</button>
+          <%= f.text_field :quantity, class: 'form-control input-lg quantity', role: 'stepper-input' %>
+          <button type="button" class="btn btn-default btn-lg" role="stepper-up">+</button>
+        </span>
+        <button type="submit" class="btn btn-success btn-lg"><i class="fa fa-shopping-basket"></i> <%= t '.add_to_basket' %></button>
+      <% end %>
+
+      <div class="usp">
+        <p><i class="fa fa-check fa-state-success"></i> <%= t '.shipping_time' %></p>
+      </div>
+
+      <div class="help">
+        <h4><%= t '.need_help' %></h4>
+        <div><%= simple_format t('.call_or_mail') %></div>
+      </div>
+
+    </div>
+    <div class="photo">
+      <%= image_tag(@product.photo.imgix_photo_url(w: 400, h: 400, q: 90)) if @product.photo %>
+    </div>
+  </div>
+</div>
+
+
+<div class="container text-center">
+  <br>
+  <%= link_to 'Rediger produkt', [:edit, :admin, @product], class: 'btn btn-default' %>
+  <%= link_to 'Rediger billeder', [:admin, @product, :product_photos], class: 'btn btn-default' %>
+</div>
+
+
+
+<div class="related">
+  <div class="container">
+    <h2 class="title break"><%= t '.popular', category:  @category %></h2>
+    <div class="product-grid-items">
+      <%= render @related %>
+    </div>
+  </div>
+</div>

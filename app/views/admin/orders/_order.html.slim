@@ -1,0 +1,15 @@
+tr class=order.status_class
+  td
+    .flag-icon.text-xs class="flag-icon-#{order.market.key}"
+  td = order.order_number
+  td = l(order.placed_at) if order.placed_at
+  td.text-right = number_to_currency(order.net_amount)
+  td = order.payment_method
+  td = order.client_type
+  td = order.name
+  td = order.status
+  td
+    span.label.label-warning = 'Kræver bekræftelse' if order.needs_review?
+    span.label.label-danger = 'Fejlet' if order.failures.unseen.any?
+  td
+    = link_to 'Se ordre', [:admin, order], class: 'btn btn-xs btn-default'

@@ -1,0 +1,8 @@
+tr data-id=featured_product.id
+  td
+    i.fa.fa-arrows
+  td = featured_product.active_markets.join(', ')
+  td = featured_product
+  td
+    = link_to 'Rediger', [:edit, :admin, featured_product], class: 'btn btn-link btn-xs'
+    = link_to 'Slet', [:admin, featured_product], class: 'btn btn-link btn-xs', method: 'delete', 'data-confirm' => "Slet #{featured_product}?"

@@ -1,0 +1,26 @@
+.flex.flex-col-reverse.md--flex-row
+  / .hidden.md--block.w-layout-side.flex-no-shrink
+  /   = render 'sidebar'
+  div.bg-white.w-full
+    = image_tag 'header.jpg', class: 'img-responsive w-full'
+.container.flex.flex-col-reverse.md--flex-row.my-10
+  .m-8.w-full
+    h1.pl-4.mb-10.font-alt = t '.title'
+    = form_for @gift_card, html: { role: 'new-giftcard-form', 'data-remote' => true, 'novalidate' => true } do |f|
+      div.my-4
+        label.block.mb-2.pl-4  = t '.name'
+        = f.text_field :name, class: 'form-control rounded-full py-4', required: true
+      div.my-4
+        label.block.mb-2.pl-4  = t '.email'
+        = f.text_field :email, class: 'form-control rounded-full py-4', required: true
+      div.my-4
+        label.block.mb-2.pl-4  = t '.recipient'
+        = f.text_field :recipient, class: 'form-control rounded-full py-4', required: true
+      div.my-4
+        label.block.mb-2.pl-4  = t '.amount'
+        = f.text_field :net_amount, class: 'form-control rounded-full py-4', required: true
+      div.my-4
+        label.block.mb-2.pl-4  = t '.message'
+        = f.text_field :message, class: 'form-control rounded-full py-4'
+
+      button.btn.btn-green.rounded-full.px-6.py-4.mt-10 type='submit' = t '.pay'

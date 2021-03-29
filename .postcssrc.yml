@@ -1,0 +1,5 @@
+plugins:
+  postcss-import: {}
+  postcss-cssnext: {}
+  postcss-flexbugs-fixes: {}
+  tailwindcss: './app/javascript/src/tailwind.js'

@@ -1,0 +1,9 @@
+= f.fields_for :active_in_market do |market_f|
+  .form-group
+    label.control-label.col-sm-3
+      | Aktiv på
+    .col-sm-6
+      - Market.sorted.each do |market_id|
+        label.checkbox-inline
+          = market_f.check_box market_id
+          = market_id

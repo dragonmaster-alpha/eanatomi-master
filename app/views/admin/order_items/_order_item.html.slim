@@ -1,0 +1,9 @@
+tr 
+  td = order_item.sku_code
+  td = order_item.name 
+  td = order_item.quantity
+  td.text-right = number_to_currency(order_item.sales_price)  
+  td.text-right = number_to_currency(order_item.amount) 
+  td
+    = link_to 'Rediger', [:edit, :admin, @order, order_item], class: 'btn btn-default btn-xs'
+    = link_to 'Fjern', [:admin, @order, order_item], class: 'btn btn-link btn-xs', method: 'delete', 'data-confirm' => "Fjern #{order_item}?"

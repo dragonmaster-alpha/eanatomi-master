@@ -1,0 +1,218 @@
+= form_for [:admin, @order], html: { class: 'form-horizontal', role: 'admin-order-form' } do |f|
+
+  h3.text-center Oplysninger
+
+  .form-group
+    label.control-label.col-sm-3 Marked
+    .col-sm-6
+      = f.select :market_id, @markets, {}, class: 'form-control', role: "admin-order-market"
+
+  .form-group
+    label.control-label.col-sm-3 Kundetype
+    .col-sm-6
+      = f.select :client_type, @client_types, {}, class: 'form-control'
+
+  .form-group
+    label.control-label.col-sm-3 Betaling
+    .col-sm-6
+      - @payment_methods.each do |payment_method|
+        .radio
+          label
+            = f.radio_button :payment_method, payment_method
+            = payment_method
+
+  .form-group
+    label.control-label.col-sm-3 Email
+    .col-sm-6
+      = f.text_field :email, class: 'form-control'
+
+
+  .form-group
+    label.control-label.col-sm-3 Land
+    .col-sm-6
+      = f.select :country_code, @countries, {}, role: 'selectize'
+
+  .form-group
+    label.control-label.col-sm-3 Navn/Firma
+    .col-sm-6
+      = f.text_field :name, class: 'form-control'
+
+  .form-group
+    label.control-label.col-sm-3 Att.
+    .col-sm-6
+      = f.text_field :att, class: 'form-control'
+
+  .form-group
+    label.control-label.col-sm-3 Reference nr.
+    .col-sm-6
+      = f.text_field :reference_number, class: 'form-control'
+
+  .form-group
+    label.control-label.col-sm-3 CVR nr.
+    .col-sm-6
+      = f.text_field :vat_number, class: 'form-control'
+
+  .form-group
+    label.control-label.col-sm-3 Ean nr.
+    .col-sm-6
+      = f.text_field :ean_number, class: 'form-control'
+
+  .form-group
+    label.control-label.col-sm-3 Adresse
+    .col-sm-6
+      = f.text_field :address, class: 'form-control'
+
+  .form-group
+    label.control-label.col-sm-3 Postnr.
+    .col-sm-6
+      = f.text_field :zip_code, class: 'form-control'
+
+  .form-group
+    label.control-label.col-sm-3 By
+    .col-sm-6
+      = f.text_field :city, class: 'form-control'
+
+  .form-group
+    label.control-label.col-sm-3 Telefon nr.
+    .col-sm-6
+      = f.text_field :phone, class: 'form-control'
+
+
+  h3.text-center Levering
+
+  .form-group
+    label.control-label.col-sm-3 Distributør
+    .col-sm-6
+      - @couriers.each do |courier|
+        .radio
+          label
+            = f.radio_button :courier, courier, role: 'admin-order-courier'
+            = courier
+
+  .form-group
+    label.control-label.col-sm-3 Levering
+    .col-sm-6
+      - @delivery_methods.each do |delivery_method|
+        .radio
+          label
+            = f.radio_button :delivery_method, delivery_method
+            = t ".#{delivery_method}"
+
+  div data-show="order[delivery_method]=droppoint"
+    .form-group
+      label.control-label.col-sm-3
+        = "Søg efter afhentningssted "
+        span.hidden role='admin-find-servicepoint-spinner'
+          i.fa.fa-circle-o-notch.fa-spin
+      .col-sm-6
+        input.form-control type='text' role='admin-find-servicepoint' placeholder="Postnr by"
+        div role='admin-order-servicepoints'
+
+    .form-group
+      label.control-label.col-sm-3 Servicepoint ID
+      .col-sm-6
+        = f.text_field :servicepoint_id, class: 'form-control', role: "admin-servicepoint-id"
+
+    .form-group
+      label.control-label.col-sm-3 Servicepoint Land
+      .col-sm-6
+        = f.select :servicepoint_country_code, @countries, {}, role: 'selectize', role: "admin-servicepoint-country-code"
+
+    .form-group
+      label.control-label.col-sm-3 Servicepoint Navn
+      .col-sm-6
+        = f.text_field :servicepoint_name, class: 'form-control', role: "admin-servicepoint-name"
+
+    .form-group
+      label.control-label.col-sm-3 Servicepoint Gade
+      .col-sm-6
+        = f.text_field :servicepoint_street, class: 'form-control', role: "admin-servicepoint-street"
+
+    .form-group
+      label.control-label.col-sm-3 Servicepoint Postnr.
+      .col-sm-6
+        = f.text_field :servicepoint_zip_code, class: 'form-control', role: "admin-servicepoint-zip-code"
+
+    .form-group
+      label.control-label.col-sm-3 Servicepoint By
+      .col-sm-6
+        = f.text_field :servicepoint_zip_code, class: 'form-control', role: "admin-servicepoint-city"
+
+
+  div data-show="order[delivery_method]=door,business,delivery_address,flex"
+
+    .form-group
+      label.control-label.col-sm-3 Land
+      .col-sm-6
+        = f.select :delivery_country_code, @countries, {}, role: 'selectize'
+
+    .form-group
+      label.control-label.col-sm-3 Navn
+      .col-sm-6
+        = f.text_field :delivery_name, class: 'form-control'
+
+    .form-group
+      label.control-label.col-sm-3 Att.
+      .col-sm-6
+        = f.text_field :delivery_att, class: 'form-control'
+
+    .form-group
+      label.control-label.col-sm-3 Adresse
+      .col-sm-6
+        = f.text_field :delivery_address, class: 'form-control'
+
+    .form-group
+      label.control-label.col-sm-3 Postnr.
+      .col-sm-6
+        = f.text_field :delivery_zip_code, class: 'form-control'
+
+    .form-group
+      label.control-label.col-sm-3 By
+      .col-sm-6
+        = f.text_field :delivery_city, class: 'form-control'
+
+    .form-group
+      label.control-label.col-sm-3 Flex
+      .col-sm-6
+        = f.text_field :flex_instructions, class: 'form-control'
+
+  h3.text-center Diverse
+
+  .form-group
+    label.control-label.col-sm-3
+      | Fragt
+      small = ' (Ekskl. moms)'
+    .col-sm-6
+      = f.text_field :delivery_fee, class: 'form-control'
+
+  .form-group
+    label.control-label.col-sm-3
+      | Moms
+    .col-sm-6
+      = f.text_field :vat, class: 'form-control'
+
+  .form-group
+    label.control-label.col-sm-3
+      | Valuta
+    .col-sm-6
+      = f.text_field :rate, class: 'form-control'
+
+  .form-group
+    .col-sm-6.col-sm-offset-3
+      .checkbox
+        label
+          = f.check_box :is_invoiced
+          | Fakturering
+
+  .form-group
+    .col-sm-6.col-sm-offset-3
+      .checkbox
+        label
+          = f.check_box :is_vat_exempt
+          | Momsfri
+
+
+  .form-group.text-center
+    button.btn.btn-success type='submit'
+      = @order.new_record? ? 'Opret ordre' : 'Gem ændringer'
+    = link_to 'Annuller', (@order.new_record? ? [:admin, :orders] : [:admin, @order]), class: 'btn btn-link'

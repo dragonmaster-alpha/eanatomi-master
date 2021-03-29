@@ -1,0 +1,14 @@
+.container
+  h1 = "Rediger #{@category}"
+  br
+
+  = render 'form'
+
+  = link_to "Rediger #{@category} mega menu", [:admin, @category, :category_megaimages], class: 'admin-action' if can?(:create, CategoryBanner)
+  - if @category.translation_changes.latest.any?
+    br
+    h2 Seneste sprog ændringer
+    table.table
+      = render @category.translation_changes.latest
+    br
+    br

@@ -1,0 +1,28 @@
+<% sortable ||= false %>
+<% level ||= 0 %>
+
+<div role="<%= 'sortable' if sortable && can?(:update, Category) %>" data-model="Category">
+  <% items.each do |item| %>
+    <div class="sortable-item" data-id="<%= item.id %>">
+      <% if sortable && can?(:update, item) %>
+        <div class="sortable-handle">
+          <i class="fa fa-arrows"></i>
+        </div>
+      <% end %>
+      <% if context.path.last == (item) && level.nonzero? %>
+        <i class="fa fa-angle-right absolute -ml-<%= level * 4 %> mt-1"></i>
+      <% end %>
+      <%= link_to item, class: "flex items-center #{'py-2' if level.zero?} #{'ml-6 py-1' if level.nonzero?} no-underline text-black #{'font-bold' if context.path.has?(item) || level.zero?} #{'text-xs' if level > 1} #{'text-sm' if level == 1} " do %>
+        <% if level.zero? %>
+          <div class="flex w-6 h-6 flex-none mr-4">
+            <%= image_tag(item.imgix_icon.url, class: 'max-w-full max-h-full') if item.imgix_icon %>
+          </div>
+        <% end %>
+        <%= item %>
+      <% end %>
+      <div class="ml-4">
+        <%= render partial: 'side_navigation_items', locals: { items: item.regular_categories.active_in(context.market.key).sorted, level: level.next } if context.path.has?(item) %>
+      </div>
+    </div>
+  <% end %>
+</div>

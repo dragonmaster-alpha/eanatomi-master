@@ -1,0 +1,8 @@
+tr data-id=featured_category.id
+  td
+    i.fa.fa-arrows
+  td = featured_category.active_markets.join(', ')
+  td = featured_category
+  td
+    = link_to 'Rediger', [:edit, :admin, featured_category], class: 'btn btn-link btn-xs'
+    = link_to 'Slet', [:admin, featured_category], class: 'btn btn-link btn-xs', method: 'delete', 'data-confirm' => "Slet #{featured_category}?"

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <style>
+.gift-card {
+  text-align: center;
+  font-family: 'Times new roman';
+  font-size: 14px;
+}
+.header {
+  max-width: 100%;
+  margin: 20px 0;
+}
+.title {
+  font-size: 50px;
+  margin: 10px 0;
+  text-transform: uppercase;
+  font-weight: 200;
+}
+.message {
+  font-size: 20px;
+  font-style: italic;
+}
+.code {
+  font-size: 20px;
+}
+.value {
+  font-size: 50px;
+  margin: 30px 0;
+}
+hr {
+  margin: 20px 0;
+  border: 1px solid #ccc;
+}
+    </style>
+  </head>
+  <body>
+    <div class="gift-card">
+      <%= image_tag image_url('gift_card/eanatomi.png') %>
+      <%= image_tag image_url('gift_card/header.png'), class: 'header' %>
+      <h1 class="title">Gavekort</h1>
+      <p class="message"><%= @gift_card.message %></p>
+      <hr>
+      <p>
+        <strong>Gavekortets indløsningskode: <span class="code"><%= @gift_card.code %></span><br>
+        Udstedt den <%= l @gift_card.created_at, format: '%e %B %Y' %> med værdi:</strong>
+      </p>
+      <p class="value"><%= number_to_currency @gift_card.net_amount %></p>
+      <hr>
+      <p>
+        Vi ser frem til at byde dig velkommen på www.eAnatomi.dk.
+      </p>
+      <p>
+        Betingelser:<br>
+        Gavekortet kan kun bruges til køb af varer, for gavekortets værdi, fra sortimentet som findes på www.eanatomi.dk. Gavekortet skal bruges indenfor 3 år. Sker dette ikke mister gavekortet sin værdi.<br>
+        Køb foretaget med brug af gavekortet er underlagt eanatomi.dk’s gældende handelsbetingelser.
+      </p>
+
+      <p>
+        <strong>Ved bestilling på eAnatomi.dk indtastes gavekortets kode<br>
+        Gavekortets beløb er inkl. moms.</strong>
+      </p>
+      <hr>
+      <p>eAnatomi – Tlf.: +45 2991 9911 – E-mail:   info@eanatomi.dk  – www.eAnatomi.dk</p>
+    </div>
+  </body>
+</html>

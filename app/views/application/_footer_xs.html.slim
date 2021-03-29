@@ -1,0 +1,27 @@
+.mx-6.uppercase.text-sm.mt-16
+  = render 'usps'
+
+  .uppercase.text-sm.mt-12 = t('application.footer.contact.title')
+
+  .mt-4
+    .py-2.text-xs = t('application.footer.contact.business')
+    .py-2.text-xs = t('application.footer.contact.address')
+    .py-2.text-xs = t('application.footer.contact.city')
+    .py-2.text-xs = t('application.footer.contact.country')
+
+  .mt-4
+    .py-2.text-xs = t('application.footer.contact.vat_number')
+    .py-2.text-xs = t('application.footer.contact.phone')
+    .py-2.text-xs = mail_to t('application.footer.contact.email')
+
+  .mt-4
+    .py-2.text-xs = t('application.footer.contact.owner')
+
+  .mt-4
+    .py-2.text-xs = link_to t('application.footer.contact.form'), contact_page, class: 'text-black no-underline'
+
+  .mt-4
+    .py-2.text-xs = link_to t('application.footer.contact.account'), sign_in_path, class: 'text-black no-underline'
+
+.container.my-6
+  = image_tag('icons/payment-methods.png', class: 'w-48')

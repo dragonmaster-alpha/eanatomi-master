@@ -1,0 +1,19 @@
+- meta title: @page.meta_title, description: @page.meta_description, robots: @page.active_in_market?(context.market.key) ? 'index' : 'noindex'
+
+/ .container.flex.flex-col-reverse.md--flex-row
+  / .hidden.md--block.w-layout-side.flex-no-shrink
+  /   .bg-white.px-6.py-4.mb-2
+  /     - root_pages.each do |page|
+  /       = link_to page, page, class: "no-underline block py-2 #{'font-bold' if [@page, @page.page].include?(page)}"
+  /       - if [@page, @page.page].include?(page)
+  /         - page.pages.active_in(context.market.key).each do |child_page|
+  /           = link_to child_page, child_page, class: "no-underline block text-sm py-1 ml-4 #{'font-bold' if child_page == @page}"
+  /
+  /   = render 'sidebar'
+
+div.w-full
+  = render @page.template
+
+.container data-turbolinks="false"
+  = link_to "Rediger #{@page}", [:edit, :admin, @page], class: 'admin-action mt-8' if can?(:update, @page.object)
+  = link_to "Rediger #{@page} slider", [:admin, @page, :page_banners], class: 'admin-action mb-8' if can?(:create, PageBanner)

@@ -1,0 +1,34 @@
+.container
+  .text-center
+    h1 Sprog ændringer
+
+    .btn-group
+      - @locales.each do |locale|
+        = link_to locale, "?locale=#{locale}", class: "btn btn-default #{'active' if locale == @locale}"
+
+  br
+
+  table.table
+    thead
+      th Dato
+      th Objekt
+      th Sprog
+      th Felt
+      th Ændret fra
+      th Ændret til
+      th Bruger
+      th
+      th
+    - @changes.each do |change|
+      tr
+        td = l change.created_at
+        td = change.object_type
+        td = change.locale
+        td = change.field
+        td title=strip_tags(change.changed_from) = strip_tags(change.changed_from).to_s.truncate(30)
+        td title=strip_tags(change.changed_to) = strip_tags(change.changed_to).to_s.truncate(30)
+        td = change.user.name
+        td = link_to 'Rediger', [:edit, :admin, change.object]
+        td = link_to change.object.name, change.object
+
+  = paginate @changes

@@ -1,0 +1,7 @@
+.container.my-16
+  .text-center
+    h1 = t('.welcome', name: @user)
+    
+    .mt-3
+      = link_to t('.edit'), [:edit, :users], class: 'btn btn-link block'
+      = link_to t('.sign_out'), sign_out_path, method: :delete, class: 'btn btn-default inline-block mt-6'

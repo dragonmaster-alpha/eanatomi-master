@@ -1,0 +1,21 @@
+<tr role="order-item">
+  <td class="photo"><%= link_to image_tag(order_item.product.photo.imgix_photo_url), order_item.product %></td>
+  <td><%= order_item.sku_code %></td>
+  <td><%= link_to order_item, order_item.product, class: 'cart-overview-name' %></td>
+  <td class="quantity">
+    <%= form_for [:checkout, order_item], remote: true, html: { class: 'form-inline', role: 'quantity-form stepper' } do |f| %>
+      <button class="btn btn-default" type="button" role="stepper-down">-</button>
+      <%= f.text_field :quantity, class: 'form-control quantity-input', role: 'stepper-input quantity-input' %>
+      <button class="btn btn-default" type="button" role="stepper-up">+</button>
+    <% end %>
+  </td>
+  <td class="price">
+    <%= number_to_currency order_item.net_price %>
+  </td>
+  <td class="price">
+    <%= number_to_currency order_item.net_amount %>
+  </td>
+  <td>
+    <%= link_to t('.remove'), [:checkout, order_item], remote: true, method: :delete, class: 'btn btn-link btn-sm', role: 'remove-order-item', 'data-confirm' => "Fjern #{order_item} fra din bestilling?" %>
+  </td>
+</tr>

@@ -1,0 +1,21 @@
+.container
+  h1.mt-10.text-center = t('.order', number: @order)
+  p.lead.text-center.mb-10.mt-2 = t(@order.status, scope: 'activerecord.attributes.order.statuses')
+  = render partial: 'orders/summary', locals: { order: @order }
+.container.text-center.mb-16
+  .text-4xl.mt-10
+    = image_tag("icons/check-green.svg", class: 'w-8')
+
+  h1.mt-3.mb-6.font-normal = t('.thanks', name: @order.name)
+  p.my-2 = t('.picking')
+  p.my-2 = raw t('.order_number', order_number: @order)
+  p.text-sm.my-12 = t('.confirmation')
+  / p.text-sm.my-12 = link_to t('.confirmation_link'), @order, class: 'btn btn-link'
+
+  p.font-normal.mt-16.mb-4 = t('.follow')
+  .social-group.flex.justify-center
+    = link_to image_tag('icons/fb_large.svg', class: 'w-12'), 'https://www.facebook.com/eAnatomi/', target: '_blank'
+    = link_to image_tag('icons/instagram_large.svg', class: 'w-12 mx-3'), 'https://www.linkedin.com/company/eanatomi', target: '_blank'
+    = link_to image_tag('icons/linkedin_large.svg', class: 'w-12'), 'https://www.instagram.com/eanatomi_dk/', target: '_blank'
+  / <iframe src="https://www.facebook.com/plugins/like.php?href=https%3A%2F%2Fwww.facebook.com%2FeAnatomi&width=450&layout=standard&action=like&size=small&show_faces=true&share=true&height=80" width="450" height="80" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true"></iframe>
+= render partial: 'tracking', locals: { order: @order } if Rails.env.development? || $redis.sadd('analytics:transaction', @order.order_number)

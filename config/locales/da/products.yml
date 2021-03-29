@@ -1,0 +1,69 @@
+---
+da:
+  products:
+    grid_item:
+      buy: Køb her
+      offer: Tilbud - spar %{save}%
+      size: Størrelse
+      vat_incl: Inkl. moms
+      vat_excl: Ekskl. moms
+      in_stock: På lager
+      variants: Flere varianter
+      call_for_price: Kontakt os for pris
+      from: Fra
+
+    product_missing:
+      title: Fandt du ikke hvad du søgte? Vi kan helt klart skaffe det
+      text: Skriv til os
+      modal:
+        title: Beskriv venligst hvad du søger
+        name: Dit navn
+        email: Din email
+        phone: Evt. tlf. nr.
+        message: Din besked
+        submit: Send besked
+
+    show:
+      vat_included: Inkl. moms
+      in_stock: På lager
+      one_in_stock: Kun 1 stk. på lager, flere på vej
+      few_in_stock: Få stk. på lager
+      many_in_stock: Mange stk. på lager
+      read_more: Læs mere
+      read_less: Minimer
+      shipping_time: Dag til dag levering
+      need_help: Brug for hjælp?
+      call_or_mail: Ring til os på <strong>+45 2991 9911</strong>, eller send en mail til info@eanatomi.dk
+      popular: Populære %{category}
+      add_to_basket: Læg i kurven
+      similar: Lignende produkter
+      shipping_time: Dag til dag levering
+      shipping_price: Fragt fra %{price}
+      cancellation: '14 dages fortrydelsesret'
+      warranty: '2 års fabriksgaranti'
+      terms: Se alle <a href='%{url}' target='_blank'>handelsbetingelser her</a>
+      payment_methods: Du kan handle som privatperson, virksomhed eller offentlig institution med EAN
+      sku_code: Varenummer
+      size: Størrelse
+      call_for_price: Ring til os på <strong>+45 2991 9911</strong> for at få en pris
+      datasheet: Datablad
+      download: Downlad
+      variants: Varianter
+      addons: Vælg tilkøb
+      vat_incl: Inkl. moms
+      vat_excl: Ekskl. moms
+      volume_price: '%{price} ved køb af %{quantity} stk.'
+      addon: Tilkøb %{product}
+      offer: Tilbud - spar %{save}%
+      shipping_today: Bestil inden kl 12.00 så afsender vi den i dag
+
+
+    order_items:
+      show:
+        added_to_basket: Varen blev lagt i kurven
+        buy: Handle videre
+        checkout: Gå til kassen
+        vat_incl: Inkl. moms
+        vat_excl: Ekskl. moms
+        complementary: Anbefalet produkter
+        addons: Vælg tilkøb

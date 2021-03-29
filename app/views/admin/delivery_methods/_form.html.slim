@@ -1,0 +1,24 @@
+= form_for [:admin, @delivery_method], html: { class: 'form-horizontal' } do |f|
+
+
+  .form-group
+    label.control-label.col-sm-3
+      span.label.label-danger key
+    .col-sm-6 = f.text_field :key, class: 'form-control'
+  .form-group
+    label.control-label.col-sm-3 cost
+    .col-sm-6 = f.text_field :cost, class: 'form-control'
+  .form-group
+    label.control-label.col-sm-3
+      span.label.label-warning availability_list
+    .col-sm-6 = f.text_field :availability_list, class: 'form-control'
+  .form-group
+    label.control-label.col-sm-3
+      span.label.label-danger couriers_list
+    .col-sm-6 = f.text_field :couriers_list, class: 'form-control'
+
+
+  .form-group
+    .col-sm-6.col-sm-offset-3
+      button.btn.btn-success type='submit' Gem ændringer
+      = link_to 'Annuller', [:admin, :delivery_methods], class: 'btn btn-link'

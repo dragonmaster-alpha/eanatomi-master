@@ -1,0 +1,6 @@
+.mb-2.bg-white.px-6.py-4
+  = form_tag subscriptions_path do
+    .mb-2.font-bold = t('.title')
+    = text_field :subscription, :name, class: 'text-field w-full my-2', placeholder: t('.name')
+    = email_field :subscription, :email, required: true, class: 'text-field w-full my-2', placeholder: t('.email')
+    button.border-grey.border-px.block.w-full.px-4.py-2.uppercase.text-sm.my-2 type='submit' = t('.button')

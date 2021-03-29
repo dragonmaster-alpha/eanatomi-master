@@ -1,0 +1,2 @@
+module Admin::BulkHelper
+end

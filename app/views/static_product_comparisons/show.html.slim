@@ -1,0 +1,79 @@
+.container.bg-white.font-sans.font-light.pb-8.product-comparison-description data-controller="additional-description" data-target="additional-description.container"
+  div data-target="additional-description.body"
+    .flex
+      .flex-1 = image_tag "torso.jpg"
+      .flex-1.pl-8
+        h1.uppercase.text-lg.font-normal = t(".title")
+        div.text-xs = t(".guide_text_html")
+  div.text-right.mt-8
+    button type="button" data-target="additional-description.minimize" data-action="click->additional-description#minimize"
+      = t '.read_less'
+      = image_tag('icons/tail-up.svg', class: 'ml-2 -mb-px')
+
+  .product-comparison-description-overlay.text-right.pr-4.mt-4 data-target="additional-description.overlay"
+    button type="button" data-target="additional-description.expand" data-action="click->additional-description#expand"
+      = t '.read_more'
+      = image_tag('icons/tail-down.svg', class: 'ml-2 -mb-px')
+
+.container.bg-white
+  = image_tag "torso-comparisons.jpg", class: "pt-8"
+
+.container.font-sans.product-comparison-overview data-controller="additional-description" data-target="additional-description.container"
+  .flex-col data-target="additional-description.body"
+    h2.uppercase.text-center.my-10 = t(".overview_main_title")
+    .font-bold.mb-4 = t(".overview_title1")
+    .flex.justify-between
+      - (1..6).each do |n|
+        .flex-1.text-xs.pr-4
+          table
+            tr
+              td = t(".showing")
+              td = n
+            tr
+              td = t(".model")
+              td = t(".model#{n}")
+            tr
+              td = t(".height")
+              td = t(".height#{n}")
+            tr
+              td = t(".parts")
+              td = t(".parts#{n}")
+            tr
+              td = t(".price")
+              td = t(".price#{n}")
+
+    - (2..6).each do |row|
+      .font-bold.mb-4.mt-6 = t(".overview_title#{row}")
+      .flex.justify-between
+        - (1..6).each do |col|
+          .flex-1.text-xs.pr-4
+            = simple_format t(".text_for_row#{row}_col#{col}", default: "TEST"), class: "mb-4"
+    div.text-right.mt-8
+      button type="button" data-target="additional-description.minimize" data-action="click->additional-description#minimize"
+        = t '.read_less'
+        = image_tag('icons/tail-up.svg', class: 'ml-2 -mb-px')
+
+  .product-comparison-description-overlay.text-right.pr-4.mt-4 data-target="additional-description.overlay"
+    button type="button" data-target="additional-description.expand" data-action="click->additional-description#expand"
+      = t '.read_more'
+      = image_tag('icons/tail-down.svg', class: 'ml-2 ')
+
+.container.font-sans.mt-16 data-controller="product-compare"
+  h2.uppercase.text-center = t(".deep_dive_title")
+
+  .flex.items-center.justify-between.mt-8
+    - (1..6).each do |n|
+      a.p-4.w-16.h-16.text-center.text-lg.font-bold.no-underline.border-4.rounded-full.border-transparent.hover--border-black href="#" data-action="product-compare#choose" data-target="product-compare.selector" = n
+
+  - @pages.each.with_index do |page, index|
+    .mt-8.text-sm.hidden.product-comparison-overview data-number="#{index+1}" data-target="product-compare.page additional-description.container" data-controller="additional-description"
+      div data-target="additional-description.body"
+        = raw page.body
+        div.text-right.mt-8
+          button type="button" data-target="additional-description.minimize" data-action="click->additional-description#minimize"
+            = t '.read_less'
+            = image_tag('icons/tail-up.svg', class: 'ml-2 -mb-px')
+      .product-comparison-description-overlay.text-right.pr-4.mt-4 data-target="additional-description.overlay"
+        button type="button" data-target="additional-description.expand" data-action="click->additional-description#expand"
+          = t '.read_more'
+          = image_tag('icons/tail-down.svg', class: 'ml-2 ')

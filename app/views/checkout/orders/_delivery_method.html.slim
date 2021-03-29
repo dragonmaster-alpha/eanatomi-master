@@ -1,0 +1,15 @@
+div data-show="order[courier]=#{delivery_method.couriers.join(',')}"
+  label.block.mt-12 data-show="order[client_type]=#{delivery_method.availability.join(',')}"
+    .checkout-form-group.flex.items-center
+      .checkout-label.mb-0.flex.items-center.pl-0
+        = f.radio_button :delivery_method, delivery_method.key, class: 'hidden', role: "order-delivery-method order-delivery-method-#{delivery_method.key}"
+        span.shape.w-3.h-3.inline-block.mr-2.rounded-full.border.border-grey.flex-no-shrink
+      .checkout-input-container.font-alt.uppercase.font-bold.m-0 = t(".#{delivery_method.key}.title")
+    .checkout-form-group.pl-4
+        .checkout-input-container
+          .text-xs.leading-normal = t(".#{delivery_method.key}.description")
+          .text-xs.mt-1 = t(".#{delivery_method.key}.time")
+          .text-xs.font-bold.mt-3.uppercase = t('.price', price: short_number_to_currency(Currency.new(delivery_method.cost, context.market.rate, context.market.vat).net_amount))
+
+
+div data-show="order[delivery_method]=#{delivery_method.key}" = render "checkout/orders/delivery_methods/#{delivery_method.key}", f: f

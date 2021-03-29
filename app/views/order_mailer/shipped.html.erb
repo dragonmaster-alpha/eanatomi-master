@@ -1,0 +1,36 @@
+<table class="main" width="100%" cellpadding="0" cellspacing="0">
+  <tr>
+    <td class="content-wrap">
+      <table width="100%" cellpadding="0" cellspacing="0">
+        <tr>
+          <td class="content-block">
+            <h1 class="aligncenter"><%= t('.title') %></h1>
+          </td>
+        </tr>
+        <tr>
+          <td class="content-block">
+            <h2 class="aligncenter"><%= t('.tracking', number: @order.shipment_ids) %></h2>
+            <h2 class="aligncenter"><%= t('.order_number', number: @order.order_number) %></h2>
+          </td>
+        </tr>
+        <% @shipments.each do |shipment| %>
+          <tr>
+            <td class="content-block">
+              <%= simple_format t('.shipment_info', link: shipment.url), class: 'aligncenter' %>
+            </td>
+          </tr>
+        <% end %>
+        <tr>
+          <td class="content-block">
+            <%= simple_format t('.shipment_questions'), class: 'aligncenter' %>
+          </td>
+        </tr>
+        <tr>
+          <td class="content-block aligncenter">
+            <%= t('.thanks') %>
+          </td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+</table>

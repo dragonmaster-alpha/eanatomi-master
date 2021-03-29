@@ -1,0 +1,14 @@
+.menu_img.flex.pt-2
+  div(class="w-1/2 px-2")
+    .megamenu-content.megamenu-content--large
+      - if images[0]
+        =link_to images[0].url
+          aside(class= "background-image background-image--loaded background-image--no-fallback pt-full"
+            style= "background-image: url(#{images[0].imgix_photo.url});")
+  div(class="w-1/2 px-2")
+    .megamenu-content.megamenu-content--large
+      - if images[1]
+        =link_to images[1].url
+          aside(class= "background-image background-image--loaded background-image--no-fallback pt-full"
+            style= "background-image: url(#{images[1].imgix_photo.url});")
+

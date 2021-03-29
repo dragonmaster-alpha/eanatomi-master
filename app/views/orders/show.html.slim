@@ -1,0 +1,8 @@
+.text-center
+  h1 = t('.order', number: @order)
+  p.lead = t(@order.status, scope: 'activerecord.attributes.order.statuses')
+
+br
+
+.container
+  = render partial: 'summary', locals: { order: @order }

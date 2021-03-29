@@ -1,0 +1,107 @@
+.header-logo-width {
+  width: 140px;
+
+  @media(--screen-md) {
+    width: 200px;
+  }
+}
+
+.header-icon-height {
+  height: 16px;
+}
+
+.header-search-input::placeholder {
+  @apply text-xs;
+  text-transform: uppercase;
+  font-weight: normal;
+}
+
+.header-navigation {
+  @apply bg-white fixed pin-t pin-l pin-r overflow-hidden h-screen opacity-0 w-0;
+  transition: opacity .5s ,width 0s  .5s ,visibility 0s .5s;
+  z-index: 21474836390; /* above livechat */
+  visibility: hidden;
+}
+.header-navigation-open {
+  @apply w-screen opacity-100;
+  visibility: visible;
+  transition: opacity 500ms ease-in-out;
+}
+
+.header-navigation .header-navigation__content{
+  left: -260px;
+  transition: left 300ms ease-in-out;
+}
+.header-navigation-open .header-navigation__content{
+  left: 0;
+  transition: left 300ms ease-in-out;
+}
+
+
+/* navigation menu*/
+.header-top {
+  transition: .2s ease-in-out;
+  @apply py-6;
+}
+header .navigation-menu {
+  display: block;
+}
+header.collapsed .navigation-menu {
+  /*display: none;*/
+}
+.header-top {
+  box-shadow: 0 0 0.94rem rgba(35,31,32,.2);
+}
+header.collapsed .header-top {
+  @apply py-3;
+}
+.navigation-menu__overlay {
+  visibility: hidden;
+  transition: opacity .3s ease-in-out;
+  opacity: 0;
+}
+.navigation-menu__overlay.active {
+  @apply visible opacity-100;
+  transition: opacity .2s ease-in-out .3s;
+}
+.navigation_dropdown--content{
+  /*@apply invisible opacity-0;*/
+  visibility: hidden;
+  opacity: 0;
+  transition: opacity .3s ease-in-out;
+  box-shadow: 0 8px 8px -8px rgba(35,31,32,.2);
+}
+.opened .navigation_dropdown--content{
+  @apply visible opacity-100;
+  transition: opacity .3s ease-in-out .2s;
+}
+
+/*mega menu content*/
+.menu_dropdown_item a.active:before {
+  content: "\f105";
+  font-family: FontAwesome;
+  position: absolute;
+  right: 5px;
+  top:2px;
+}
+.navigation_sub_list-cont{
+  @apply hidden;
+}
+
+.background-image{
+  background: transparent 50% no-repeat;
+  background-size: cover;
+}
+.megamenu-content--wide {
+  margin-bottom: 1.25rem;
+}
+@media (min-width: 768px){
+  .megamenu-content--wide {
+    padding-top: calc(50% - .63rem);
+  }
+  .megamenu-content--offset {
+    margin-bottom: 1.25rem;
+  }
+}
+
+/*mega menu content*/

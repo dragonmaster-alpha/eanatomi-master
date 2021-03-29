@@ -1,0 +1,5 @@
+.checkout-form-header.text-xs = t('.description')
+.checkout-form-group
+  .checkout-label
+  .checkout-input-container
+    = f.text_field :vat_number, class: 'checkout-input w-full', placeholder: strip_tags(t('.placeholder')), required: true, role: 'checkout-vat-number'

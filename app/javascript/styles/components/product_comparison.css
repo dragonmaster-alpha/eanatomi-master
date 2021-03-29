@@ -1,0 +1,16 @@
+.product-comparison-description {
+  max-height: 200px;
+  transition: max-height 200ms ease-in-out;
+  @apply overflow-hidden relative;
+}
+
+.product-comparison-description-overlay {
+  @apply absolute pin-b pin-x pt-24;
+  background-image: linear-gradient(rgba(247,247,247,0) 20%, #fff 75%);
+}
+
+.product-comparison-overview {
+  max-height: 350px;
+  transition: max-height 200ms ease-in-out;
+  @apply overflow-hidden relative;
+}

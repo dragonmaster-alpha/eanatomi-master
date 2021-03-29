@@ -1,0 +1,11 @@
+= form_for [:admin, @featured_product], html: { class: 'form-horizontal' } do |f|
+  = render 'admin/active_in_markets/form', f: f
+
+  .form-group
+    label.control-label.col-sm-3 Produkt
+    .col-sm-6
+      = f.select :product_id, @products, {}, role: 'selectize'
+
+  .form-group.text-center
+    button.btn.btn-success type='submit' = @featured_product.new_record? ? 'Opret udvalgt produkt' : 'Gem ændringer'
+    = link_to 'Annuller', [:admin, :featured_products], class: 'btn btn-link'

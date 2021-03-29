@@ -1,0 +1,20 @@
+.container.text-center
+  p = link_to 'Tilbage', [:admin, :purchase_orders]
+
+  h1 = "Bestilling hos #{@purchase_order.manufacturer}"
+  p = l(@purchase_order.created_at)
+  p = @purchase_order.status
+
+  br
+
+  - @purchase_order.items.each do |item|
+    div = "#{item.quantity} stk. #{item.product.supplier_id} (#{item.product.sku}) - #{item.product.name} #{item.product.product&.name}"
+
+  - if @purchase_order.pending?
+    br
+    = form_for [:admin, @purchase_order] do |f|
+      = f.hidden_field :status, value: 'fulfilled'
+      button.btn.btn-success.btn-sm Afslut
+    = form_for [:admin, @purchase_order] do |f|
+      = f.hidden_field :status, value: 'canceled'
+      button.btn.btn-link.text-danger.btn-sm data-confirm="Annuller denne genbestilling?" Annuller

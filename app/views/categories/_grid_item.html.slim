@@ -1,0 +1,12 @@
+- cache_unless(context.signed_in?, [context.market.key, grid_item])
+  .sortable-item.category-grid-item.rounded-md data-id=grid_item.id
+    - if grid_item.sortable? && can?(:update, grid_item.object)
+      .sortable-handle
+        i.fa.fa-arrows
+    = link_to grid_item.object, class: 'border rounded-sm block grid-item text-black no-underline hover--shadow-md' do
+      .h-64.my-6.text-center.text-mini.px-6 = image_tag(grid_item.imgix_photo_url(w: 400, h: 400, q: 90), alt: grid_item, class: 'max-w-full object-contain h-full')
+      .text-center.py-8.bg-grey-lightest
+        .font-bold.font-alt = grid_item
+        .text-xs.mt-2
+          div = t('.products', count: grid_item.products_size) if grid_item.products_size.nonzero?
+          div = t('.categories', count: grid_item.categories_size) if grid_item.categories_size.nonzero?

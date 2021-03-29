@@ -1,0 +1,40 @@
+- meta title: @page.meta_title, description: @page.meta_description
+/ - meta name:"turbolinks-cache-control" content:"no-cache"
+.-mt-8.relative.max-h-screen.overflow-hidden
+  .full_banner-slider data-turbolinks="false"
+    - @full_campaigns.each do |campaign|
+      .slider-item = link_to image_tag(campaign.imgix_photo.url(q: 90, w: 1920), class: 'w-full'), campaign.url
+  .slick-custom-arrow.flex.justify-between.absolute.w-full.pin.items-center.text-white.px-6.text-5xl
+    .prev.cursor-pointer
+      i.fa.fa-angle-left
+    .next.cursor-pointer
+      i.fa.fa-angle-right
+.container.flex
+  .flex-1.mt-10
+    / - @full_campaigns.each do |campaign|
+    /   .mb-6.md--mb-8 = link_to image_tag(campaign.imgix_photo.url(q: 90, w: (900 * 2))), campaign.url
+    .flex.-mx-3.md---mx-4
+      - @half_campaigns.each do |campaign|
+        .mb-6.md--mb-8.flex-none class="w-1/2"
+          .mx-3.md--mx-4 = link_to image_tag(campaign.imgix_photo.url(q: 90, w: (430 * 2))), campaign.url
+    h2.my-10.text-center.uppercase.tracking-wide.text-xl.font-bold = t('.featured_categories')
+    .grid-items.mb-10
+      = render @categories
+
+.container.p-0
+  .slider-buttons.flex.justify-end.mb-8.px-3
+    button.btn.btn-green.rounded-full.px-4.py-3.ml-4.text-xs.font-bold =t('home.index.featured_products')
+  .slider.mb-16.relative
+    div.inline-block.absolute.product_slider--arrow
+      = image_tag('icons/arrow-right.svg', class: 'w-5 rotate-180')
+    div.block.md--flex
+      div.container.overflow-hidden.mx-0
+        .scroller.home-products_slider.-mx-3
+          = render @products
+.container
+  - if @page.body.present?
+    .mt-10.text-center
+      = render 'additional_description' do
+        .leading-normal.text-xs = raw @page.body
+.container data-turbolinks="false"
+  = link_to "Rediger #{@page}", [:edit, :admin, @page], class: 'admin-action mt-8' if can?(:update, @page.object)

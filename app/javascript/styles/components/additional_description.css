@@ -1,0 +1,10 @@
+.additional-description {
+  max-height: 60px;
+  transition: max-height 200ms ease-in-out;
+  @apply overflow-hidden relative;
+}
+
+.additional-description-overlay {
+  @apply absolute pin-b pin-x pt-12;
+  background-image: linear-gradient(rgba(255,255,255,0) 20%, #fff 75%);
+}

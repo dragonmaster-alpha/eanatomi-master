@@ -1,0 +1,17 @@
+= form_for [:admin, @notice], html: { class: 'form-horizontal' } do |f|
+
+  = render 'locale_tabs'
+
+  = render 'admin/active_in_markets/form', f: f
+
+  = render layout: 'locale_tab_content' do |locale|
+
+    .form-group
+      label.control-label.col-sm-3
+        | Besked
+        span.label.label-info = locale
+      .col-sm-6 = f.text_field "text_#{locale}", class: 'form-control'
+
+  .form-group.text-center
+    button.btn.btn-success type='submit' = @notice.new_record? ? 'Opret besked' : 'Gem ændringer'
+    = link_to 'Annuller', [:admin, :notices], class: 'btn btn-link'

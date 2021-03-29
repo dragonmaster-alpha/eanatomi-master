@@ -1,0 +1,39 @@
+section.product_banner.-mt-6.relative
+  .full_banner-slider
+    = @banners.each do |banner|
+      .slider-item
+        =link_to image_tag(banner.imgix_photo.url(q: 90, w: 1920)), '#'
+  .slick-custom-arrow.flex.justify-between.absolute.w-full.pin.items-center.text-white.px-6.text-5xl
+    .prev.cursor-pointer
+      i.fa.fa-angle-left
+    .next.cursor-pointer
+      i.fa.fa-angle-right
+.mx-auto.page-body.arx-custom.container.my-10 = raw @about.body
+- if @web_events
+  section.bg-grey-lightest.py-16
+    .container
+      .slider.relative
+        .event-slider
+          = @web_events.each do |event|
+            .slider-item
+              .flex.flex-wrap
+                div(class='w-full sm:w-1/2 md--w-1/2 mb-4')
+                  = image_tag(event.imgix_photo.url(q: 90, w: 500), class: 'w-full max-w-500 mx-auto max-h-64 max-h-mega object-contain')
+                div(class='w-full sm:w-1/2 md--w-1/2 mb-4')
+                  .text.w-300.px-4.mx-auto.py-10
+                    h3.font-normal.uppercase.font-alt.font-bold = event.title
+                    .leading-normal.mt-6 = raw event.body
+.service_page--text.bg-green.text-center.py-3.px-4.text-white.font-alt
+  h1 =t('.title')
+- if @history_events
+  section.product_banner.py-16
+    .container
+      .relative.px-16.max-w-page.mx-auto
+        .history-slider
+          = @history_events.each do |event|
+            .slider-item
+              .slider-item(style = "height:350px")
+                = image_tag(event.imgix_photo.url(q: 90, w: 600), class: 'h-full mx-auto block object-contain')
+              h3.font-normal.uppercase.font-alt.font-bold.text-center.my-4 = event.title
+
+.mx-auto.page-body.arx-custom.mb-10 = raw @page.body

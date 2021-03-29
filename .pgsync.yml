@@ -1,0 +1,46 @@
+# source database URL
+# database URLs take the format of:
+#   postgres://user:password@host:port/dbname
+# we recommend a command which outputs a database URL
+# so sensitive information is not included in this file
+from: $(heroku config:get DATABASE_URL)
+
+# destination database URL
+to: postgres://localhost:5432/eanatomi_development
+
+# exclude tables
+# exclude:
+#   - schema_migrations
+#   - ar_internal_metadata
+
+# define groups
+# groups:
+#   group1:
+#     - table1
+#     - table2
+
+groups:
+  shop:
+    - categories
+    - products
+    - product_descriptions
+    - complementary_products
+    - volume_prices
+    - manufacturers
+    - product_photos
+    - featured_products
+    - campaigns
+    - active_in_markets
+  orders:
+    - orders
+    - order_items
+    - vouchers
+
+# protect sensitive information
+data_rules:
+  email: unique_email
+  phone: random_letter
+  last_name: random_letter
+  birthday: random_date
+  encrypted_*: null
+  user_id: null

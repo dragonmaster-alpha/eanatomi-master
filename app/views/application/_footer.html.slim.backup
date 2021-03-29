@@ -1,0 +1,67 @@
+.container.mt-16
+  .flex.items-center.uppercase.text-xs
+    .flex.items-center.pr-6 class='w-1/4'
+      = image_tag('icons/delivery.svg', class: 'mr-3 footer-icon-height')
+      div = t('.shipping.title')
+    .flex.items-center.pr-6 class='w-1/4'
+      = image_tag("icons/#{context.market.shipping_provider}.png", class: 'mr-3 footer-icon-height')
+      div = t('.shipping_price.title', amount: short_number_to_currency(currency(DeliveryMethod.cheapest(context.market.key).cost).net_amount))
+    .flex.items-center.pr-6 class='w-1/4'
+      = image_tag('icons/progress.svg', class: 'mr-3 footer-icon-height')
+      div = t('.returns.title')
+    .flex.items-center.pr-6 class='w-1/4'
+      div = t('.contact.title')
+
+.container.mx-auto
+  .border-b-px.border-grey.mt-2
+
+.container.leading-loose.my-6.text-xs
+  .flex
+    .pr-6 class='w-1/4'
+      .py-2 = t('.shipping.carrier')
+      .py-2.text-xs.uppercase.text-green
+        = t('.shipping.in_stock')
+      .py-2 = t('.shipping.in_stock_description')
+      .py-2.text-xs.uppercase.text-orange
+        = t('.shipping.out_of_stock')
+      .py-2 = t('.shipping.out_of_stock_description')
+    .pr-6 class='w-1/4'
+      .py-2 = t('.shipping_price.servicepoint', amount: short_number_to_currency(currency(DeliveryMethod.fetch(context.market.key, :droppoint)&.cost).net_amount))
+      .py-2 = t('.shipping_price.door', amount: short_number_to_currency(currency(DeliveryMethod.fetch(context.market.key, :delivery_address)&.cost).net_amount))
+    .pr-6 class='w-1/4'
+      .py-2 = t('.returns.policy')
+      .py-2 = t('.returns.contact', contact_link: link_to(t('.returns.contact_link'), returns_page)).html_safe
+
+    .pr-6 class='w-1/4'
+      .py-1 = t('.contact.business')
+      .py-1 = t('.contact.address')
+      .py-1 = t('.contact.city')
+      .py-1 = t('.contact.country')
+
+      .mt-6
+        .py-1 = t('.contact.vat_number')
+        .py-1 = t('.contact.phone')
+        .py-1 = mail_to t('.contact.email')
+        .py-1 = t('.contact.owner')
+
+
+      .mt-6 = link_to t('.contact.form'), contact_page, class: 'text-black no-underline'
+
+      .mt-6 = link_to terms_page.name, terms_page, class: 'text-black no-underline'
+
+      .mt-6
+        i.fa.fa-lock.mr-2
+        = link_to t('.contact.account'), (signed_in? ? users_path : sign_in_path), class: 'text-black no-underline'
+
+
+.bg-white.py-px
+  .container.my-16.flex.items-center.justify-between
+    = image_tag('icons/payment-methods.png', class: 'w-48')
+    = image_tag('icons/bambora.png', class: 'w-24')
+    - if context.market.shipping_provider == "postnord"
+      = image_tag('icons/postnord-full.png', class: 'w-24')
+    = image_tag('icons/ssl.jpg', class: 'w-16')
+    div.w-24
+      = link_to image_tag('icons/facebook.png', class: 'w-8'), 'https://www.facebook.com/eAnatomi/', target: '_blank'
+      = link_to image_tag('icons/linkedin.png', class: 'w-8'), 'https://www.linkedin.com/company/eanatomi', target: '_blank'
+      = link_to image_tag('icons/instagram.png', class: 'w-8'), 'https://www.instagram.com/eanatomi_dk/', target: '_blank'

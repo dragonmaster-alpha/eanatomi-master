@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  photo_data: 
+  category: one
+  position: 1
+  imgix_photo_data: 
+
+two:
+  photo_data: 
+  category: two
+  position: 1
+  imgix_photo_data: 

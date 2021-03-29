@@ -1,0 +1,19 @@
+<div class="container">
+
+  <h1>Importer oversættelser</h1>
+  <br>
+
+  <%= form_tag [:admin, :translations] do %>
+    <div class="form-group">
+
+      <%= text_area :body, :yml, class: 'form-control', rows: 20 %>
+    </div>
+    <button class="btn btn-success" type="submit">Importer</button>
+    <%= link_to 'Annuller', [:admin, :translations], class: 'btn btn-link' %>
+  <% end %>
+
+
+
+
+</div>
+<div class="spacer"></div>

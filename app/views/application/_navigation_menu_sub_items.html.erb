@@ -1,0 +1,39 @@
+<% sortable ||= false %>
+<% level ||= 0 %>
+<% if items.length > 0 %>
+  <div class="<%= 'w-1/6 navigation_level_1' if level == 1 %> <%= 'navigation_sub_list-cont' if level > 1 %>" role="<%= 'sortable' if sortable && can?(:update, Category) %>" data-parent="<%= parent_id %>" data-model="Category">
+    <% items.each do |item| %>
+      <div class="sortable-item menu_dropdown_item <%= 'has-subcategories' if item.regular_categories.active_in(context.market.key).sorted.length > 0 && level == 1 %>" data-category="<%= Category %>">
+        <%= link_to item,
+                    class: "flex items-center level-#{level}
+                    #{'px-4 my-2 leading-normal hover--underline text-nav tracking-wide' if level.nonzero?}
+            no-underline text-black #{'font-bold' if context.path.has?(item) || level.zero?}",
+                    ref_id: "#{item.id}" do
+        %>
+        <%= item %>
+    <% end %>
+    </div>
+    <% end %>
+  </div>
+<% end %>
+<% if level == 1 %>
+  <div class="navigation_sub_list sublist w-1/6">
+    <% items.each do |item| %>
+      <%= render partial: 'navigation_menu_sub_items', locals: {items: item.regular_categories.active_in(context.market.key).sorted, level: level.next, parent_id: item.id} %>
+    <% end %>
+  </div>
+  <div class="flex-grow w-2/3">
+    <% if type == 'one_large' %>
+      <%= render partial: 'mega_large', locals: {images: images.slice(0, 1), level: level.next} %>
+    <% end %>
+    <% if type == 'two_large' %>
+      <%= render partial: 'mega_two_large', locals: {images: images.slice(0, 2), level: level.next} %>
+    <% end %>
+    <% if type == 'half_height' %>
+      <%= render partial: 'mega_half_height', locals: {images: images.slice(0, 4), level: level.next} %>
+    <% end %>
+    <% if type == 'large_small' %>
+      <%= render partial: 'mega_small', locals: {images: images.slice(0, 5), level: level.next} %>
+    <% end %>
+  </div>
+<% end %>

@@ -1,0 +1,35 @@
+---
+da:
+  pages:
+    contact:
+      name: Dit navn
+      email: Din email
+      body: Besked
+      submit: Send besked
+      phone: Evt. telefon nr.
+      call_me: Ring mig op
+      call_us: Ring
+      phone_number: +45 2991 9911
+      email_us: Send os en mail
+      email_address: info@eanatomi.dk
+      meet_us: Kom til kaffe
+      home_address: |
+        Fredriksberggade 2, 5. sal
+        1459 København K
+    services:
+      name: Dit navn
+      email: Din email
+      body: Besked
+      submit: Send besked
+      phone: Evt. telefon nr.
+      call_me: Ring mig op
+      call_us: Ring
+      phone_number: +45 2991 9911
+      email_us: Send os en mail
+      email_address: info@eanatomi.dk
+      meet_us: Kom til kaffe
+      home_address: |
+        Fredriksberggade 2, 5. sal
+        1459 København K
+    content:
+      title: HJEMESIDEN GENNEM ARENE

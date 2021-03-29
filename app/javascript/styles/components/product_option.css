@@ -1,0 +1,21 @@
+.product-option-input {
+  @apply absolute opacity-0 pointer-events-none;
+}
+.product-option {
+  @apply opacity-75;
+}
+.product-option-input:checked ~ .product-option {
+  @apply bg-grey-lighter opacity-100;
+}
+.product-option-checked {
+  @apply hidden;
+}
+.product-option-unchecked {
+  @apply block;
+}
+.product-option-input:checked ~ .product-option .product-option-checked {
+  @apply block;
+}
+.product-option-input:checked ~ .product-option .product-option-unchecked {
+  @apply hidden;
+}

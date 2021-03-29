@@ -1,0 +1,10 @@
+---
+da:
+  admin:
+    orders:
+      form:
+        door: Leveres til døren
+        delivery_address: (Leveringsadresse - ikke aktiv)
+        droppoint: Leveres til afhentningssted
+        business: Leveres til ehrvervs adresse
+        pickup: (Afhentes på lager - ikke aktiv)

@@ -1,0 +1,10 @@
+---
+da:
+  search:
+    index:
+      search_for: Søgning på "%{query}"
+      home: Tilbage til forsiden
+      results:
+        zero: Ingen produkter fundet
+        one: '1 produkt fundet'
+        other: '%{count} produkter fundet'

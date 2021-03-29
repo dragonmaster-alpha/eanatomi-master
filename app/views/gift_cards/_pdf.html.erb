@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <style>
+.gift-card {
+  text-align: center;
+  font-family: 'Times new roman';
+  font-size: 14px;
+}
+.header {
+  max-width: 100%;
+  margin: 20px 0;
+}
+.title {
+  font-size: 50px;
+  margin: 10px 0;
+  text-transform: uppercase;
+  font-weight: 200;
+}
+.message {
+  font-size: 20px;
+  font-style: italic;
+}
+.code {
+  font-size: 20px;
+}
+.value {
+  font-size: 50px;
+  margin: 30px 0;
+}
+hr {
+  margin: 20px 0;
+  border: 1px solid #ccc;
+}
+    </style>
+  </head>
+  <body>
+    <div class="gift-card">
+      <%= image_tag 'https://www.eanatomi.dk/gift_card/eanatomi.png' %>
+      <%= image_tag 'https://www.eanatomi.dk/gift_card/header.png', class: 'header' %>
+      <h1 class="title"><%= t('.title') %></h1>
+      <p class="message"><%= gift_card.message %></p>
+      <hr>
+      <p>
+        <strong><%= t('.code', code: gift_card.code) %><br>
+        <%= t('.valid_from', date: l(gift_card.created_at, format: '%e %B %Y')) %></strong>
+      </p>
+      <p class="value"><%= number_to_currency gift_card.net_amount %></p>
+      <hr>
+      <p>
+        <%= t('.welcome') %>
+      </p>
+      <%= simple_format t('.terms') %>
+      <p>
+        <strong><%= t('.usage') %><br>
+        <%= t('.vat') %></strong>
+      </p>
+      <hr>
+      <p><%= t('.address') %></p>
+    </div>
+  </body>
+</html>

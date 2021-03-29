@@ -1,0 +1,135 @@
+table.table.orders_table.dotted
+  thead
+    th = t('.sku')
+    th = t('.description')
+    th.text-center = t('.quantity')
+    th.text-center = t('.stock') if can?(:create, Order)
+    th.text-right = t('.price')
+    th.text-right = t('.amount')
+  - order.order_items.each do |item|
+    tr
+      td = item.sku_code
+      td = item.name
+      td.text-center = item.quantity
+      td.text-center = item.stock if can?(:create, Order)
+      td.text-right = number_to_currency(item.net_price, locale: order.market.locale)
+      td.text-right = number_to_currency(item.net_amount, locale: order.market.locale)
+  tr
+    td.text-right colspan="#{can?(:create, Order) ? 5 : 4}"
+      div = t('.delivery_fee')
+      div = t('.clearance_fee') if order.clearance_fee?
+      div = t('.gift_card') if order.gift_card?
+      div
+        strong = t(order.vat? ? '.net_amount' : '.gross_amount')
+      div
+        small = t('.vat')
+    td.text-right
+      div = number_to_currency(order.delivery_net_amount, locale: order.market.locale)
+      div = number_to_currency(order.clearance_net_amount, locale: order.market.locale) if order.clearance_fee?
+      div = number_to_currency(-order.gift_card_net_amount, locale: order.market.locale) if order.gift_card?
+      div
+        strong = number_to_currency(order.net_amount, locale: order.market.locale)
+      div
+        small = number_to_currency(order.vat_amount, locale: order.market.locale)
+
+.row.mt-12
+  .col-sm-4
+    h4.mb-4 = t('.details')
+    table.table.dotted
+      tr
+        td = t('.order_number')
+        td = order.order_number
+      tr
+        td = t('.status')
+        td = t(order.status, scope: 'activerecord.attributes.order.statuses')
+      tr
+        td = t('.date')
+        td = l order.placed_at if order.placed_at
+      tr
+        td = t('.payment_method')
+        td = t(order.payment_method, scope: 'activerecord.attributes.order.payment_methods')
+      tr
+        td = t('.market')
+        td = t(order.market, scope: 'activerecord.attributes.order.markets')
+      / tr
+      /   td = t('.invoice_id')
+      /   td = order.invoice.reference
+      / tr
+      /   td = t('.invoice_status')
+      /   td = t(order.invoice.status, scope: 'activerecord.attributes.invoice.statuses', default: '')
+      / tr
+      /   td = t('.invoice')
+      /   td = link_to t('.download'), order.invoice.file_url, target: '_blank' if order.invoice.file
+      tr
+        td = t('.payment_id')
+        td = order.payment.reference
+      / tr
+      /   td = t('.shipment_id')
+      /   td = order.shipment_ids
+  .col-sm-4
+    h4.mb-4 = t('.client')
+    table.table.dotted
+      tr
+        td = t('.client_type')
+        td = t(order.client_type, scope: 'activerecord.attributes.order.client_types')
+      - address = order.invoice_address
+      tr
+        td = t('.name')
+        td = address.name
+      tr
+        td = t('.attention')
+        td = address.att
+      tr
+        td = t('.country')
+        td = address.country
+      tr
+        td = t('.address')
+        td
+          div = address.street
+      tr
+        td = t('.city')
+        td = "#{address.zip_code} #{address.city}"
+      tr
+        td = t('.email')
+        td = order.email
+      tr
+        td = t('.phone')
+        td = order.phone_number
+      tr
+        td = t('.vat_number')
+        td = order.vat_number
+      tr
+        td = t('.ean_number')
+        td = order.ean_number
+      tr
+        td = t('.reference_number')
+        td = order.reference_number
+  .col-sm-4
+    h4.mb-4 = t('.shipping_address')
+    table.table.dotted
+      tr
+        td = t('.courier')
+        td = order.courier
+      tr
+        td = t('.shipping_type')
+        td = t(order.delivery_method, scope: 'activerecord.attributes.delivery_methods')
+      - address = order.servicepoint_address || order.shipping_address
+      tr
+        td = t('.name')
+        td = address.name
+      tr
+        td = t('.attention')
+        td = address.att
+      tr
+        td = t('.country')
+        td = address.country
+      tr
+        td = t('.address')
+        td
+          div = address.street
+      tr
+        td = t('.city')
+        td = "#{address.zip_code} #{address.city}"
+      tr
+        td = t('.flex_instructions')
+        td = order.flex_instructions

@@ -1,0 +1,80 @@
+@import "magnific-popup/dist/magnific-popup";
+
+@import 'custom-media';
+@import 'components/arx-custom';
+@import 'components/application';
+@import 'components/bootstrap';
+@import 'components/checkout';
+@import 'components/footer';
+@import 'components/header';
+@import 'components/modal';
+@import 'components/product';
+@import 'components/grid_items';
+@import 'components/additional_description';
+@import 'components/product_comparison';
+@import 'components/product_option';
+
+
+@tailwind preflight;
+@tailwind components;
+@tailwind utilities;
+
+* {
+  border-style: solid;
+  outline: none;
+}
+
+.loading {
+  @apply opacity-50;
+}
+
+input:focus,
+textarea:focus {
+  outline: none;
+}
+
+a {
+  @apply text-black;
+}
+
+/*slick slider custom with equal height*/
+.home-products_slider .slick-track {
+  display: flex !important;
+}
+.product_slider--arrow {
+  top:50%;
+  left: -20px;
+}
+.home-products_slider .slick-slide {
+  height: inherit !important;
+}
+.home-products_slider .slick-slide > div:first-child {
+  height: 100%;
+}
+.home-products_slider .slick-slide > div:first-child .product-grid-item {
+  height: calc(100% - 24px);
+}
+.slider .slick-dots li button::before {
+  font-size: 11px;
+}
+.history-slider .slider-item image{
+  max-width: 567px;
+}
+button:focus {
+  outline: none;
+}
+.object-contain {
+  object-fit: contain;
+}
+.bg-light__black {
+  background-color: rgba(0, 0, 0, 0.4);
+}
+.top-full{
+  top:100%
+}
+.top-10{
+  top:10px
+}
+.search_result{
+  margin-top: 22px; 
+}

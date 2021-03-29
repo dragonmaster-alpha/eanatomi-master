@@ -1,0 +1,21 @@
+---
+da:
+  categories:
+    show:
+      read_more: Læs mere
+      read_less: Minimer
+    index:
+      categories: Varesortiment
+      meta_title: Varesortiment
+      meta_description: Varesortiment
+    grid_item:
+      view_products: Se produkter
+      view_categories: Se Kategorier
+      products:
+        zero: ''
+        one: '1 produkt'
+        other: '%{count} produkter'
+      categories:
+        zero: ''
+        one: '1 kategori'
+        other: '%{count} kategorier'

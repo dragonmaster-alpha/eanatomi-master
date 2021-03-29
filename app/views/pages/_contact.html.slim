@@ -1,0 +1,40 @@
+.mx-auto.page-body = raw @page.body
+
+.bg-white.p-10
+  .md--flex
+    div class='md--w-1/2'
+      = form_for @enquiry do |f|
+        = f.hidden_field :url
+        .my-4
+          label.block.uppercase.text-sm = t('.name')
+          = f.text_field :name, class: 'text-field w-full', required: true
+        .my-4
+          label.block.uppercase.text-sm = t('.email')
+          = f.text_field :email, class: 'text-field w-full', required: true
+        .my-4
+          label.block.uppercase.text-sm = t('.phone')
+          = f.text_field :phone, class: 'text-field w-full'
+        .my-4
+          .checkbox
+            label
+              = f.check_box :call_me
+              = t('.call_me')
+        .my-4
+          label.block.uppercase.text-sm = t('.body')
+          = f.text_area :body, class: 'text-field w-full', rows: 5, required: true
+        .my-4
+          = recaptcha_tags
+        .my-4
+          button.uppercase.underline.hover--font-bold type='submit' = t('.submit')
+
+    .md--ml-32.mt-16.md--mt-4
+      .flex
+        i.fa.fa-phone
+        .ml-4
+          .uppercase = t('.call_us')
+          .mt-2 = t('.phone_number')
+      .flex.mt-8
+        i.fa.fa-envelope
+        .ml-4
+          .uppercase = t('.email_us')
+          .mt-2 = t('.email_address')

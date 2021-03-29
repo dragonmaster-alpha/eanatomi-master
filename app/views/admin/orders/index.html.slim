@@ -1,0 +1,20 @@
+.container
+  h1.text-center Ordre
+  p.text-center = link_to 'Ny ordre', [:new, :admin, :order], class: 'btn btn-primary' if can? :create, Order
+    
+  = form_tag '?', class: 'form-inline text-center', method: 'get' do
+    = text_field nil, :query, value: @query, class: 'form-control'
+    = select_tag :status, options_for_select(@statuses, @status), class: 'form-control'
+    = ' '
+    button.btn.btn-primary type='submit' Søg
+    
+  br
+    
+  	
+  table.table.table-striped
+    = render @unseen_failures
+    = render @needs_review
+    = render @orders
+
+  br
+  = paginate @orders

@@ -1,0 +1,7 @@
+tr
+  td = l translation_change.created_at
+  td = translation_change.locale
+  td = translation_change.field
+  td title=strip_tags(translation_change.changed_from) = strip_tags(translation_change.changed_from).to_s.truncate(30)
+  td title=strip_tags(translation_change.changed_to) = strip_tags(translation_change.changed_to).to_s.truncate(30)
+  td = translation_change.user.name

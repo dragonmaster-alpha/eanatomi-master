@@ -1,0 +1,4 @@
+.tab-content
+  - all_locales.each_with_index do |locale, i|
+    .tab-pane data-locale=locale class=('active' if i.zero?)
+      = yield(locale)

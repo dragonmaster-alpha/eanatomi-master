@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="<%= context.market.lang %>">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <%= metamagic title: 'eAnatomi', robots: context.market.active ? 'index' : 'noindex' %>
+    <%= csrf_meta_tags %>
+
+    <script>
+      ANALYTICS_ID = '<%= context.market.analytics_id %>'
+      UPLOADCARE_PUBLIC_KEY = '<%= ENV["UPLOADCARE_PUBLIC_KEY"] %>'
+      UPLOADCARE_LOCALE = 'da'
+    </script>
+
+    <meta name="google-site-verification" content="<%= context.market.google_site_verification %>" />
+    <meta name=”format-detection” content=”telephone=no”>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <%= stylesheet_pack_tag 'application' %>
+    <link rel="preload" as="style" onload="this.rel='stylesheet'" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
+    <link rel="preload" as="style" onload="this.rel='stylesheet'" href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/1.2.0/css/flag-icon.min.css">
+    <link rel='preload' as='style' onload="this.rel='stylesheet'" href='https://fonts.googleapis.com/css?family=Lora:400,700'>
+    <link rel='preload' as='style' onload="this.rel='stylesheet'" href='https://fonts.googleapis.com/css?family=Dosis:300,400,700|Open+Sans:400italic,700italic,400,300,700&#038;subset=latin' type='text/css' media='all' />
+    <!-- Add the slick-theme.css if you want default styling -->
+    <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
+    <!-- Add the slick-theme.css if you want default styling -->
+    <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css"/>
+
+    <% all_markets.each do |market| %>
+      <link rel="alternate" href="<%= "https://www.#{market.domain}#{current_path}" %>" hreflang="<%= market.locale %>" />
+    <% end %>
+
+
+    <%= javascript_include_tag 'application', 'data-turbolinks-track' => true, defer: true %>
+    <%= javascript_pack_tag 'application', defer: true %>
+
+    <%= render partial: Rails.env.production? ? 'third_parties' : 'third_parties_mock' %>
+
+
+  </head>
+
+  <body class="font-o-sans">
+    <%= Gon::Base.render_data %>
+    <div class="xl--hidden">
+      <%= render 'admin_bar' if can?(:read, :admin) %>
+    </div>
+    <%= render 'notices/notice', notice: notice if notice %>
+    <%= render 'black_christmas' if enabled?(:black_christmas) %>
+    <%= render 'suggest_market', market: suggested_market if suggested_market %>
+
+    <div class="hidden xl--block sticky pin-x pin-t z-10">
+      <%= render 'header' %>
+    </div>
+    <div class="xl--hidden">
+      <%= render 'header_xs' %>
+    </div>
+
+    <%= render 'market_notice' if show_market_notice? %>
+
+    <div class="" id="main">
+      <%= render 'flash' %>
+      <%= yield %>
+    </div>
+    <%= render 'footer' %>
+<!--    <div class="hidden md--block">-->
+      <%#= render 'footer' %>
+<!--    </div>-->
+<!--    <div class="md--hidden">-->
+      <%#= render 'footer_xs' %>
+<!--    </div>-->
+
+    <%#= render('google_badge', merchant_id: context.market.google_merchant_id) if context.market.google_merchant_id %>
+    <%= tawk_init %>
+
+  </body>
+</html>

@@ -1,0 +1,9 @@
+{
+  categories: @categories.map do |category|
+    {
+      name: category.name,
+      path: category_path(category),
+      photo: category.imgix_photo_url(h: 24)
+    }
+  end
+}

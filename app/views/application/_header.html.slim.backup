@@ -1,0 +1,54 @@
+.bg-white.py-px
+  .border-b-px.border-grey
+    .flex.items-center.my-4.container.justify-between
+      .flex.items-center.ml-4.z-30.relative.cursor-pointer.group
+        .flag-icon.text-xs class="flag-icon-#{context.market.key}"
+        .uppercase.text-xs.mx-2 = context.market.country
+        i.fa.fa-caret-down
+        .absolute.z-10.bg-white.pin-t.mt-4.-ml-6.shadow-lg.py-2.hidden.group-hover--block
+          - Destination.active.each do |destination|
+            = link_to destination.url, class: 'flex text-black items-center no-underline px-6 py-1 hover--font-bold' do
+              .flag-icon.text-xs class="flag-icon-#{destination.id}"
+              .uppercase.text-xs.mx-2 = destination.country
+
+
+      .hidden.xl--inline.uppercase.text-xs
+        = image_tag("icons/#{context.market.shipping_provider}.png", class: 'mr-2 ml-8 -mb-1 header-icon-height')
+        = t('.shipping_fee', amount: short_number_to_currency(currency(DeliveryMethod.fetch(context.market.key, :droppoint)&.cost).net_amount))
+      .hidden.xl--inline.uppercase.text-xs
+        = image_tag('icons/progress.svg', class: 'mr-2 ml-8 -mb-1 header-icon-height')
+        = t '.returns'
+      .hidden.lg--inline.uppercase.text-xs
+        = image_tag('icons/delivery.svg', class: 'mr-2 ml-8 -mb-1 header-icon-height')
+        = t '.shipping_time'
+      .uppercase.text-xs
+        i.fa.fa-phone.ml-8.mr-2
+        = t '.phone_number'
+      .uppercase.text-xs
+        i.fa.fa-envelope.ml-8.mr-2
+        = mail_to t('.email_address'), t('.email_address'), class: 'text-black no-underline'
+
+  .container
+    .my-10.flex.items-center.justify-between
+      = link_to image_tag('logo.svg', alt: 'eAnatomi', class: 'header-logo-width'), '/'
+
+      div
+        = link_to t('.blog'), context.market.blog_url, target: '_blank', class: 'ml-6 uppercase no-underline text-xs font-bold' if context.market.blog_url.present?
+        = link_to t('.development'), context.market.development_url, target: '_blank', class: 'ml-6 uppercase no-underline text-xs font-bold' if context.market.development_url.present?
+        - top_pages.each do |page|
+          = link_to page, page, class: 'ml-6 uppercase no-underline text-xs font-bold'
+
+  .container.flex.items-end.my-10
+    div class='w-1/2' data-controller="search" data-action="click@window->search#hide"
+      = form_tag '/search', method: 'get', class: 'w-full z-20 relative mr-8' do
+        input.header-search-input.text-field.w-full.h-10 data-action="input->search#showResults" data-target="search.source" name='query' type='text' placeholder=t('.search_placeholder') value=@query autocomplete='off'
+        button.absolute.pin-t.pin-r.pin-b.bg-white.m-px.px-2
+          i.fa.fa-search
+      .hidden.relative data-target="search.results"
+    div class='w-1/2'
+      = link_to new_checkout_order_path, class: 'w-48 ml-auto group relative flex items-center text-black no-underline border-px border-grey px-4 h-10', 'data-turbolinks' => false do
+        .uppercase.text-xs.flex-grow.mr-2.group-hover--font-bold class=('text-grey' if context.cart.empty?) = t '.cart_size', count: context.cart.size
+        .fa.fa-shopping-basket
+        - unless context.cart.empty?
+          .absolute.w-8.h-8.bg-green.pin-t.pin-r.rounded-full.-mt-4.-mr-4
+            .text-center.text-white.mt-1.leading-loose.text-xs = context.cart.size

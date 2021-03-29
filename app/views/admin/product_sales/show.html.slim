@@ -1,0 +1,63 @@
+.container
+  .text-center
+    h1 Salgshistorik
+
+  br
+  br
+  = form_with model: @product_sale, url: admin_product_sales_path, method: 'get', class: 'form-horizontal' do |f|
+    .form-group
+      label.control-label.col-sm-3 Produkt
+      .col-sm-6
+        = f.select :product_id, @products, {}, class: 'form-control', role: 'related'
+    .form-group
+      label.control-label.col-sm-3 Fra dato
+      .col-sm-6
+        = f.date_field :from, class: 'form-control'
+    .form-group
+      label.control-label.col-sm-3 Til dato
+      .col-sm-6
+        = f.date_field :to, class: 'form-control'
+
+    .form-group
+      .col-sm-6.col-sm-offset-3
+        = f.submit "Se historik", class: 'btn btn-primary'
+
+  br
+  br
+
+
+  - if @product_sale.product?
+
+    .row.well
+      .col-sm-2
+        div Solgte enheder
+        h2 = "#{@product_sale.total_quantity} stk"
+
+      - @product_sale.net_totals.each do |market, total|
+        .col-sm-3
+          div = "#{market.key} total inkl. moms"
+          h2 = number_to_currency(total, locale: market.locale)
+
+    br
+    br
+
+    table.table
+      thead
+        th Dato
+        th Køber
+        th Ordernr.
+        th Varenr.
+        th Antal
+        th Total ekskl. moms
+        th Total inkl. moms
+        th Marked
+      - @product_sale.sales.each do |order_item|
+        tr
+          td = l order_item.order.placed_at
+          td = order_item.order.name
+          td = link_to order_item.order.order_number, admin_order_path(order_item.order)
+          td = order_item.sku_code
+          td = order_item.quantity
+          td = number_to_currency(order_item.gross_amount, locale: order_item.order.market.locale)
+          td = number_to_currency(order_item.net_amount, locale: order_item.order.market.locale)
+          td = order_item.order.market

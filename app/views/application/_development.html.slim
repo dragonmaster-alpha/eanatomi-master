@@ -1,0 +1,6 @@
+- if context.market.development_url.present?
+  .mb-2.bg-white.px-6.py-4
+    .mb-4.font-bold = t('.title')
+    = link_to context.market.development_url, class: 'block bg-black hover--shadow-lg', target: '_blank' do
+      = image_2x_tag('development.jpg', class: 'w-full')
+      .p-2.text-sm.text-white = t('.link')

@@ -1,0 +1,207 @@
+---
+da:
+  checkout:
+    orders:
+      gift_cards:
+        create:
+          success: Gavekortet blev indløst
+          not_found: Gavekortet blev ikke fundet!
+      vouchers:
+        create:
+          success: Kampagnekoden blev indløst
+          not_found: Kampagnekoden blev ikke fundet!
+      duplicates:
+        create:
+          success: Indkøbslisten blev sendt
+      new:
+        your_order: Din bestilling
+        client_type: 1. Kundetype
+        your_address_details: 2. Dine oplysninger
+        im_client_type: Jeg handler som
+        your_email: Din email
+        your_name: Dit navn
+        company: Firma
+        att: Kontaktperson
+        vat_number: Evt. CVR nr.
+        required_vat_number: CVR nr.
+        reference_number: Evt. reference nr.
+        your_address: Din adresse
+        zip_and_city: Postnr. og By
+        zip_code: Postnr.
+        city: By
+        country: Land
+        your_phone: Dit telefon nr.
+        shipping: 3. Levering
+        shipping_provider:
+          postnord: Vi sender pakken med PostNord
+          gls: Vi sender pakken med GLS
+          ups: Vi sender pakken med UPS
+        shipment_should: Pakken skal
+        shipping_name: Navn/Firma
+        shipping_att: Evt. att
+        shipping_address: Adresse
+        payment: 4. Betaling
+        complete: Gennemfør min bestilling
+        continue: Fortsæt
+        flex_instructions: 'Pakken må stilles:'
+        flex_placeholder: Skriv her hvis din pakke gerne må stilles på adressen
+        credit_card_payment: Du viderstilles til epay som håndterer betalingen
+        klarna_payment: Du viderstilles til epay som håndterer betalingen
+        ean_invoice_payment: Indtast dit 13 cifret EAN nummer
+        vat_invoice_payment: Indtast dit CVR nummer
+        invoice_payment: Betaling via faktura tilbydes kun skoler og firmaer vi har aftaler med. Hvis du har spørgsmål til dette, bedes du venligst kontakte os på tlf. +45 2991 9911
+        ean_number: EAN nummer
+        pay_with: Betaling med
+        loading: Gennemfører...
+        delivery_fee: 'Fragt: %{amount}'
+        credit_card_secure: Betalingen foregår over en sikker forbindelse
+        accept_terms: Jeg accepterer <a href='#' data-toggle='modal' data-target='@terms-modal'>handelsbetingelserne</a>
+        subscribe: Kom først til gode tilbud - tilmeld dig nyhedsbrevet
+        terms_message: Du skal accepterer vores handelsbetingelser
+        copy_address: Samme som faktura adresse
+        invoice_address_private: Din adresse
+        invoice_address_business: Faktura adresse
+        share:
+          button: Send indkøbsliste
+          title: Send denne indkøbsliste på email
+          message: Evt. besked til modtageren
+          sender: Evt. din email
+          recipient: Modtagerens email
+          submit: Send indkøbsliste
+        gift_card:
+          button: Indløs gavekort
+          title: Indløs et gavekort
+          message: Indtast koden på gavekortet
+          code_placeholder: Kode
+          submit: Indløs gavekort
+        voucher:
+          button: kampagnekode
+          title: Indløs en kampagnekode
+          message: Indtast kampagnekoden
+          code_placeholder: Kode
+          submit: Indløs kampagnekoden
+        droppoints:
+          find: Find afhentningssted
+          near: 'Søg i nærheden af:'
+          zip_and_address: Postnr. og adresse
+        delivery_address:
+          type: Indtast leveringsadresse
+          name: Navn
+          att: Evt. kontaktperson
+          address: Adresse
+          zip_code: Postnr.
+          city: By
+          country: Land
+          choose: Brug denne adresse
+
+      to_pay:
+        to_pay: 'Til betaling: <strong>%{amount}</strong>'
+
+      order:
+        description: Beskrivelse
+        quantity: Antal
+        price: Pris
+        total: Total
+        gross_amount: Total ekskl. moms
+        vat_amount: Heraf %{vat}% moms
+        net_amount: Total inkl. moms
+        clearance_fee: Toldgebyr
+        delivery_fee: Fragt
+        gift_card: Gavekort
+        sku: Varenr.
+        local_vat: Lokal moms og evt. toldudgifter pålægges af lokale myndigheder
+
+      client_type:
+        private: Privat
+        public: Offentlig
+        business: Erhverv / offentlig institution
+      delivery_method:
+        price: '%{price} Inkl. moms'
+        droppoint:
+          title: Til nærmeste posthus eller pakkeboks
+          description: Vælg dit foretrukne afhentningssted. Pakken skal afhentes undenfor 14 dage efter levering.
+          time: '- Forventet levering dag til dag, man-lør.'
+        door:
+          title: Med omdeling
+          description: Pakken kommer til din leveringsadresse. Hvis pakken må efterlades på din adresse, kan du udfylde feltet flexlevering nedenfor.
+          time: '- Forventet levering dag til dag, man-fre.'
+          copy_address: Samme som faktura adresse
+        business:
+          title: Med omdeling
+          description: Pakken kommer til din leveringsadresse. Hvis pakken må efterlades på din adresse, kan du udfylde feltet flexlevering nedenfor.
+          time: '- Forventet levering dag til dag, man-fre.'
+          copy_address: Samme som faktura adresse
+        pickup:
+          title: Afhenting i Oslo
+          description: Pakken kan hentes på vores lager i Oslo, Ryensvingen 9
+          time: '- Kan hentes med det samme'
+        delivery_address:
+          description: ''
+          title: Leveres til en anden adresse
+          time: '- Forventet levering dag til dag, man-fre.'
+      delivery_methods:
+        door:
+          copy_address: Samme som faktura adresse
+          name: Navn/Firma
+          att: att
+          address: Adresse
+          zip_and_city: Postnr og by
+          zip_code: Postnr.
+          city: By
+          flex_instructions: Flexlevering
+          country: Land
+        business:
+          copy_address: Samme som faktura adresse
+          name: Navn/Firma
+          att: att
+          address: Adresse
+          zip_and_city: Postnr og by
+          zip_code: Postnr.
+          city: By
+          flex_instructions: Flexlevering
+          country: Land
+        droppoint:
+          type_delivery_address: Eller indtast en alternativ leveringsadresse
+          find_droppoint: Find afhentningssted
+      payment_methods:
+        credit_card:
+          description: Du viderestilles til sikker online betaling efter godkendelse af bestilling
+        mobilepay:
+          description: Du viderestilles til sikker online betaling efter godkendelse af bestilling
+        ean_invoice:
+          description: Indtast dit 13 cifret EAN nummer i feltet herunder
+          placeholder: Indtast dit 13 cifret EAN nummer her
+        invoice:
+          description: Faktura tilbydes kun skoler og virksomheder vi har aftale med. Kontakt os evt. på +45 2991 9911
+        vat_invoice:
+          description: ''
+          placeholder: Indtast dit CVR nr.
+        klarna:
+          description: ''
+      payment_method:
+        credit_card: Betalingskort
+        klarna: Klarna faktura
+        ean_invoice: EAN Faktura
+        invoice: Fakturabetaling
+        vat_invoice: Fakturabetaling
+        mobilepay: MobilePay
+
+      empty:
+        title: Du har ingen varer i kurven
+        buy: Køb nogle varer
+
+      show:
+        order: 'Ordre #%{number}'
+        thanks: Tak for din bestilling %{name}!
+        picking: Vi går straks i gang med at pakke dine varer
+        order_number: Dit ordre nr er <strong>%{order_number}</strong>
+        confirmation: Vi har sendt dig en email med ordrebekræftelse og vi sender dig en email med track and trace nr. når pakken er afsendt
+        confirmation_link: Se din ordrebekræftelse her
+        follow: Følg med på Facebook
+
+
+    order_items:
+      order_item:
+        sku: 'Varenr.: %{sku}'
+        remove: Fjern
+        in_stock: På lager

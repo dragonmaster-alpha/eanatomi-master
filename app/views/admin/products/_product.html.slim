@@ -1,0 +1,5 @@
+tr
+  td = product.active_markets.join(', ')
+  td = product.sku
+  td = link_to [product.product&.name, product.name].compact.join(' > '), product
+  td = link_to 'Rediger', [:edit, :admin, product], class: 'btn btn-default btn-xs'

@@ -1,0 +1,30 @@
+= form_for [:admin, @voucher], html: { class: 'form-horizontal' } do |f|
+  = errors_for @voucher
+  
+  .form-group
+    label.control-label.col-sm-3 Kode
+    div.col-sm-6
+      = f.text_field :code, class: 'form-control'
+
+  = f.fields_for :lines do |line_form|
+    hr
+    .form-group
+      label.control-label.col-sm-3 Produkt
+      .col-sm-6
+        = line_form.select :product_id, @products, {}, role: 'selectize'
+    .form-group
+      label.control-label.col-sm-3 Pris
+      .col-sm-6
+        = line_form.text_field :price, class: 'form-control'
+    - if line_form.object.persisted?
+      .form-group
+        .col-sm-6.col-sm-offset-3.checkbox
+          label
+            = line_form.check_box :_destroy
+            | Fjern
+
+  .form-group
+    .col-sm-6.col-sm-offset-3
+      button.btn.btn-success type='submit'
+        = @voucher.new_record? ? 'Opret rabatkode' : 'Gem ændringer'
+      = link_to 'Annuller', [:admin, :vouchers], class: 'btn btn-link'

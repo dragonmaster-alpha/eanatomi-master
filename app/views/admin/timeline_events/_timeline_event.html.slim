@@ -1,0 +1,7 @@
+tr data-id=timeline_event.id
+  td
+    i.fa.fa-arrows
+  td = timeline_event 
+  td
+    = link_to 'Rediger', [:edit, :admin, timeline_event], class: 'btn btn-default btn-xs'
+    = link_to 'Slet', [:admin, timeline_event], class: 'btn btn-link btn-xs', method: 'delete', 'data-confirm' => "Slet #{timeline_event}?"

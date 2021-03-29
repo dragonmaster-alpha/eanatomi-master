@@ -1,0 +1,21 @@
+.container.text-center
+  p = link_to 'Tilbage', [:admin, :purchase_orders]
+
+  h1 = "Bestilling hos #{@purchase_order.manufacturer}"
+  p = l(@manufacturer.restocking_on)
+
+  br
+
+  h5 Genbestilling
+  - @purchase_order.items.each do |item|
+    div = "#{item.quantity} stk. #{item.product.supplier_id} (#{item.product.sku}) - #{item.product.name} #{item.product.product&.name}"
+
+  h5 Heraf kundebestillinger på
+  - @purchase_order.items.each do |item|
+    - if item.product.unshipped_order_items.any?
+      div
+        = "#{item.product.unshipped_order_items.map(&:quantity).sum} stk. #{item.product.supplier_id} (#{item.product.sku}) - #{item.product.name} #{item.product.product&.name} (ordre "
+        - links = item.product.unshipped_order_items.map do |item|
+          - link_to(item.order.order_number, [:admin, item.order])
+        = links.join(', ').html_safe
+        = ')'

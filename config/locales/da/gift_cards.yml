@@ -1,0 +1,27 @@
+---
+da:
+  gift_cards:
+    pdf:
+      title: Gavekort
+      code: 'Gavekortets indløsningskode: %{code}'
+      valid_from: 'Udstedt den %{date} med værdi:'
+      welcome: Vi ser frem til at byde dig velkommen på www.eAnatomi.dk.
+      terms:
+        'Betingelser:
+        Gavekortet kan kun bruges til køb af varer, for gavekortets værdi, fra sortimentet som findes på www.eanatomi.dk. Gavekortet skal bruges indenfor 3 år. Sker dette ikke mister gavekortet sin værdi.
+        Køb foretaget med brug af gavekortet er underlagt eanatomi.dk’s gældende handelsbetingelser.'
+      usage: Ved bestilling på eAnatomi.dk indtastes gavekortets kode
+      vat: Gavekortets beløb er inkl. moms.
+      address: 'eAnatomi - Tlf.: +45 2991 9911 - E-mail:   info@eanatomi.dk  - www.eAnatomi.dk'
+    new:
+      title: Køb et gavekort
+      name: Dit navn
+      email: Din email
+      recipient: Navn på modtager
+      message: Evt. besked til modtager
+      amount: Beløb DKK inkl. moms
+      pay: Gå til betaling
+      text: Skal du bruge en gave, men er i tvivl om hvad du skal købe? Så er et gavekort en rigtig god idé
+    show:
+      thanks: Tak for dit køb af gavekort %{name}
+      download: Download gavekortet

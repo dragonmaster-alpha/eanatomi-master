@@ -1,0 +1,6 @@
+tr
+  td = notice.active_markets.join(', ')
+  td = notice.text
+  td
+    = link_to 'Rediger', [:edit, :admin, notice], class: 'btn btn-default btn-xs'
+    = link_to 'Slet', [:admin, notice], class: 'btn btn-link btn-xs', method: 'delete', 'data-confirm' => "Slet beskeden?"

@@ -1,0 +1,7 @@
+.container
+  .text-center
+    h1 Top beskeder
+    p = link_to 'Ny besked', [:new, :admin, :notice], class: 'btn btn-primary'
+
+  table.table
+    = render @notices

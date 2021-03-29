@@ -1,0 +1,8 @@
+.container
+  .text-center
+    h1 Udvalgte produkter
+    p = link_to 'Nyt udvalgt produkt', [:new, :admin, :featured_product], class: 'btn btn-primary'
+  
+  table.table
+    tbody role='sortable' data-model='FeaturedProduct'
+      = render @featured_products

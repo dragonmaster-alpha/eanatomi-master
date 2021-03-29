@@ -1,0 +1,83 @@
+.label {
+  @apply text-xs py-1 px-2;
+}
+.label-danger {
+  @apply text-white bg-red;
+}
+.label-warning {
+  @apply text-white bg-orange;
+}
+
+.form-control {
+  -webkit-appearance: none;
+  @apply w-full border-px border-grey p-3 font-sans text-xs font-bold rounded-none shadow-none;
+  &:hover {
+    @apply border-grey-dark;
+  }
+  /*&:focus {*/
+  /*  outline: 3px solid rgba(0,0,0,0.15);*/
+  /*  outline-offset: 0;*/
+  /*}*/
+}
+
+.table {
+  @apply w-full text-sm font-sans;
+  border-spacing: 0;
+  border-collapse: collapse;
+  &.dotted {
+     border-collapse: unset;
+    & td {
+        @apply px-2 pb-3 pt-4 border-b-px border-dotted;
+        border-color: #c4c4c4;
+      }
+  }
+  & td {
+    @apply px-2 pb-3 pt-4 border-b-px;
+    border-color: #c4c4c4;
+  }
+  & tr:last-child td {
+    @apply border-b-0;
+  }
+}
+.table-striped tr:nth-child(odd) {
+  @apply bg-grey-lightest;
+}
+
+.row {
+  @apply flex;
+}
+
+.col-sm-4 {
+  @apply w-1/3 px-2;
+}
+
+.form-horizontal {
+  & .form-group {
+    @apply flex items-center my-4;
+
+    &.text-center {
+      justify-content: center;
+    }
+  }
+  & .control-label {
+    @apply w-1/3 text-right pr-6;
+  }
+  & .col-sm-6 {
+    @apply w-1/3;
+  }
+  & .col-sm-offset-3 {
+    @apply ml-1/3;
+  }
+}
+
+.form-inline {
+  @apply flex;
+}
+
+.checkbox-inline {
+  @apply mr-2;
+
+  & input {
+    @apply mr-1;
+  }
+}

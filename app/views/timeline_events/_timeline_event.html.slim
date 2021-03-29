@@ -1,0 +1,8 @@
+.p-10.md--flex.bg-white
+  .md--w-48.mx-auto.flex-none = image_tag timeline_event.imgix_photo_url(w: 400) if timeline_event.imgix_photo
+  .md--ml-8.mt-8.md--mt-0
+    h3.font-normal.uppercase = timeline_event
+    .leading-normal.mt-6 = raw timeline_event.body
+
+
+.h-12.mx-auto.w-px.border-dashed.border-2.border-grey

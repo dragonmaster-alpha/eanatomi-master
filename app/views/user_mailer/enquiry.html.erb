@@ -1,0 +1,43 @@
+<table class="main" width="100%" cellpadding="0" cellspacing="0">
+  <tr>
+    <td class="content-wrap">
+      <table width="100%" cellpadding="0" cellspacing="0">
+        <tr>
+          <td class="content-block">
+            <h1>Henvendelse fra <%= @enquiry.name %></h1>
+            <%= 'Ring mig op' if @enquiry.call_me %>
+          </td>
+        </tr>
+        <tr>
+          <td class="content-block">
+            <div><strong>Navn</strong></div>
+            <div><%= @enquiry.name %></div>
+          </td>
+        </tr>
+        <tr>
+          <td class="content-block">
+            <div><strong>Email</strong></div>
+            <div><%= @enquiry.email %></div>
+          </td>
+        </tr>
+        <tr>
+          <td class="content-block">
+            <div><strong>Telefon</strong></div>
+            <div><%= @enquiry.phone %></div>
+          </td>
+        </tr>
+        <tr>
+          <td class="content-block">
+            <div><strong>Url</strong></div>
+            <div><%= @enquiry.url %></div>
+          </td>
+        </tr>
+        <tr>
+          <td class="content-block">
+            <div><%= simple_format @enquiry.body %></div>
+          </td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+</table>

@@ -1,0 +1,8 @@
+.container.text-center
+  h1 =@category
+  p Mega menu images
+  = link_to 'Add new', new_admin_category_category_megaimage_path, class: 'btn btn-primary'
+br
+.container
+  .row role='sortable' data-model='CategoryMegaimage'
+    = render @mega_images

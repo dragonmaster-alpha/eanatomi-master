@@ -1,0 +1,2 @@
+module GiftCards::PaymentsHelper
+end

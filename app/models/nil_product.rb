@@ -1,0 +1,2 @@
+class NilProduct < Product
+end

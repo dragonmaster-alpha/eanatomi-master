@@ -1,0 +1,8 @@
+tr
+  td = l gift_card.created_at
+  td = gift_card.status
+  td = gift_card.code
+  td
+    .pull-right = number_to_currency gift_card.net_used
+  td
+    .pull-right = number_to_currency gift_card.net_amount

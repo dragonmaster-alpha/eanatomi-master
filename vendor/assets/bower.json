@@ -1,0 +1,10 @@
+{
+  "name": "dsl-generated dependencies",
+  "dependencies": {
+    "houdini": "latest",
+    "Sortable": "latest",
+    "magnific-popup": "latest",
+    "selectize": "latest",
+    "garlicjs": "latest"
+  }
+}

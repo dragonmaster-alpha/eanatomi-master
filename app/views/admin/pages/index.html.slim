@@ -1,0 +1,8 @@
+.container
+  .text-center
+    h1 Sider
+    p = link_to 'Ny side', [:new, :admin, :page], class: 'btn btn-primary' if can? :create, Page
+  
+  table.table
+    tbody role='sortable' data-model='Page'
+      = render @pages

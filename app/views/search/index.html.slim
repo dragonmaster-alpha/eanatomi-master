@@ -1,0 +1,9 @@
+.container
+  .div.search_result
+    = link_to t('.home'), '/', class: 'btn btn-link'
+    h1.mb-2.mt-2.px-2 = t('.search_for', query: @query)
+    p.content.mb-1.px-2 = t('.results', count: @results.count)
+
+  .grid-items.grid-items-wide
+    = render @products
+    = render 'products/product_missing'

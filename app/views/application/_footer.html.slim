@@ -1,0 +1,98 @@
+.bg-green.md--p-4.py-10.mt-10
+  .container
+    .md--flex.block.items-center.font-alt.text-sm.text-white.tracking-wide
+      .flex.items-center.mx-4(class="w-full md--w-1/3 mb-4 md--mb-0")
+        = image_tag('icons/hand_white.svg', class: 'mr-4 w-8')
+        span.uppercase = t('.shipping_price.title', amount: short_number_to_currency(currency(DeliveryMethod.cheapest(context.market.key).cost).net_amount))
+      .flex.items-center.mx-4(class="w-full md--w-1/3 mb-4 md--mb-0")
+        = image_tag('icons/schedule_white.svg', class: 'mr-4 w-8')
+        span.uppercase = t('.returns.title')
+      .flex.items-center.mx-4(class="w-full md--w-1/3")
+        = image_tag('icons/truck_white.svg', class: 'mr-4 w-10')
+        span.uppercase = t('.shipping.title')
+
+.flex.bg-black.py-6
+  .container
+    .md--flex.block
+      div class="w-full md--w-1/3 px-4 my-10"
+        .mb-4.text-white.font-bold = t('.columns.information')
+        ul.list-reset.text-white
+          - footer_pages.each do |page|
+            li.text-sm.mb-3
+              = link_to page, page, class: 'text-white no-underline flex items-baseline'
+          /  Kundeservice
+          / li.text-sm.mb-3 Handelsbetingelser
+          / li.text-sm.mb-3 Om OS
+          li.text-sm
+            = link_to 'https://udvikling.eanatomi.dk/', target: '_blank', class: 'text-white no-underline flex items-baseline'
+              div =t('.columns.subdomain')
+        .mb-4.mt-12.text-white.font-bold = t('.columns.lang')
+        .flex.items-center.z-30.relative.cursor-pointer.group
+          .mr-2.text-sm.text-white = context.market.country
+          i.fa.fa-caret-down.text-white
+          .absolute.z-10.bg-white.pin-t.mt-4.-ml-6.shadow-lg.py-2.hidden.group-hover--block
+            - Destination.active.each do |destination|
+              = link_to destination.url, class: 'flex text-black items-center no-underline px-6 py-1 hover--font-bold' do
+                .text-xs.mx-2 = destination.country
+      div class="w-full md--w-1/3 px-4 my-10"
+        .inline-block
+          .mb-4.uppercase.text-white.font-bold =t('.columns.follow')
+          ul.list-reset.text-white
+            li.text-sm.mb-3
+              = link_to 'https://www.facebook.com/eAnatomi/', target: '_blank', class: 'text-white no-underline flex items-baseline'
+                / = image_tag('icons/ft_fb.svg', class: 'w-10px mr-3')
+                div Facebook
+            li.text-sm.mb-3
+              = link_to 'https://www.instagram.com/eanatomi_dk/', target: '_blank', class: 'text-white no-underline flex items-baseline'
+                / = image_tag('icons/ft_instagram.svg', class: 'w-15px mr-2')
+                div Instagram
+            li.text-sm
+              = link_to 'https://www.linkedin.com/company/eanatomi', target: '_blank', class: 'text-white no-underline flex items-baseline'
+                / = image_tag('icons/ft_linkedIn.svg', class: 'w-15px mr-2')
+                div LinkedIn
+
+      div class="w-full md--w-1/3 px-4 my-10"
+        .inline-block
+          .mb-4.uppercase.text-white.font-bold = t('.contact.title')
+          ul.list-reset.text-white
+            li.text-sm.mb-3
+              .flex.items-center
+                / = image_tag('icons/ft_phone.svg', class: 'w-18px mr-2')
+                div = t('.contact.phone')
+            li.text-sm.mb-3
+              .flex.items-center
+                / = image_tag('icons/ft_newsletter.svg', class: 'mr-2 w-4 no-underline')
+                div = mail_to(t('.contact.email'), nil, class:'text-white no-underline')
+            li.text-sm
+              .flex.items-center
+                / = image_tag('icons/ft_map.svg', class: 'mr-2 w-4')
+                span.py-1 = t('.contact.business')
+              .py-1.mb-3 = t('.contact.address') + ', '+ t('.contact.city') + ', '+ t('.contact.country')
+              .py-1 = t('.contact.owner')
+              .py-1 = t('.contact.vat_number')
+              .mt-6.text-lg
+                i.fa.fa-lock.mr-2
+                = link_to t('.contact.account'), (signed_in? ? users_path : sign_in_path), class: 'no-underline text-white text-sm'
+        / .text-white
+        /   .text-sm.font-thin.mb-8
+        /     = image_tag('icons/ft_phone.svg', class: 'mb-4 block m-auto')
+        /     = t('.contact.phone')
+        /   .text-sm.font-thin.mb-8
+        /     = image_tag('icons/ft_newsletter.svg', class: 'mb-4 block m-auto')
+        /     = mail_to(t('.contact.email'), nil, class:'text-white')
+        /   .text-sm.font-thin.mb-8
+        /     = image_tag('icons/ft_map.svg', class: 'mb-4 block m-auto')
+        /     = t('.contact.owner')
+        /   .text-sm.font-thin = t('.contact.vat_number')
+
+.bg-white.py-px
+  .container
+    .my-4.items-center.justify-between.md--flex.block
+      .flex.items-center.py-6.flex-wrap
+        = image_tag('icons/ft_dk.svg', class: 'mr-4')
+        = image_tag('icons/ft_visa.svg', class: 'mr-4')
+        = image_tag('icons/ft_card.svg', class: 'mr-4')
+        = image_tag('icons/ft_ean.svg', class: 'mr-4')
+      .flex.items-center.py-6
+        = image_tag('icons/ft_bam.svg', class: 'mr-4')
+        = image_tag('icons/ft_secure.svg')

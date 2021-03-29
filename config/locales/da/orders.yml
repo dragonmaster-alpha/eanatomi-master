@@ -1,0 +1,46 @@
+---
+da:
+  orders:
+    show:
+      order: 'Ordre #%{number}'
+    summary:
+      ean_number: EAN nummer
+      sku: Varenr.
+      description: Beskrivelse
+      quantity: Antal
+      stock: Lager
+      price: Stk. pris
+      amount: Pris
+      net_amount: Total inkl. moms
+      gross_amount: Total ekskl. moms
+      vat: Heraf moms
+      details: Detaljer
+      order_number: Ordrenr.
+      status: Status
+      date: Dato
+      payment_method: Betaling
+      market: Marked
+      invoice_id: Faktura id
+      invoice_status: Faktura status
+      invoice: Faktura
+      download: Hent
+      payment_id: Betalings id
+      shipment_id: Leverings id
+      client: Kunde oplysninger
+      client_type: Kundetype
+      email: Email
+      phone: Telefon
+      vat_number: CVR nr.
+      reference_number: Rererence
+      shipping_address: Leverings adresse
+      shipping_type: Leveringstype
+      flex_instructions: Flex levering
+      delivery_fee: Fragt
+      clearance_fee: Fortoldning
+      gift_card: Gavekort
+      address: Adresse
+      city: By
+      country: Land
+      attention: Att.
+      name: Navn/Firma
+      courier: Distributør

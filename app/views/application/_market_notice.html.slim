@@ -1,0 +1,13 @@
+.container role='market-notice'
+  .market-notice
+    .market-notice-flag
+      span class="flag-icon flag-icon-#{context.market.key}"
+    h3.market-notice-header = t '.header'
+    .market-notice-body
+      p = t('.body', default: '')
+      ul.market-notice-list
+        - t('.bullets').split("\n").each do |bullet|
+          li = bullet
+      p = t '.contact'
+    
+    button.btn.btn-primary role='market-notice-close' type='button' = t '.close'

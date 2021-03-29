@@ -1,0 +1,22 @@
+// Place all the styles related to the admin controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+@import "redactor.min";
+@import "redactor.alignment";
+@import "selectize/dist/css/selectize";
+@import "selectize/dist/css/selectize.bootstrap3";
+@import "article-editor.min";
+@import "admin/category_banners";
+
+.locale-tabs {
+  margin-bottom: 30px;
+}
+
+.translations-saving {
+  opacity: 0.2;
+}
+
+.redactor-editor p {
+  margin: 0;
+}

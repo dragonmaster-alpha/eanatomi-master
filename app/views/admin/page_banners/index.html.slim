@@ -1,0 +1,13 @@
+.container
+  h1.text-center = "Billeder for #{@page}"
+  .card.card-upload_form
+    = form_for([:admin, @page, @banner], html: { class: 'form-inline text-center' }) do |f|
+      .form-group
+        = f.file_field :imgix_photo, class: 'form-control', required: 'true'
+      button.btn.btn-success type='submit' Upload
+
+  .row role='sortable' data-model='CategoryBanner'
+    = render @banners
+
+  .text-center
+    = link_to 'Vis Kategorier', @page, class: 'btn btn-primary'

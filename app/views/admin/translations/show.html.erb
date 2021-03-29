@@ -1,0 +1,52 @@
+<div class="container">
+  <h1>Oversættelser</h1>
+  <br>
+
+  <ul class="nav nav-tabs">
+    <% @locales.each do |locale, country| %>
+      <li class="<%= 'active' if @current_locale == locale %>"><a href="?locale=<%= locale %>"><%= country %></a></li>
+    <% end %>
+  </ul>
+
+  <br>
+
+  <%= form_tag [:admin, :translations], method: 'put', role: 'translations-form' do %>
+
+    <div class="form-group">
+      <div class="radio-inline">
+        <label>
+          <input type="radio" name="filter" value="missing" checked> Vis manglende
+        </label>
+      </div>
+      <div class="radio-inline">
+        <label>
+          <input type="radio" name="filter" value="all"> Vis alle
+        </label>
+      </div>
+    </div>
+
+    <div class="tab-pane <%= 'active' if context.market.lang == @current_locale %>" id="<%= @current_locale %>">
+      <% @scopes.each do |scope, translations| %>
+        <div class="well">
+          <h4><%= scope %></h4>
+          <br>
+          <% translations.each do |translation| %>
+            <div class="form-group <%= 'has-error' if t(translation, locale: @current_locale, fallback: @current_locale, default: '').blank? %>" data-show="filter=all<%= ',missing' if t(translation, locale: @current_locale, fallback: @current_locale, default: '').blank?  %>">
+              <label class="control-label"><%= translation.split('.')[1..-1].join('.') %></label>
+              <div class="row">
+                <div class="col-sm-6"><%= text_area "translations[#{@current_locale}]", translation, value: t(translation, locale: @current_locale, fallback: @current_locale, default: ''), 'data-locale' => @current_locale, 'data-key' => translation, role: 'translations-field', class: 'form-control' %></div>
+                <div class="col-sm-6"><textarea class="form-control" disabled><%= t(translation, default: '', locale: 'da') %></textarea></div>
+              </div>
+            </div>
+          <% end %>
+        </div>
+      <% end %>
+    </div>
+
+    <!-- <button class="btn btn-success" type="submit">Gem ændringer</button> -->
+
+
+  <% end %>
+
+</div>
+<div class="spacer"></div>

@@ -1,0 +1,58 @@
+- cache_unless(context.signed_in?, [context.market.key, grid_item])
+  .sortable-item.product-grid-item.mb-6.text-center data-id=grid_item.id
+    - if grid_item.sortable? && can?(:update, grid_item.object)
+      .sortable-handle
+        i.fa.fa-arrows
+    = link_to grid_item.object, class: 'border hover--shadow-md relative block text-black no-underline grid-item rounded-sm h-full flex flex-col', 'data-id': grid_item.id do
+      .flex.text-xs.mx-2.h-10.uppercase.items-center
+        - if grid_item.label.present?
+          span = grid_item.label
+        - if grid_item.savings?
+          span.ml-auto.text-red = t('.offer', save: grid_item.savings_percentage)
+      .flex.flex-col.flex-grow
+        .h-64.md--h-64.text-center.flex-none.text-mini.mb-4.px-6 = image_tag(grid_item.imgix_photo_url(w: 400, h: 400, q: 90, ixlib: 'rb-1.2.2'), alt: grid_item, class: 'max-w-full object-contain h-full mx-auto')
+        .flex.flex-col.flex-grow.justify-between.bg-grey-lightest.px-6
+          .text-sm.my-6.overflow-hidden.leading-normal.h-11.text-ellipsis
+            = grid_item
+            = ", #{grid_item.size}" if grid_item.size?
+          div.flex-grow
+            .mb-2
+              - if grid_item.purchasable?
+                .mt-1
+                  span.text-sm
+                    - if grid_item.has_variants?
+                      .i.fa.fa-circle.text-green
+                      .i.fa.fa-circle.text-black.-ml-2.mr-2
+                    - elsif grid_item.in_stock?
+                      .i.fa.fa-circle.text-green.mr-2
+                    - else
+                      .i.fa.fa-circle.text-yellow-dark.mr-2
+                  - if grid_item.has_variants?
+                    = "#{t('.from')} "
+                  span.font-bold
+                    - if show_vat?
+                      = number_to_currency(currency(grid_item.sales_price).net_amount)
+                    - else
+                      = number_to_currency(currency(grid_item.sales_price).gross_amount)
+                  / span.ml-1.text-tiny.font-thin
+                  /   - if show_vat?
+                  /     = t('.vat_incl')
+                  /   - else
+                  /     = t('.vat_excl')
+                  - if grid_item.savings?
+                    .text-red.mt-1.line-through
+                      - if show_vat?
+                        = number_to_currency(currency(grid_item.price).net_amount)
+                      - else
+                        = number_to_currency(currency(grid_item.price).gross_amount)
+              - else
+                .mt-4 = t('.call_for_price')
+            .text-sm
+              - if grid_item.has_variants?
+                = t('.variants')
+              / - elsif grid_item.in_stock?
+              /   .i.fa.fa-circle.text-green-light.mr-2
+              /   = t('.in_stock')
+              / - else
+              /   .i.fa.fa-circle.text-yellow-dark.mr-2
+              /   = grid_item.shipping_time_description

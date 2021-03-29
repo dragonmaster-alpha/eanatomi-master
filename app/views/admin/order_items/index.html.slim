@@ -1,0 +1,9 @@
+.container
+  .text-center
+    h1 = "Orderlinjer for #{@order}"
+    p
+      = link_to 'Ny linje', [:new, :admin, @order, :order_item], class: 'btn btn-primary'
+      = link_to 'Tilbage', [:admin, @order], class: 'btn btn-link'
+  
+  table.table
+    = render @order_items

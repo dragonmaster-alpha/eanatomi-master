@@ -1,0 +1,63 @@
+- Page.without_fallbacks do
+  = form_for [:admin, @page], html: { class: 'form-horizontal' } do |f|
+
+    = render 'locale_tabs'
+
+
+    - if context.user.admin?
+
+      = render 'admin/active_in_markets/form', f: f
+
+      .form-group
+        label.control-label.col-sm-3 Placering
+        .col-sm-6 = f.select :placement, @placements, {}, class: 'form-control'
+
+      .form-group
+        label.control-label.col-sm-3 Template
+        .col-sm-6 = f.select :template, enums_for(@page, :template), {}, class: 'form-control'
+
+      .form-group
+        label.control-label.col-sm-3 Evt. overside
+        .col-sm-6 = f.select :page_id, @pages, {}, class: 'form-control'
+
+    = render layout: 'locale_tab_content' do |locale|
+
+      hr
+
+      .form-group
+        label.control-label.col-sm-3
+          | Meta-title
+          span.label.label-info = locale
+        .col-sm-6 = f.text_field "meta_title_#{locale}", class: 'form-control'
+
+      .form-group
+        label.control-label.col-sm-3
+          | Meta-description
+          span.label.label-info = locale
+        .col-sm-6 = f.text_area "meta_description_#{locale}", class: 'form-control'
+
+      hr
+
+      .form-group
+        label.control-label.col-sm-3
+          | Navn
+          span.label.label-info = locale
+        .col-sm-6 = f.text_field "name_#{locale}", class: 'form-control'
+
+      / .form-group
+      /   label.control-label.col-sm-3
+      /     | Indhold
+      /     span.label.label-info = locale
+      /   .col-sm-9.test = f.text_area "body_#{locale}", role: 'redactor'
+      .form-group
+        label.control-label.col-sm-3
+          | Indhold
+          span.label.label-info = locale
+        .col-sm-9.test = f.text_area "body_#{locale}", class: 'article_editor_main'
+
+
+    .form-group
+      .col-sm-6.col-sm-offset-3
+        button.btn.btn-success type='submit'
+          = @page.new_record? ? 'Opret side' : 'Gem ændringer'
+        = link_to 'Annuller', (@page.new_record? ? [:admin, :pages] : @page), class: 'btn btn-link'

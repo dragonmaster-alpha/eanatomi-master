@@ -1,0 +1,30 @@
+div role='checkout-delivery-address'
+  h3.mt-6.checkout-form-header.uppercase.text-sm = t '.address'
+  .checkout-form-group
+    .checkout-label
+    .checkout-input-container
+      label
+        input type='checkbox' role='checkout-copy-address'
+        span.ml-2.uppercase.text-xs = t('.copy_address')
+  .checkout-form-group.checkout-form-group-required
+    label.checkout-label = t '.name'
+    .checkout-input-container = f.text_field :delivery_name, class: 'checkout-input w-full', required: true
+  .checkout-form-group.checkout-form-group-optional
+    label.checkout-label = t '.att'
+    .checkout-input-container = f.text_field :delivery_att, class: 'checkout-input w-full'
+  .checkout-form-group.checkout-form-group-required
+    label.checkout-label = t '.address'
+    .checkout-input-container = f.text_field :delivery_address, class: 'checkout-input w-full', required: true
+  div data-controller='zipper' data-country-code=@order.country_code
+    .checkout-form-group.checkout-form-group-required
+      label.checkout-label = t '.zip_code'
+      .checkout-input-container = f.text_field :delivery_zip_code, 'data-action': 'keyup->zipper#update', 'data-target': 'zipper.zip', class: 'checkout-input w-full', required: true
+    .checkout-form-group.checkout-form-group-required
+      label.checkout-label = t '.city'
+      .checkout-input-container = f.text_field :delivery_city, 'data-target': 'zipper.city', class: 'checkout-input w-full', required: true
+  .checkout-form-group.checkout-form-group-optional
+    label.checkout-label = t '.flex_instructions'
+    .checkout-input-container = f.text_field :flex_instructions, class: 'checkout-input w-full'
+  .checkout-form-group
+    label.checkout-label = t '.country'
+    .checkout-input-container.font-sans.font-bold.text-xs = @order.delivery_country

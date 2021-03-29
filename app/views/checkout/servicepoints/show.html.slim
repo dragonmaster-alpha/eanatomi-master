@@ -1,0 +1,9 @@
+- if @servicepoints.any?
+  .mt-4
+    - @servicepoints.each do |servicepoint|
+      button.w-full.my-2.block.text-left.border-b-2.border-white.hover--border-black.hover--font-bold type="button" role='checkout-choose-servicepoint' data-id=servicepoint.id data-name=servicepoint.name data-street=servicepoint.street data-zip-code=servicepoint.zip_code data-city=servicepoint.city data-country-code=servicepoint.country_code.downcase
+        .flex.justify-between.items-center
+          .font-bold.text-sm.uppercase = servicepoint.name
+          .text-xs.ml-4 = "#{servicepoint.distance}m"
+        .text-sm = servicepoint.street
+        .text-sm = "#{servicepoint.zip_code} #{servicepoint.city}"

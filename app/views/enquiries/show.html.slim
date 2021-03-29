@@ -1,0 +1,7 @@
+.container
+  .text-center
+    i.fa.fa-check-circle.fa-state-success.fa-4x
+    .my-12
+      h1 = t('.thanks', name: nil)
+      p.mt-4.text-lg = t('.note')
+    = link_to t('.proceed'), '/', class: 'btn btn-link'

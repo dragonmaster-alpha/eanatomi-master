@@ -1,0 +1,35 @@
+.box
+  .container
+    h1.text-center = t('.details')
+    br
+    .col-sm-6.col-sm-offset-3
+      = form_for @user, url: :users do |f|
+        .form-group
+          = f.label :client_type, class: 'control-label'
+          = f.select :client_type, @client_types, {}, class: 'form-control'
+        .form-group
+          = f.label :name, class: 'control-label'
+          = f.text_field :name, class: 'form-control'
+        .form-group
+          = f.label :email, class: 'control-label'
+          = f.text_field :email, class: 'form-control'
+        .form-group
+          = f.label :phone, class: 'control-label'
+          = f.text_field :phone, class: 'form-control'
+        .form-group
+          = f.label :att, class: 'control-label'
+          = f.text_field :att, class: 'form-control'
+        .form-group
+          = f.label :vat_number, class: 'control-label'
+          = f.text_field :vat_number, class: 'form-control'
+        .form-group
+          = f.label :address, class: 'control-label'
+          = f.text_field :address, class: 'form-control'
+        .form-group
+          = f.label :zip_code, class: 'control-label'
+          = f.text_field :zip_code, class: 'form-control'
+        .form-group
+          = f.label :city, class: 'control-label'
+          = f.text_field :city, class: 'form-control'
+        
+        button.btn.btn-success.btn-block type='submit' = t('.update')

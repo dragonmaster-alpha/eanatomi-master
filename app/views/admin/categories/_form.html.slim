@@ -1,0 +1,85 @@
+- Category.without_fallbacks do
+  = form_for [:admin, @category], html: { class: 'form-horizontal' } do |f|
+
+    = render 'locale_tabs'
+
+    = render 'admin/active_in_markets/form', f: f
+
+    .form-group
+      .col-sm-6.col-sm-offset-3
+        .checkbox
+          label
+            = f.check_box :is_inline
+            | På linje
+
+    .form-group
+      label.control-label.col-sm-3 Template
+      .col-sm-6
+        = f.select :template, @templates, {}, class: 'form-control'
+    .form-group
+      label.control-label.col-sm-3 Menu Images type
+      .col-sm-6
+        = f.select :megamenu_type, @menu_types, {}, class: 'form-control'
+
+
+    .form-group
+      label.control-label.col-sm-3 Billede
+      .col-sm-6
+        = f.file_field :imgix_photo, class: 'form-control'
+
+    .form-group
+      label.control-label.col-sm-3 Ikon
+      .col-sm-6
+        = f.file_field :imgix_icon, class: 'form-control'
+
+    .form-group
+      label.control-label.col-sm-3 Kategori
+      .col-sm-6
+        = f.select :category_id, @categories, {}, class: 'form-control'
+
+    = render layout: 'locale_tab_content' do |locale|
+
+      hr
+
+      .form-group
+        label.control-label.col-sm-3
+         | Meta-title
+         span.label.label-info = locale
+        .col-sm-6
+          = f.text_field "meta_title_#{locale}", class: 'form-control'
+
+      .form-group
+        label.control-label.col-sm-3
+         | Meta-description
+         span.label.label-info = locale
+        .col-sm-6
+          = f.text_area "meta_description_#{locale}", class: 'form-control'
+
+      hr
+
+      .form-group
+        label.control-label.col-sm-3
+         | Navn
+         span.label.label-info = locale
+        .col-sm-6
+          = f.text_field "name_#{locale}", class: 'form-control'
+
+      .form-group
+        label.control-label.col-sm-3
+         | Indhold
+         span.label.label-info = locale
+        .col-sm-9
+          = f.text_area "body_#{locale}", role: 'redactor'
+
+      .form-group
+        label.control-label.col-sm-3
+         | Udviddet indhold
+         span.label.label-info = locale
+        .col-sm-9
+          = f.text_area "extended_body_#{locale}", role: 'redactor'
+
+    .form-group
+      .col-sm-6.col-sm-offset-3
+        button.btn.btn-success type='submit'
+          = @category.new_record? ? 'Opret kategori' : 'Gem ændringer'
+        = link_to 'Annuller', (@category.new_record? ? [:admin, :categories] : @category), class: 'btn btn-link'

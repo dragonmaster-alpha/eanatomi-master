@@ -1,0 +1,15 @@
+tr
+  td = l purchase_order.created_at
+  td = purchase_order.manufacturer
+  td = link_to "#{purchase_order.items.size} varer", [:admin, purchase_order]
+  td = purchase_order.status
+  td
+    - if purchase_order.pending?
+      = form_for [:admin, purchase_order] do |f|
+        = f.hidden_field :status, value: 'fulfilled'
+        button.btn.btn-success.btn-sm Afslut
+  td
+    - if purchase_order.pending?
+      = form_for [:admin, purchase_order] do |f|
+        = f.hidden_field :status, value: 'canceled'
+        button.btn.btn-link.text-danger.btn-sm  data-confirm="Annuller denne genbestilling?" Annuller

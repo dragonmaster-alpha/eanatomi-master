@@ -1,0 +1,44 @@
+<% sortable ||= false %>
+<% level ||= 0 %>
+
+<ul class="flex justify-between list-reset  bg-white cursor-pointer navigation-head bg-white" role="<%= 'sortable' if sortable && can?(:update, Category) %>" data-model="Category">
+  <% items.each do |item| %>
+    <li class="sortable-item static navigation-head__item <%= 'has-submenu' if item.regular_categories.active_in(context.market.key).sorted.length > 0 %>" data-id="<%= item.id %>">
+      <% if context.path.last == (item) && level.nonzero? %>
+        <i class="fa fa-angle-right absolute -ml-<%= level * 4 %> mt-1"></i>
+      <% end %>
+      <%= link_to item, class: "flex items-center text-center uppercase text-nav tracking-2 #{'py-4 px-3 navigation-head__item-link' if level.zero?} #{'py-1' if level.nonzero?} no-underline text-black #{'text-xs' if level > 1} #{'text-sm' if level == 1} " do %>
+        <% if level.zero? %>
+          <!--          <div class="flex w-6 h-6 flex-none mr-4">-->
+          <%#= image_tag(item.imgix_icon.url, class: 'max-w-full max-h-full') if item.imgix_icon %>
+          <!--          </div>-->
+        <% end %>
+        <% if sortable && can?(:update, item) %>
+          <div class="sortable-handle">
+            <i class="fa fa-arrows"></i>
+          </div>
+        <% end %>
+        <%= item %>
+      <% end %>
+      <% if item.regular_categories.active_in(context.market.key).sorted.length > 0 %>
+        <div class="navigation_dropdown--content absolute w-full z-10 bg-white pin-l">
+          <div class="container">
+            <% if item.regular_categories.active_in(context.market.key).sorted.length > 0 %>
+              <div class="flex py-3">
+                <%=
+                  render partial: 'navigation_menu_sub_items',
+                         locals: {items: item.regular_categories.active_in(context.market.key).sorted,
+                                  level: level.next,
+                                  type: item.megamenu_type,
+                                  images: item.mega_images.sorted,
+                                  parent_id: 'none'
+                         }
+                %>
+              </div>
+            <% end %>
+          </div>
+        </div>
+      <% end %>
+    </li>
+  <% end %>
+</ul>

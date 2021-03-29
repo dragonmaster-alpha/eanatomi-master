@@ -1,0 +1,8 @@
+.container
+  .text-center
+    h1 Historie
+    p = link_to 'Nyt event', [:new, :admin, :timeline_event], class: 'btn btn-primary'
+  
+  table.table
+    tbody role='sortable' data-model='TimelineEvent'
+      = render @events

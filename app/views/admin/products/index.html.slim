@@ -1,0 +1,21 @@
+.container
+  .text-center
+    h1 Produkter
+    p = link_to 'Nyt produkt', [:new, :admin, :product], class: 'btn btn-primary' if can? :create, Product
+
+  p.text-center
+    = link_to 'Alle', '?products=all', class: "btn btn-default #{'active' if ['all', nil].include?(params[:products])}"
+    = link_to 'Inaktive', '?products=inactive', class: "btn btn-default #{'active' if params[:products] == 'inactive'}"
+    = link_to 'Mangler svensk', '?products=missing_sv', class: "btn btn-default #{'active' if params[:products] == 'missing_sv'}"
+    = link_to 'Mangler norsk', '?products=missing_nb', class: "btn btn-default #{'active' if params[:products] == 'missing_nb'}"
+    = link_to 'Mangler finsk', '?products=missing_fi', class: "btn btn-default #{'active' if params[:products] == 'missing_fi'}"
+
+  p
+    = form_tag admin_products_path, method: "get", class: 'form-inline text-center' do
+      input.form-control type="text" name="query" value=@query
+      button.btn.btn-primary type="submit" Søg
+
+  table.table
+    = render @products if @products
+
+  = paginate @products

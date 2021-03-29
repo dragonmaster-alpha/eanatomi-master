@@ -1,0 +1,15 @@
+.container.text-center
+  h1 Eksporter
+  
+  = form_tag url_for([:admin, :bulk]), class: 'form-inline' do
+    = select :export, :category_id, @categories, {}, class: 'form-control'
+    = select :export, :manufacturer_id, @manufacturers, {}, class: 'form-control'
+    button.btn.btn-primary type='submit' Eksporter produkter
+
+  br
+  	
+  h1 Importer
+  	
+  = form_tag url_for([:admin, :bulk]), method: 'patch', multipart: true, class: 'form-inline' do
+    = file_field :import, :file, class: 'form-control'
+    button.btn.btn-primary type='submit' Importer produkter

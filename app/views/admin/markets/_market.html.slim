@@ -1,0 +1,5 @@
+tr
+  td = market
+  td = market.domain
+  td
+    = link_to 'Rediger', [:edit, :admin, market], class: 'btn btn-default btn-xs' if can?(:update, market)

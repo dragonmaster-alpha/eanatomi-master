@@ -1,0 +1,6 @@
+tr
+  td = campaign.active_markets.join(', ') 
+  td = campaign
+  td
+    = link_to 'Rediger', [:edit, :admin, campaign], class: 'btn btn-default btn-xs'
+    = link_to 'Slet', [:admin, campaign], class: 'btn btn-link btn-xs', method: 'delete', 'data-confirm' => "Slet #{campaign}?"

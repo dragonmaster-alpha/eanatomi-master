@@ -1,0 +1,13 @@
+.container
+  h1 = "Rediger #{@page}"
+  br
+
+  = render 'form'
+
+  - if @page.translation_changes.latest.any?
+    br
+    h2 Seneste sprog ændringer
+    table.table
+      = render @page.translation_changes.latest
+    br
+    br

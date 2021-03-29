@@ -1,0 +1,46 @@
+<table class="main" width="100%" cellpadding="0" cellspacing="0">
+  <tr>
+    <td class="content-wrap">
+      <table width="100%" cellpadding="0" cellspacing="0">
+        <tr>
+          <td class="content-block">
+            <h1 class="aligncenter"><%= t('.greetings', name: @order.name) %></h1>
+          </td>
+        </tr>
+        <tr>
+          <td class="content-block">
+            <p><%= t('.notice') %></p>
+            <table class="invoice">
+              <tr>
+                <td>
+                  <table class="invoice-items" cellpadding="0" cellspacing="0">
+                    <% @out_of_stock_items.each do |order_item| %>
+                      <tr>
+                        <td>
+                          <div><%= order_item.quantity %>x <%= order_item.description %></div>
+                          <div class="stock-info">
+                            <% if order_item.in_stock? %>
+                              <div class="in-stock"><%= t('.in_stock') %></div>
+                            <% else %>
+                              <div class="shipping-time"><%= order_item.shipping_time_description %></div>
+                            <% end %>
+                          </div>
+                        </td>
+                        <td class="alignright"><%= number_to_currency order_item.net_amount %></td>
+                      </tr>
+                    <% end %>
+                  </table>
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+        <tr>
+          <td class="content-block">
+            <%= simple_format t('.thanks') %>
+          </td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+</table>

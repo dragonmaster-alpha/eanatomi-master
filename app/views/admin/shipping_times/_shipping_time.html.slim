@@ -1,0 +1,5 @@
+tr
+  td = shipping_time 
+  td
+    = link_to 'Rediger', [:edit, :admin, shipping_time], class: 'btn btn-default btn-xs'
+    = link_to 'Slet', [:admin, shipping_time], class: 'btn btn-link btn-xs', method: 'delete', 'data-confirm' => "Slet #{shipping_time}?"

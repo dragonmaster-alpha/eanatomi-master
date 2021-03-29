@@ -1,0 +1,33 @@
+- TimelineEvent.without_fallbacks do
+  = form_for [:admin, @event], html: { class: 'form-horizontal' } do |f|
+
+    = render 'locale_tabs'
+
+    = render layout: 'locale_tab_content' do |locale|
+
+      .form-group
+        label.control-label.col-sm-3
+         | Titel
+         span.label.label-info = locale
+        .col-sm-6
+          = f.text_field "title_#{locale}", class: 'form-control'
+
+      .form-group
+        label.control-label.col-sm-3
+         | Indhold
+         span.label.label-info = locale
+        .col-sm-6
+          = f.text_area "body_#{locale}", role: 'redactor'
+    .form-group
+      label.control-label.col-sm-3
+       | Billede
+      .col-sm-6
+        = f.file_field :imgix_photo, class: 'form-control'
+    .form-group
+      label.control-label.col-sm-3 Slider type
+      .col-sm-6 = f.select :slider_type, @slider_types, {}, class: 'form-control'
+    .form-group
+      .col-sm-6.col-sm-offset-3
+        button.btn.btn-success type='submit'
+          = @event.new_record? ? 'Opret event' : 'Gem ændringer'
+        = link_to 'Annuller', (@event.new_record? ? [:admin, :timeline_events] : Page.timeline_page), class: 'btn btn-link'

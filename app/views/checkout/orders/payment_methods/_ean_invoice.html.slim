@@ -1,0 +1,5 @@
+.checkout-form-header.text-xs = t('.description')
+.checkout-form-group
+  .checkout-label
+  .checkout-input-container
+    = f.text_field :ean_number, class: 'checkout-input w-full', placeholder: t('.placeholder'), required: true

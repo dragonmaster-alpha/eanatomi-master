@@ -1,0 +1,24 @@
+<% meta title: t('.meta_title'), description: t('.meta_description') %>
+
+<% content_for :title do %>
+  <h1 class="mt-2 uppercase font-normal text-xl"><%= t('.categories') %></h1>
+<% end %>
+
+<%= cache_unless(context.signed_in?, [context.market.key, @categories.map(&:updated_at)]) do %>
+  <div class="container flex">
+
+    <div class=" hidden md--block w-layout-side flex-no-shrink">
+      <%= render 'sidebar' %>
+    </div>
+
+    <div class="md--ml-6">
+
+      <div class="grid-items" role="<%= 'sortable' if can?(:update, Category) %>" data-model="Category">
+        <%= render @categories %>
+      </div>
+
+    </div>
+
+  </div>
+
+<% end %>

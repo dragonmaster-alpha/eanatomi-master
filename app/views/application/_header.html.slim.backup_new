@@ -1,0 +1,31 @@
+header.fixed.w-full.z-10.pin-x.pin-t role='header-d-navigation'
+  .header-top.bg-white.px-4
+    .container
+      .flex.items-center.justify-between
+        .header-toggle.hidden
+        .flex.items-center
+          .header__logo
+            = link_to image_tag('logo.svg', alt: 'eAnatomi', class: 'header__logo-img'), '/'
+          .header__icons
+            .flex.items-center.my-4.container.justify-between
+              .flex.items-center.ml-4.z-30.relative.cursor-pointer.group
+                / .flag-icon.text-xs class="flag-icon-#{context.market.key}"
+                .uppercase.text-xs.mx-2.tracking-2 = context.market.country
+                = image_tag('icons/dropdown.svg')
+                .absolute.z-10.bg-white.pin-t.mt-4.-ml-6.shadow-lg.py-2.hidden.group-hover--block
+                  - Destination.active.each do |destination|
+                    = link_to destination.url, class: 'flex text-black items-center no-underline px-6 py-1 hover--font-bold' do
+                      / .flag-icon.text-xs class="flag-icon-#{destination.id}"
+                      .uppercase.text-xs.tracking-wide.mx-2 = destination.country
+        .flex.items-center
+          div data-controller="search" data-action="click@window->search#hide"
+            = form_tag '/search', method: 'get', class: 'w-full z-20 relative mr-8' do
+              input.header-search-input.block.w-full.h-full.pr-3.py-2.rounded-md.text-gray-900.placeholder-gray-500 data-action="input->search#showResults" data-target="search.source" name='query' type='text' placeholder=t('.search_placeholder') value=@query autocomplete='off'
+              button.absolute.pin-t.pin-r.pin-b.bg-white.m-px.px-2
+                = image_tag('icons/search.svg', class: 'w-6')
+            .hidden.relative data-target="search.results"
+          = link_to new_checkout_order_path, class: 'ml-auto group relative flex items-center text-black no-underline px-4 h-10', 'data-turbolinks' => false do
+            = image_tag('icons/basket.svg', class: 'w-6')
+            - unless context.cart.empty?
+              .absolute.w-4.h-4.bg-yellow-dark.pin-t.pin-r.rounded-full.text-center.text-dark.leading-normal.text-xs = context.cart.size
+  = render 'navigation_menu'

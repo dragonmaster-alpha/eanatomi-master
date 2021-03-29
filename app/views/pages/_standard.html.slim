@@ -1,0 +1,12 @@
+section.product_banner.-mt-6.relative
+  .full_banner-slider(data-turbolinks="false")
+    = @banners.each do |banner|
+      .slider-item
+        =link_to image_tag(banner.imgix_photo.url(q: 90, w: 1920)), '#'
+  .slick-custom-arrow.flex.justify-between.absolute.w-full.pin.items-center.text-white.px-6.text-5xl
+    .prev.cursor-pointer
+      i.fa.fa-angle-left
+    .next.cursor-pointer
+      i.fa.fa-angle-right
+
+.mx-auto.page-body.arx-custom = raw @page.body

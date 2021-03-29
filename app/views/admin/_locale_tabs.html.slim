@@ -1,0 +1,4 @@
+ul.nav.nav-tabs.locale-tabs
+  - all_locales.each_with_index do |locale, i|
+    li class=('active' if i.zero?)
+      = link_to t("locale.#{locale}"), "[data-locale=#{locale}]", 'data-toggle' => 'tabs', role: 'locale-tab'

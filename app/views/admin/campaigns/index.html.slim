@@ -1,0 +1,7 @@
+.container
+  .text-center
+    h1 Kampagner
+    p = link_to 'Ny kampagne', [:new, :admin, :campaign], class: 'btn btn-primary'
+  
+  table.table
+    = render @campaigns

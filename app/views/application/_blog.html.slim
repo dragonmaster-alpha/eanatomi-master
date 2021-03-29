@@ -1,0 +1,13 @@
+- if latest_blogpost
+  .mb-2.bg-white.px-6.py-4
+    .mb-4.font-bold = t('.latest')
+    = link_to latest_blogpost.url, class: 'no-underline hover--underline', target: '_blank' do
+      .flex.items-center
+        div.h-12
+          = image_tag latest_blogpost.photo_url, class: 'max-h-full'
+        .text-sm.font-bold.ml-4
+          .mb-2 = l latest_blogpost.published_at.to_date, format: :short
+          div = latest_blogpost.author
+
+      .mt-2.text-sm = latest_blogpost.title
+      .mt-2.font-bold.text-sm = t('.read_more')
